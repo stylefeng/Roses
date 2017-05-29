@@ -33,4 +33,5 @@ public class ModelTest extends BaseJunit {
         message.setStatus("in");
         messageMapper.insert(message);
     }
+
 }

@@ -35,7 +35,7 @@ spring:
 
 logging:
   level: debug
-  file: logs/guns.log
+  file: logs/roses.log
 
 ---
 
@@ -51,5 +51,5 @@ spring:
 
 logging:
   level: warn
-  file: logs/guns.log
+  file: logs/roses.log
 
