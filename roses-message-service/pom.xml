@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.stylefeng.roses</groupId>
-    <artifactId>message-service</artifactId>
+    <groupId>com.stylefeng</groupId>
+    <artifactId>roses-message-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>roses</name>
-    <description>roses为解决分布式事务而生</description>
+    <name>roses-message-service</name>
+    <description>消息服务子系统</description>
 
     <parent>
-        <groupId>com.stylefeng.roses</groupId>
+        <groupId>com.stylefeng</groupId>
         <artifactId>roses-base</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>../roses-base/pom.xml</relativePath>
@@ -58,9 +58,8 @@
             <artifactId>druid</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.stylefeng.roses</groupId>
-            <artifactId>message-service-facade</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <groupId>com.stylefeng</groupId>
+            <artifactId>roses-message-service-facade</artifactId>
         </dependency>
     </dependencies>
 

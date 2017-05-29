@@ -1,5 +1,6 @@
 package com.stylefeng.roses.service;
 
+
 import com.stylefeng.roses.facade.MessageServiceApi;
 
 /**
