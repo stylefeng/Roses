@@ -8,6 +8,13 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <parent>
+        <groupId>com.stylefeng.roses</groupId>
+        <artifactId>roses-base</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../roses-base/pom.xml</relativePath>
+    </parent>
+
     <name>roses</name>
     <description>roses为解决分布式事务而生</description>
 
