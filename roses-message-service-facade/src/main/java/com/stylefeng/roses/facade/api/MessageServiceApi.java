@@ -1,4 +1,4 @@
-package com.stylefeng.roses.facade;
+package com.stylefeng.roses.facade.api;
 
 /**
  * 消息服务子系统开放的接口

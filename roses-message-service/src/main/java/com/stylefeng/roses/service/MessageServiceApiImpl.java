@@ -1,7 +1,7 @@
 package com.stylefeng.roses.service;
 
 
-import com.stylefeng.roses.facade.MessageServiceApi;
+import com.stylefeng.roses.facade.api.MessageServiceApi;
 
 /**
  * 消息服务子系统接口的实现
