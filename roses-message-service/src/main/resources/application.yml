@@ -6,6 +6,11 @@
 spring:
   profiles:
     active: dev
+  activemq:
+    broker-url: tcp://localhost:61616
+    in-memory: true
+    pool:
+      enabled: false
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:

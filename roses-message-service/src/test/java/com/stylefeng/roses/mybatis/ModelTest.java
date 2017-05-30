@@ -1,4 +1,4 @@
-package com.stylefeng.roses;
+package com.stylefeng.roses.mybatis;
 
 import com.baomidou.mybatisplus.toolkit.IdWorker;
 import com.stylefeng.roses.base.BaseJunit;
