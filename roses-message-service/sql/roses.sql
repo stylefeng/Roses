@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-05-29 21:25:09
+Date: 2017-06-02 23:05:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (
   `id` varchar(50) NOT NULL DEFAULT '' COMMENT '主键ID',
-  `version` int(11) NOT NULL DEFAULT '0' COMMENT '版本号',
+  `version` int(11) DEFAULT '0' COMMENT '版本号',
   `editor` varchar(100) DEFAULT NULL COMMENT '修改者',
   `creater` varchar(100) DEFAULT NULL COMMENT '创建者',
   `edit_time` datetime DEFAULT NULL COMMENT '最后修改时间',
