@@ -16,6 +16,12 @@ import java.util.Date;
  */
 public class MessageFactory {
 
+    /**
+     * 创建预存储消息
+     *
+     * @author stylefeng
+     * @Date 2017/6/2 23:54
+     */
     public static Message createPreMessage(ServiceMessage serviceMessage) {
         Message message = new Message();
         message.setStatus("0");
