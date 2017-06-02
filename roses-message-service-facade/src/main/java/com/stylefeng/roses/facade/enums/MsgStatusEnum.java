@@ -6,7 +6,7 @@ package com.stylefeng.roses.facade.enums;
  * @author stylefeng
  * @Date 2017/5/30 22:21
  */
-public enum MessageStatusEnum {
+public enum MsgStatusEnum {
 
     WAITING_CONFIRM("待确认"),
 
@@ -14,7 +14,7 @@ public enum MessageStatusEnum {
 
     private String desc;
 
-    MessageStatusEnum(String desc) {
+    MsgStatusEnum(String desc) {
         this.desc = desc;
     }
 

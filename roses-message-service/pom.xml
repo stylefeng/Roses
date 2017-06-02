@@ -65,6 +65,10 @@
             <groupId>com.stylefeng</groupId>
             <artifactId>roses-message-service-facade</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.stylefeng</groupId>
+            <artifactId>roses-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
