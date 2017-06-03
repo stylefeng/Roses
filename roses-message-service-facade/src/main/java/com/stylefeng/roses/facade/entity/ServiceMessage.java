@@ -99,4 +99,8 @@ public class ServiceMessage implements Serializable{
     public void setField3(String field3) {
         this.field3 = field3;
     }
+
+    public void addTimes(){
+        this.messageSendTimes++;
+    }
 }

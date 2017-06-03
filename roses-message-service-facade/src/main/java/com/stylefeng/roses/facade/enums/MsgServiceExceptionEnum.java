@@ -8,9 +8,14 @@ package com.stylefeng.roses.facade.enums;
 public enum MsgServiceExceptionEnum {
 
     /**
+     * 消息错误
+     */
+    CANT_FIND_THIS_MESSAGE(601,"找不到对应消息"),
+
+    /**
      * 错误的请求
      */
-    REQUEST_NULL(400, "请求有错误"),
+    REQUEST_NULL(400, "请求有空值"),
     QUEUE_CANT_BE_NULL(401, "消息的消费队列不能为空");
 
     MsgServiceExceptionEnum(int code, String message) {

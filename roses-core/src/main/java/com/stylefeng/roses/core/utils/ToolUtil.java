@@ -542,4 +542,18 @@ public class ToolUtil {
     public static String getTempPath() {
         return System.getProperty("java.io.tmpdir");
     }
+
+    /**
+     * 验证参数,如果为空就抛出异常
+     *
+     * @author fengshuonan
+     * @Date 2017/6/3 14:25
+     */
+    public static void assertEmpty(Object obj,RuntimeException e) throws RuntimeException{
+        if (ToolUtil.isEmpty(obj)){
+            throw e;
+        }else{
+            return ;
+        }
+    }
 }
