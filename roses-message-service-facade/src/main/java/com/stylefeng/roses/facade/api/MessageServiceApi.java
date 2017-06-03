@@ -51,6 +51,28 @@ public interface MessageServiceApi {
      */
     void reSendMessage(ServiceMessage serviceMessage) throws MsgServiceException;
 
+    /**
+     * 根据消息id重新发送消息
+     *
+     * @author fengshuonan
+     * @Date 2017/6/3 15:56
+     */
+    void reSendMessageByMessageId(String messageId) throws MsgServiceException;
 
+    /**
+     * 通过消息id删除消息
+     *
+     * @author fengshuonan
+     * @Date 2017/6/3 16:25
+     */
+    void deleteMessageByMessageId(String messageId) throws MsgServiceException;
+
+    /**
+     * 重新发送所有已死亡的消息,通过队列名称
+     *
+     * @author fengshuonan
+     * @Date 2017/6/3 16:38
+     */
+    void reSendAllDeadMessageByQueueName(String queue);
 
 }

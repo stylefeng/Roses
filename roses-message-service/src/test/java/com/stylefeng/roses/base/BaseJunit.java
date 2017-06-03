@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RosesApplication.class)
 @WebAppConfiguration
-@Transactional //测试之后数据可回滚
+//@Transactional //测试之后数据可回滚
 public class BaseJunit {
 
 }

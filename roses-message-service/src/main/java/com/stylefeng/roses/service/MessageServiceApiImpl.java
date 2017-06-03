@@ -1,6 +1,8 @@
 package com.stylefeng.roses.service;
 
 
+import com.stylefeng.roses.config.properties.RosesProperties;
+import com.stylefeng.roses.core.enums.IsOrNot;
 import com.stylefeng.roses.dao.MessageDao;
 import com.stylefeng.roses.facade.api.MessageServiceApi;
 import com.stylefeng.roses.facade.entity.ServiceMessage;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.stylefeng.roses.core.utils.ToolUtil.assertEmpty;
 
@@ -33,6 +36,9 @@ public class MessageServiceApiImpl implements MessageServiceApi {
 
     @Autowired
     Producer producer;
+
+    @Autowired
+    RosesProperties rosesProperties;
 
     @Override
     public void saveMessageWaitingConfirm(ServiceMessage serviceMessage) {
@@ -86,10 +92,50 @@ public class MessageServiceApiImpl implements MessageServiceApi {
 
         serviceMessage.addTimes();
         message.setMessageSendTimes(serviceMessage.getMessageSendTimes());
+        message.setEditTime(new Date());
+
+        if (message.getMessageSendTimes() >= rosesProperties.getMessageMaxSendTimes()) {
+            message.setAreadlyDead(IsOrNot.YES.name());
+        }
 
         message.updateById();
 
         producer.sendMessage(message.getConsumerQueue(), message.getMessageBody());
+    }
+
+    @Override
+    public void reSendMessageByMessageId(String messageId) throws MsgServiceException {
+        Message message = messageDao.getMessageByMessageId(messageId);
+        assertEmpty(message, new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
+
+        if (message.getMessageSendTimes() >= rosesProperties.getMessageMaxSendTimes()) {
+            message.setAreadlyDead(IsOrNot.YES.name());
+        }
+
+        message.setEditTime(new Date());
+        message.setMessageSendTimes(message.getMessageSendTimes() + 1);
+        message.updateById();
+
+        producer.sendMessage(message.getConsumerQueue(), message.getMessageBody());
+    }
+
+    @Override
+    public void deleteMessageByMessageId(String messageId) throws MsgServiceException {
+        assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        messageDao.deleteByMessageId(messageId);
+    }
+
+    @Override
+    public void reSendAllDeadMessageByQueueName(String queue) {
+        assertEmpty(queue, new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+        List<Message> allDeadMessage = messageDao.findAllDeadMessageByQueue(queue);
+        for (Message message : allDeadMessage) {
+            message.setEditTime(new Date());
+            message.setMessageSendTimes(message.getMessageSendTimes() + 1);
+            message.updateById();
+
+            producer.sendMessage(queue,message.getMessageBody());
+        }
     }
 
 
