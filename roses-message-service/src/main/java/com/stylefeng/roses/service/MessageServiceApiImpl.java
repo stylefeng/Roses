@@ -10,7 +10,6 @@ import com.stylefeng.roses.facade.exception.MsgServiceException;
 import com.stylefeng.roses.factory.MessageFactory;
 import com.stylefeng.roses.persistence.model.Message;
 import com.stylefeng.roses.queue.Producer;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +36,8 @@ public class MessageServiceApiImpl implements MessageServiceApi {
 
     @Override
     public void saveMessageWaitingConfirm(ServiceMessage serviceMessage) {
-        assertEmpty(serviceMessage,new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
-        assertEmpty(serviceMessage.getConsumerQueue(),new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+        assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
         Message message = MessageFactory.createPreMessage(serviceMessage);
         message.insert();
@@ -46,48 +45,51 @@ public class MessageServiceApiImpl implements MessageServiceApi {
 
     @Override
     public void confirmAndSendMessage(String messageId) throws MsgServiceException {
-        assertEmpty(messageId,new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
 
         Message message = messageDao.getMessageByMessageId(messageId);
-        assertEmpty(message,new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
+        assertEmpty(message, new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
 
         message.setStatus(MsgStatusEnum.SENDING.name());
         message.setEditTime(new Date());
         message.updateById();
 
-        producer.sendMessage(message.getConsumerQueue(),message.getMessageBody());
+        producer.sendMessage(message.getConsumerQueue(), message.getMessageBody());
     }
 
     @Override
     public void saveAndSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
-        assertEmpty(serviceMessage,new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
-        assertEmpty(serviceMessage.getConsumerQueue(),new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+        assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
         Message sendingMessage = MessageFactory.createSendingMessage(serviceMessage);
+        sendingMessage.insert();
 
-        producer.sendMessage(sendingMessage.getConsumerQueue(),sendingMessage.getMessageBody());
+        producer.sendMessage(sendingMessage.getConsumerQueue(), sendingMessage.getMessageBody());
     }
 
     @Override
     public void directSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
-        assertEmpty(serviceMessage,new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
-        assertEmpty(serviceMessage.getConsumerQueue(),new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+        assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
-        producer.sendMessage(serviceMessage.getConsumerQueue(),serviceMessage.getMessageBody());
+        producer.sendMessage(serviceMessage.getConsumerQueue(), serviceMessage.getMessageBody());
     }
 
     @Override
     public void reSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
-        assertEmpty(serviceMessage,new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
-        assertEmpty(serviceMessage.getConsumerQueue(),new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+        assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
+        assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
+
+        Message message = messageDao.getMessageByMessageId(serviceMessage.getMessageId());
+        assertEmpty(message, new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
 
         serviceMessage.addTimes();
-        Message message = MessageFactory.createBaseMessage();
-        BeanUtils.copyProperties(serviceMessage,message);
+        message.setMessageSendTimes(serviceMessage.getMessageSendTimes());
 
-        message.update("messageId = ?", message.getMessageId());
+        message.updateById();
 
-        producer.sendMessage(message.getConsumerQueue(),message.getMessageBody());
+        producer.sendMessage(message.getConsumerQueue(), message.getMessageBody());
     }
 
 
