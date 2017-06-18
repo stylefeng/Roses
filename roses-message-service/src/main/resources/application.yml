@@ -15,6 +15,12 @@ spring:
     in-memory: true
     pool:
       enabled: false
+  application:
+    name: message-service
+eureka:
+  client:
+    serviceUrl:
+         defaultZone: http://localhost:1111/eureka/
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
