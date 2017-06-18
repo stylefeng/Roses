@@ -15,12 +15,13 @@
         <module>../roses-message-service</module>
         <module>../roses-message-service-facade</module>
         <module>../roses-core</module>
+        <module>../roses-eureka-server</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.2.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
 
     <properties>
@@ -41,7 +42,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.3.RELEASE</version>
+                <version>1.5.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
