@@ -1,10 +1,42 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: peer2
+---
+
+spring:
+  profiles: peer1
 server:
   port: 1111
 eureka:
   instance:
-    hostname: localhost
+    hostname: peer1
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: false  #false 让服务注册中心不注册自己
+    fetch-registry: false #false 让服务注册中心不注册自己
     serviceUrl:
-     defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+     defaultZone: http://peer2:1112/eureka/
+
+---
+
+spring:
+  profiles: peer2
+server:
+  port: 1112
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    register-with-eureka: false  #false 让服务注册中心不注册自己
+    fetch-registry: false #false 让服务注册中心不注册自己
+    serviceUrl:
+     defaultZone: http://peer1:1111/eureka/
+
+
+
+
+
+
+
+
