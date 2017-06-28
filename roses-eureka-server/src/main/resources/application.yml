@@ -11,12 +11,12 @@ server:
   port: 1111
 eureka:
   instance:
-    hostname: peer1
+    hostname: www.peer1.com
   client:
     register-with-eureka: false  #false 让服务注册中心不注册自己
     fetch-registry: false #false 让服务注册中心不注册自己
     serviceUrl:
-     defaultZone: http://peer2:1112/eureka/
+     defaultZone: http://www.peer2.com:1112/eureka/
 
 ---
 
@@ -26,12 +26,12 @@ server:
   port: 1112
 eureka:
   instance:
-    hostname: peer2
+    hostname: www.peer2.com
   client:
     register-with-eureka: false  #false 让服务注册中心不注册自己
     fetch-registry: false #false 让服务注册中心不注册自己
     serviceUrl:
-     defaultZone: http://peer1:1111/eureka/
+     defaultZone: http://www.peer1.com:1111/eureka/
 
 
 

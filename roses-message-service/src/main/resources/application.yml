@@ -20,7 +20,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-         defaultZone: http://localhost:1111/eureka/
+         defaultZone: http://www.peer1.com:1111/eureka/,http://www.peer2.com:1112/eureka/
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
