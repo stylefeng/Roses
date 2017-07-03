@@ -3,6 +3,12 @@ spring:
     name: eureka-server
   profiles:
     active: peer1
+eureka:
+  server:
+    enable-self-preservation: false #是否开启自我保护（运行期间spring会统计信条失败的比例在15分钟之内是否低于85%，如果不低于85%，Eureka会将实例注册信息保护起来，让这些实例不会过期）
+  client:
+    register-with-eureka: false  #false 让服务注册中心不注册自己
+    fetch-registry: false #false 让服务注册中心不注册自己
 ---
 
 spring:
@@ -12,9 +18,6 @@ server:
 eureka:
   instance:
     hostname: www.peer1.com
-  client:
-    register-with-eureka: false  #false 让服务注册中心不注册自己
-    fetch-registry: false #false 让服务注册中心不注册自己
     serviceUrl:
      defaultZone: http://www.peer2.com:1112/eureka/
 
@@ -28,8 +31,6 @@ eureka:
   instance:
     hostname: www.peer2.com
   client:
-    register-with-eureka: false  #false 让服务注册中心不注册自己
-    fetch-registry: false #false 让服务注册中心不注册自己
     serviceUrl:
      defaultZone: http://www.peer1.com:1111/eureka/
 
