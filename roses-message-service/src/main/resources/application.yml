@@ -18,6 +18,9 @@ spring:
   application:
     name: message-service
 eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 30 #续约任务的调用时间间隔
+    lease-expiration-duration-in-seconds: 90 #服务失效的时间
   client:
     serviceUrl:
          defaultZone: http://www.peer1.com:1111/eureka/,http://www.peer2.com:1112/eureka/
