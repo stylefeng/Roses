@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * hello
+ * 测试的控制器
  *
  * @author fengshuonan
  * @date 2017-06-18 23:29
