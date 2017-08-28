@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * 消费者控制器
  *
@@ -19,7 +21,16 @@ public class ConsumerController {
     HelloService helloService;
 
     @RequestMapping(value = "/ribbon-consumer", method = RequestMethod.GET)
-    public String helloConsumer() {
+    public String helloConsumer() throws ExecutionException, InterruptedException {
+
+
         return helloService.helloService();
+
+        //Future<String> stringFuture = helloService.syncService();
+        //return stringFuture.get();
+
+        //Observable<String> stringFuture = helloService.hello();
+        //return stringFuture.toSingle().toBlocking().value();
+
     }
 }
