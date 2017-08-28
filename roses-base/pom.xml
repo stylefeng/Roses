@@ -16,6 +16,7 @@
         <module>../roses-message-service-facade</module>
         <module>../roses-core</module>
         <module>../roses-eureka-server</module>
+        <module>../roses-ribbon-consumer</module>
     </modules>
 
     <parent>
