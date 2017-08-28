@@ -6,6 +6,9 @@
 roses:
   message-max-send-times: 5 #消息最大发送次数限制
 
+server:
+  port: 8081
+
 ###################  spring配置  ###################
 spring:
   profiles:
