@@ -32,7 +32,7 @@ public class ConsumerController {
         //Observable<String> stringFuture = helloService.hello();
         //return stringFuture.toSingle().toBlocking().value();
 
-        return helloService.getUserNameById("123");
+        return helloService.getUserById("123");
 
     }
 }

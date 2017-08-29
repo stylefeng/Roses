@@ -1,6 +1,8 @@
 package com.stylefeng.roses.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,16 @@ import org.springframework.web.client.RestTemplate;
 import rx.Observable;
 import rx.Subscriber;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
  * hello service
+ * <p>
+ * fallback方法的参数要和被调用处一致
+ * batchMethod参数要为list返回的也要为list
  *
  * @author fengshuonan
  * @date 2017-08-28 10:07
@@ -24,6 +31,26 @@ public class HelloService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    /**
+     * 请求合并
+     */
+    @HystrixCommand
+    public List<String> getUsersByIds(List<String> ids) {
+        ArrayList<String> objects = new ArrayList<>();
+        objects.add("123");
+        objects.add("456");
+        return objects;
+    }
+
+    /**
+     * 请求合并
+     */
+    @HystrixCollapser(batchMethod = "getUsersByIds", collapserProperties = {
+            @HystrixProperty(name = "timerDelayInMilliseconds", value = "100")})
+    public String getUserById(String id) {
+        return null;
+    }
 
     /**
      * 缓存用法
