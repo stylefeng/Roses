@@ -24,13 +24,15 @@ public class ConsumerController {
     public String helloConsumer() throws ExecutionException, InterruptedException {
 
 
-        return helloService.helloService();
+        //return helloService.helloService();
 
         //Future<String> stringFuture = helloService.syncService();
         //return stringFuture.get();
 
         //Observable<String> stringFuture = helloService.hello();
         //return stringFuture.toSingle().toBlocking().value();
+
+        return helloService.getUserNameById("123");
 
     }
 }

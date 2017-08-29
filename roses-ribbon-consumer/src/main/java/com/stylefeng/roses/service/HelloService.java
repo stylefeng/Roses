@@ -2,6 +2,7 @@ package com.stylefeng.roses.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.ObservableExecutionMode;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,19 @@ public class HelloService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    /**
+     * 缓存用法
+     */
+    @CacheResult(cacheKeyMethod = "getUserNameByIdCacheKey")
+    @HystrixCommand(fallbackMethod = "helloFallback")
+    public String getUserNameById(String id) {
+        return restTemplate.getForEntity("http://MESSAGE-SERVICE/hello", String.class).getBody();
+    }
+
+    public String getUserNameByIdCacheKey(String id) {
+        return "THE_KEY_" + id;
+    }
 
     /**
      * 简单用法
@@ -71,7 +85,7 @@ public class HelloService {
     /**
      * 加上Throwable参数可以获取具体抛出的异常
      */
-    public String helloFallback(Throwable e) {
+    public String helloFallback(String s, Throwable e) {
         System.out.println(e);
         return "error";
     }
