@@ -17,6 +17,7 @@
         <module>../roses-core</module>
         <module>../roses-eureka-server</module>
         <module>../roses-ribbon-consumer</module>
+        <module>../roses-dashboard</module>
     </modules>
 
     <parent>
