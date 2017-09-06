@@ -1,4 +1,4 @@
-package com.stylefeng.roses.controller;
+package com.stylefeng.roses.facade.hello;
 
 /**
  * @author fengshuonan

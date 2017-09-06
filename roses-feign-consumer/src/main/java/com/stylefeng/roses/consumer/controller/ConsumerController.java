@@ -1,7 +1,6 @@
 package com.stylefeng.roses.consumer.controller;
 
 import com.stylefeng.roses.consumer.service.HelloService;
-import com.stylefeng.roses.consumer.service.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,18 +18,11 @@ public class ConsumerController {
     @Autowired
     HelloService helloService;
 
-    @RequestMapping(value = "/fegin-consumer", method = RequestMethod.GET)
-    public String helloConsumer() {
-        return helloService.helloConsumer();
-
-    }
-
     @RequestMapping(value = "/fegin-consumer2", method = RequestMethod.GET)
     public String helloConsumer2() {
-        System.out.println(helloService.helloConsumer());
-        System.out.println(helloService.helloConsumer(new User("name", 12)));
-        System.out.println(helloService.helloConsumer("abc"));
-        System.out.println(helloService.helloConsumer("aaa", 222));
+        System.out.println(helloService.hello4("abc"));
+        System.out.println(helloService.hello5("def",12));
+        System.out.println(helloService.hello6(new com.stylefeng.roses.facade.hello.User("aaa",2222)));
         return "success";
     }
 }
