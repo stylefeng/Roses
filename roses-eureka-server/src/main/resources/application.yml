@@ -6,9 +6,13 @@ spring:
 eureka:
   server:
     enable-self-preservation: false #是否开启自我保护（运行期间spring会统计信条失败的比例在15分钟之内是否低于85%，如果不低于85%，Eureka会将实例注册信息保护起来，让这些实例不会过期）
+    renewal-percent-threshold: 0.49
   client:
     register-with-eureka: false  #false 让服务注册中心不注册自己
     fetch-registry: false #false 让服务注册中心不注册自己
+  instance:
+    lease-expiration-duration-in-seconds: 3
+    lease-renewal-interval-in-seconds: 2
 ---
 
 spring:

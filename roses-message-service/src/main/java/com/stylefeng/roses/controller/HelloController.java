@@ -27,23 +27,6 @@ public class HelloController implements HelloService {
         return "Hello World!";
     }
 
-    @RequestMapping("/hello1")
-    public String hello1(@RequestParam String name) {
-        return "Hello " + name;
-    }
-
-    @RequestMapping("/hello2")
-    public User hello2(@RequestHeader String name, @RequestHeader Integer age) {
-        return new User(name, age);
-    }
-
-
-    @RequestMapping("/hello3")
-    public String hello3(@RequestBody User user) {
-        return user.toString();
-    }
-
-
     @Override
     public String hello4(@RequestParam String name) {
         return "Hello " + name;
