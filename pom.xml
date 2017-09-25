@@ -28,12 +28,11 @@
     </parent>
 
     <properties>
-        <spring-cloud.version>Dalston.SR1</spring-cloud.version>
         <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <roses.version>1.0.0-SNAPSHOT</roses.version>
+        <spring-cloud.version>Dalston.SR1</spring-cloud.version>
         <mybatisplus-spring-boot-starter.version>1.0.1</mybatisplus-spring-boot-starter.version>
         <fastjson.version>1.2.31</fastjson.version>
         <druid.version>1.0.31</druid.version>
@@ -41,8 +40,9 @@
     </properties>
 
     <dependencyManagement>
-        <!--spring cloud-->
         <dependencies>
+
+            <!--spring cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
