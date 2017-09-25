@@ -12,13 +12,13 @@
     <description>roses为解决分布式事务而生</description>
 
     <modules>
-        <module>../roses-message-service</module>
-        <module>../roses-message-service-facade</module>
-        <module>../roses-core</module>
-        <module>../roses-eureka-server</module>
-        <module>../roses-ribbon-consumer</module>
-        <module>../roses-dashboard</module>
-        <module>../roses-feign-consumer</module>
+        <module>roses-message-service</module>
+        <module>roses-message-service-facade</module>
+        <module>roses-core</module>
+        <module>roses-eureka-server</module>
+        <module>roses-ribbon-consumer</module>
+        <module>roses-dashboard</module>
+        <module>roses-feign-consumer</module>
     </modules>
 
     <parent>
@@ -41,7 +41,16 @@
     </properties>
 
     <dependencyManagement>
+        <!--spring cloud-->
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!--spring boot依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
