@@ -2,6 +2,9 @@ package com.stylefeng.roses.facade.api;
 
 import com.stylefeng.roses.facade.entity.ServiceMessage;
 import com.stylefeng.roses.facade.exception.MsgServiceException;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 消息服务子系统开放的接口
@@ -9,6 +12,7 @@ import com.stylefeng.roses.facade.exception.MsgServiceException;
  * @author fengshuonan
  * @date 2017-05-29 22:43
  */
+@RequestMapping("/messageService")
 public interface MessageServiceApi {
 
     /**
@@ -17,7 +21,8 @@ public interface MessageServiceApi {
      * @author stylefeng
      * @Date 2017/6/2 22:32
      */
-    void saveMessageWaitingConfirm(ServiceMessage serviceMessage) throws MsgServiceException;
+    @RequestMapping("/saveMessageWaitingConfirm")
+    void saveMessageWaitingConfirm(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException;
 
     /**
      * 确认并发送消息
@@ -25,7 +30,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 13:24
      */
-    void confirmAndSendMessage(String messageId) throws MsgServiceException;
+    @RequestMapping("/confirmAndSendMessage/{messageId}")
+    void confirmAndSendMessage(@PathVariable String messageId) throws MsgServiceException;
 
     /**
      * 保存并发送消息
@@ -33,7 +39,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 13:25
      */
-    void saveAndSendMessage(ServiceMessage serviceMessage) throws MsgServiceException;
+    @RequestMapping("/confirmAndSendMessage")
+    void saveAndSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException;
 
     /**
      * 直接发送消息
@@ -41,7 +48,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 13:26
      */
-    void directSendMessage(ServiceMessage serviceMessage) throws MsgServiceException;
+    @RequestMapping("/directSendMessage")
+    void directSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException;
 
     /**
      * 重新发送消息
@@ -49,7 +57,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 14:59
      */
-    void reSendMessage(ServiceMessage serviceMessage) throws MsgServiceException;
+    @RequestMapping("/reSendMessage")
+    void reSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException;
 
     /**
      * 根据消息id重新发送消息
@@ -57,7 +66,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 15:56
      */
-    void reSendMessageByMessageId(String messageId) throws MsgServiceException;
+    @RequestMapping("/reSendMessageByMessageId/{messageId}")
+    void reSendMessageByMessageId(@PathVariable String messageId) throws MsgServiceException;
 
     /**
      * 通过消息id删除消息
@@ -65,7 +75,8 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 16:25
      */
-    void deleteMessageByMessageId(String messageId) throws MsgServiceException;
+    @RequestMapping("/deleteMessageByMessageId/{messageId}")
+    void deleteMessageByMessageId(@PathVariable String messageId) throws MsgServiceException;
 
     /**
      * 重新发送所有已死亡的消息,通过队列名称
@@ -73,6 +84,7 @@ public interface MessageServiceApi {
      * @author fengshuonan
      * @Date 2017/6/3 16:38
      */
-    void reSendAllDeadMessageByQueueName(String queue);
+    @RequestMapping("/reSendAllDeadMessageByQueueName/{queue}")
+    void reSendAllDeadMessageByQueueName(@PathVariable String queue);
 
 }

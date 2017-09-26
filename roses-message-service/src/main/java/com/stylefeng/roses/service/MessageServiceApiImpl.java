@@ -13,8 +13,9 @@ import com.stylefeng.roses.factory.MessageFactory;
 import com.stylefeng.roses.persistence.model.Message;
 import com.stylefeng.roses.queue.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
@@ -27,8 +28,7 @@ import static com.stylefeng.roses.core.utils.ToolUtil.assertEmpty;
  * @author fengshuonan
  * @date 2017-05-29 22:44
  */
-@Service
-@Transactional
+@RestController
 public class MessageServiceApiImpl implements MessageServiceApi {
 
     @Autowired
@@ -41,7 +41,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     RosesProperties rosesProperties;
 
     @Override
-    public void saveMessageWaitingConfirm(ServiceMessage serviceMessage) {
+    public void saveMessageWaitingConfirm(@RequestBody ServiceMessage serviceMessage) {
         assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
@@ -50,7 +50,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void confirmAndSendMessage(String messageId) throws MsgServiceException {
+    public void confirmAndSendMessage(@PathVariable String messageId) throws MsgServiceException {
         assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
 
         Message message = messageDao.getMessageByMessageId(messageId);
@@ -64,7 +64,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void saveAndSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
+    public void saveAndSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException {
         assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
@@ -75,7 +75,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void directSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
+    public void directSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException {
         assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
@@ -83,7 +83,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void reSendMessage(ServiceMessage serviceMessage) throws MsgServiceException {
+    public void reSendMessage(@RequestBody ServiceMessage serviceMessage) throws MsgServiceException {
         assertEmpty(serviceMessage, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         assertEmpty(serviceMessage.getConsumerQueue(), new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
 
@@ -104,7 +104,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void reSendMessageByMessageId(String messageId) throws MsgServiceException {
+    public void reSendMessageByMessageId(@PathVariable String messageId) throws MsgServiceException {
         Message message = messageDao.getMessageByMessageId(messageId);
         assertEmpty(message, new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
 
@@ -120,13 +120,13 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void deleteMessageByMessageId(String messageId) throws MsgServiceException {
+    public void deleteMessageByMessageId(@PathVariable String messageId) throws MsgServiceException {
         assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         messageDao.deleteByMessageId(messageId);
     }
 
     @Override
-    public void reSendAllDeadMessageByQueueName(String queue) {
+    public void reSendAllDeadMessageByQueueName(@PathVariable String queue) {
         assertEmpty(queue, new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
         List<Message> allDeadMessage = messageDao.findAllDeadMessageByQueue(queue);
         for (Message message : allDeadMessage) {
@@ -134,7 +134,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
             message.setMessageSendTimes(message.getMessageSendTimes() + 1);
             message.updateById();
 
-            producer.sendMessage(queue,message.getMessageBody());
+            producer.sendMessage(queue, message.getMessageBody());
         }
     }
 
