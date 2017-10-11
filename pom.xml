@@ -18,6 +18,8 @@
         <module>roses-eureka-server</module>
         <module>roses-ribbon-consumer</module>
         <module>roses-feign-consumer</module>
+        <module>roses-order</module>
+        <module>roses-integral</module>
     </modules>
 
     <parent>
