@@ -1,4 +1,4 @@
-package com.styelfeng.roses;
+package com.styelfeng.roses.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.styelfeng.roses;
+package com.styelfeng.roses.integral;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RosesIntegralApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RosesOrderApplication.class, args);
+		SpringApplication.run(RosesIntegralApplication.class, args);
 	}
 }
