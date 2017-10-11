@@ -15,6 +15,10 @@
  */
 package com.stylefeng.roses.core.utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,107 +27,106 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
-	private final static SimpleDateFormat sdfYear = new SimpleDateFormat("yyyy");
-
-	private final static SimpleDateFormat sdfDay = new SimpleDateFormat("yyyy-MM-dd");
-
-	private final static SimpleDateFormat sdfDays = new SimpleDateFormat("yyyyMMdd");
-
-	private final static SimpleDateFormat sdfTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	
-	private final static SimpleDateFormat sdfmsTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-	
-	private final static SimpleDateFormat allTime = new SimpleDateFormat("yyyyMMddHHmmss");
 
 
 	/**
 	 * 获取YYYY格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getYear() {
-		return sdfYear.format(new Date());
+		return formatDate(new Date(), "yyyy");
 	}
 
 	/**
 	 * 获取YYYY格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getYear(Date date) {
-		return sdfYear.format(date);
+		return formatDate(date, "yyyy");
 	}
 
 	/**
 	 * 获取YYYY-MM-DD格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getDay() {
-		return sdfDay.format(new Date());
+		return formatDate(new Date(), "yyyy-MM-dd");
 	}
 
 	/**
 	 * 获取YYYY-MM-DD格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getDay(Date date) {
-		return sdfDay.format(date);
+		return formatDate(date, "yyyy-MM-dd");
 	}
 
 	/**
 	 * 获取YYYYMMDD格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getDays() {
-		return sdfDays.format(new Date());
+		return formatDate(new Date(), "yyyyMMdd");
 	}
 
 	/**
 	 * 获取YYYYMMDD格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getDays(Date date) {
-		return sdfDays.format(date);
+		return formatDate(date, "yyyyMMdd");
 	}
 
 	/**
 	 * 获取YYYY-MM-DD HH:mm:ss格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getTime() {
-		return sdfTime.format(new Date());
+		return formatDate(new Date(), "yyyy-MM-dd HH:mm:ss");
 	}
-	
+
 	/**
 	 * 获取YYYY-MM-DD HH:mm:ss.SSS格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getMsTime() {
-		return sdfmsTime.format(new Date());
+		return formatDate(new Date(), "yyyy-MM-dd HH:mm:ss.SSS");
 	}
-	
+
 	/**
 	 * 获取YYYYMMDDHHmmss格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getAllTime() {
-		return allTime.format(new Date());
+		return formatDate(new Date(), "yyyyMMddHHmmss");
 	}
 
 	/**
 	 * 获取YYYY-MM-DD HH:mm:ss格式
-	 * 
+	 *
 	 * @return
 	 */
 	public static String getTime(Date date) {
-		return sdfTime.format(date);
+		return formatDate(date, "yyyy-MM-dd HH:mm:ss");
+	}
+
+	public static String formatDate(Date date, String pattern) {
+		String formatDate = null;
+		if (StringUtils.isNotBlank(pattern)) {
+			formatDate = DateFormatUtils.format(date, pattern);
+		} else {
+			formatDate = DateFormatUtils.format(date, "yyyy-MM-dd");
+		}
+		return formatDate;
 	}
 
 	/**
@@ -144,41 +147,30 @@ public class DateUtil {
 
 	/**
 	 * 格式化日期
-	 * 
+	 *
 	 * @return
 	 */
 	public static Date parseDate(String date) {
-		try {
-			return sdfDay.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return parse(date,"yyyy-MM-dd");
 	}
 
 	/**
 	 * 格式化日期
-	 * 
+	 *
 	 * @return
 	 */
 	public static Date parseTime(String date) {
-		try {
-			return sdfTime.parse(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return parse(date,"yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
 	 * 格式化日期
-	 * 
+	 *
 	 * @return
 	 */
 	public static Date parse(String date, String pattern) {
-		DateFormat fmt = new SimpleDateFormat(pattern);
 		try {
-			return fmt.parse(date);
+			return DateUtils.parseDate(date,pattern);
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
@@ -187,17 +179,16 @@ public class DateUtil {
 
 	/**
 	 * 格式化日期
-	 * 
+	 *
 	 * @return
 	 */
 	public static String format(Date date, String pattern) {
-		DateFormat fmt = new SimpleDateFormat(pattern);
-		return fmt.format(date);
+		return DateFormatUtils.format(date, pattern);
 	}
 
 	/**
 	 * 把日期转换为Timestamp
-	 * 
+	 *
 	 * @param date
 	 * @return
 	 */
@@ -211,13 +202,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static boolean isValidDate(String s) {
-		try {
-			sdfTime.parse(s);
-			return true;
-		} catch (Exception e) {
-			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-			return false;
-		}
+		return parse(s, "yyyy-MM-dd HH:mm:ss") != null;
 	}
 
 	/**
@@ -226,14 +211,7 @@ public class DateUtil {
 	 * @return
 	 */
 	public static boolean isValidDate(String s, String pattern) {
-		DateFormat fmt = new SimpleDateFormat(pattern);
-		try {
-			fmt.parse(s);
-			return true;
-		} catch (Exception e) {
-			// 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-			return false;
-		}
+        return parse(s, pattern) != null;
 	}
 
 	public static int getDiffYear(String startTime, String endTime) {
@@ -277,7 +255,7 @@ public class DateUtil {
 
 	/**
 	 * 得到n天之后的日期
-	 * 
+	 *
 	 * @param days
 	 * @return
 	 */
@@ -296,7 +274,7 @@ public class DateUtil {
 
 	/**
 	 * 得到n天之后是周几
-	 * 
+	 *
 	 * @param days
 	 * @return
 	 */
@@ -325,7 +303,7 @@ public class DateUtil {
 //			return Func.toStr(value);
 //		}
 //	}
-	
+
 	public static void main(String[] args) {
 		System.out.println(getTime(new Date()));
 		System.out.println(getAfterDayWeek("3"));

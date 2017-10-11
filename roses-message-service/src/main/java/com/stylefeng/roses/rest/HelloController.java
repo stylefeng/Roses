@@ -1,4 +1,4 @@
-package com.stylefeng.roses.controller;
+package com.stylefeng.roses.rest;
 
 import com.stylefeng.roses.facade.hello.HelloService;
 import com.stylefeng.roses.facade.hello.User;

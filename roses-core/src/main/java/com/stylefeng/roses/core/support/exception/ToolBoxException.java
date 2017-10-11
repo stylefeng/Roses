@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.core.exception;
+package com.stylefeng.roses.core.support.exception;
 
 
 import com.stylefeng.roses.core.support.StrKit;
