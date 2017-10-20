@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: roses-order
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/roses_order?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
@@ -23,3 +25,10 @@ logging:
   level.com.stylefeng: debug
   path: logs/
   file: roses-order.log
+
+server:
+  port: 9001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
