@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017/5/20 21:58
  */
 @Configuration
-@MapperScan(basePackages = {"com.stylefeng.roses.order.modular.*.dao", "com.stylefeng.roses.order.common.persistence.dao"})
+@MapperScan(basePackages = {"com.stylefeng.roses.order.modular.*.dao", "com.stylefeng.roses.order.persistence.dao"})
 public class MybatisPlusConfig {
 
     @Autowired

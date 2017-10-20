@@ -31,5 +31,11 @@ public class BaseJunit {
     public void testOrder() throws Exception {
         List<UserOrder> userOrders = userOrderMapper.selectList(null);
         System.out.println(userOrders);
+
+        UserOrder userOrder = new UserOrder();
+        userOrder.setName("fsn");
+        userOrder.setPlace("北京");
+        userOrder.setUserId(2L);
+        userOrder.insert();
     }
 }
