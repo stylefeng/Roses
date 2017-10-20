@@ -25,7 +25,7 @@ CREATE TABLE `message` (
   `editor` varchar(100) DEFAULT NULL COMMENT '修改者',
   `creater` varchar(100) DEFAULT NULL COMMENT '创建者',
   `edit_time` datetime DEFAULT NULL COMMENT '最后修改时间',
-  `create_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '创建时间',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
   `message_id` varchar(50) NOT NULL DEFAULT '' COMMENT '消息ID',
   `message_body` longtext NOT NULL COMMENT '消息内容',
   `message_data_type` varchar(50) DEFAULT NULL COMMENT '消息数据类型',
