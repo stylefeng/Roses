@@ -31,7 +31,7 @@ public interface MessageServiceApi {
      * @Date 2017/6/3 13:24
      */
     @RequestMapping("/confirmAndSendMessage/{messageId}")
-    void confirmAndSendMessage(@PathVariable String messageId) throws MsgServiceException;
+    void confirmAndSendMessage(@PathVariable("messageId") String messageId) throws MsgServiceException;
 
     /**
      * 保存并发送消息
@@ -67,7 +67,7 @@ public interface MessageServiceApi {
      * @Date 2017/6/3 15:56
      */
     @RequestMapping("/reSendMessageByMessageId/{messageId}")
-    void reSendMessageByMessageId(@PathVariable String messageId) throws MsgServiceException;
+    void reSendMessageByMessageId(@PathVariable("messageId") String messageId) throws MsgServiceException;
 
     /**
      * 通过消息id删除消息
@@ -76,7 +76,7 @@ public interface MessageServiceApi {
      * @Date 2017/6/3 16:25
      */
     @RequestMapping("/deleteMessageByMessageId/{messageId}")
-    void deleteMessageByMessageId(@PathVariable String messageId) throws MsgServiceException;
+    void deleteMessageByMessageId(@PathVariable("messageId") String messageId) throws MsgServiceException;
 
     /**
      * 重新发送所有已死亡的消息,通过队列名称
@@ -85,6 +85,6 @@ public interface MessageServiceApi {
      * @Date 2017/6/3 16:38
      */
     @RequestMapping("/reSendAllDeadMessageByQueueName/{queue}")
-    void reSendAllDeadMessageByQueueName(@PathVariable String queue);
+    void reSendAllDeadMessageByQueueName(@PathVariable("queue") String queue);
 
 }

@@ -1,16 +1,13 @@
 package com.styelfeng.roses;
 
 import com.stylefeng.roses.order.RosesOrderApplication;
-import com.stylefeng.roses.order.persistence.dao.UserOrderMapper;
-import com.stylefeng.roses.order.persistence.model.UserOrder;
+import com.stylefeng.roses.order.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import java.util.List;
 
 
 /**
@@ -25,17 +22,11 @@ import java.util.List;
 public class BaseJunit {
 
     @Autowired
-    UserOrderMapper userOrderMapper;
+    OrderService orderService;
 
     @Test
     public void testOrder() throws Exception {
-        List<UserOrder> userOrders = userOrderMapper.selectList(null);
-        System.out.println(userOrders);
+        orderService.placeOrder(null);
 
-        UserOrder userOrder = new UserOrder();
-        userOrder.setName("fsn");
-        userOrder.setPlace("北京");
-        userOrder.setUserId(2L);
-        userOrder.insert();
     }
 }

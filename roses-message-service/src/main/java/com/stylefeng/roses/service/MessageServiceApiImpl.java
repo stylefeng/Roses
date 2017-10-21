@@ -50,7 +50,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void confirmAndSendMessage(@PathVariable String messageId) throws MsgServiceException {
+    public void confirmAndSendMessage(@PathVariable("messageId") String messageId) throws MsgServiceException {
         assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
 
         Message message = messageDao.getMessageByMessageId(messageId);
@@ -104,7 +104,7 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void reSendMessageByMessageId(@PathVariable String messageId) throws MsgServiceException {
+    public void reSendMessageByMessageId(@PathVariable("messageId") String messageId) throws MsgServiceException {
         Message message = messageDao.getMessageByMessageId(messageId);
         assertEmpty(message, new MsgServiceException(MsgServiceExceptionEnum.CANT_FIND_THIS_MESSAGE));
 
@@ -120,13 +120,13 @@ public class MessageServiceApiImpl implements MessageServiceApi {
     }
 
     @Override
-    public void deleteMessageByMessageId(@PathVariable String messageId) throws MsgServiceException {
+    public void deleteMessageByMessageId(@PathVariable("messageId") String messageId) throws MsgServiceException {
         assertEmpty(messageId, new MsgServiceException(MsgServiceExceptionEnum.REQUEST_NULL));
         messageDao.deleteByMessageId(messageId);
     }
 
     @Override
-    public void reSendAllDeadMessageByQueueName(@PathVariable String queue) {
+    public void reSendAllDeadMessageByQueueName(@PathVariable("queue") String queue) {
         assertEmpty(queue, new MsgServiceException(MsgServiceExceptionEnum.QUEUE_CANT_BE_NULL));
         List<Message> allDeadMessage = messageDao.findAllDeadMessageByQueue(queue);
         for (Message message : allDeadMessage) {
