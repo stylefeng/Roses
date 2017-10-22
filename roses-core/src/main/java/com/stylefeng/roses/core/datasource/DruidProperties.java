@@ -1,4 +1,4 @@
-package com.stylefeng.roses.order.config.properties;
+package com.stylefeng.roses.core.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
