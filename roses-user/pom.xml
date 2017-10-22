@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.styelfeng.roses</groupId>
-    <artifactId>roses-integral</artifactId>
+    <artifactId>roses-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>roses-integral</name>
-    <description>roses-integral</description>
+    <name>roses-user</name>
+    <description>roses-user</description>
 
     <parent>
         <groupId>com.stylefeng</groupId>

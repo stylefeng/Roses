@@ -1,12 +1,12 @@
-package com.styelfeng.roses.integral;
+package com.stylefeng.roses.user;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = "com.stylefeng.roses")
-public class RosesIntegralApplication {
+public class RosesUserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RosesIntegralApplication.class, args);
+		SpringApplication.run(RosesUserApplication.class, args);
 	}
 }

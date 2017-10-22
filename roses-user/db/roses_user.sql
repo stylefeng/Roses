@@ -18,12 +18,12 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
---  Table structure for `integral`
+--  Table structure for `user`
 -- ----------------------------
-DROP TABLE IF EXISTS `integral`;
-CREATE TABLE `integral` (
+DROP TABLE IF EXISTS `roses_user`;
+CREATE TABLE `roses_user` (
   `id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `name` bigint(20) NOT NULL,
   `integral` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
