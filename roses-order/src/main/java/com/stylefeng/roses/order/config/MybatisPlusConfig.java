@@ -2,7 +2,7 @@ package com.stylefeng.roses.order.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.stylefeng.roses.order.config.properties.DruidProperties;
+import com.stylefeng.roses.core.datasource.DruidProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
