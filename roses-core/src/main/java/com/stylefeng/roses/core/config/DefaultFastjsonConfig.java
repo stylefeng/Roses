@@ -1,5 +1,6 @@
 package com.stylefeng.roses.core.config;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
@@ -32,6 +33,7 @@ public class DefaultFastjsonConfig {
         FastJsonHttpMessageConverter4 converter = new FastJsonHttpMessageConverter4();
         converter.setFastJsonConfig(fastjsonConfig());
         converter.setSupportedMediaTypes(getSupportedMediaType());
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
         return converter;
     }
 

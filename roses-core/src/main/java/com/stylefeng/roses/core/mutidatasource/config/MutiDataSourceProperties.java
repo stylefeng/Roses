@@ -11,11 +11,11 @@ import org.springframework.stereotype.Component;
  * @date 2017-08-16 10:02
  */
 @Component
-@ConfigurationProperties(prefix = "guns.muti-datasource")
+@ConfigurationProperties(prefix = "iciyun.muti-datasource")
 public class MutiDataSourceProperties {
 
     //默认的数据源名称
-    private String defaultDataSourceName = "dataSourceGuns";
+    private String defaultDataSourceName = "dataSourceIciyun";
 
     //默认多数据源的链接
     private String url = "jdbc:mysql://127.0.0.1:3306/biz?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";

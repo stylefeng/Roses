@@ -1,9 +1,7 @@
 package com.stylefeng.roses.core.base.controller;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.roses.core.base.tips.SuccessTip;
+import com.stylefeng.roses.core.base.JsonResult;
 import com.stylefeng.roses.core.base.warpper.BaseControllerWarpper;
-import com.stylefeng.roses.core.page.PageInfoBT;
 import com.stylefeng.roses.core.support.HttpKit;
 import com.stylefeng.roses.core.utils.FileUtil;
 import org.springframework.http.HttpHeaders;
@@ -19,13 +17,10 @@ import java.io.UnsupportedEncodingException;
 
 public class BaseController {
 
-    protected static String SUCCESS = "SUCCESS";
-    protected static String ERROR = "ERROR";
+    protected String REDIRECT = "redirect:";
+    protected String FORWARD = "forward:";
 
-    protected static String REDIRECT = "redirect:";
-    protected static String FORWARD = "forward:";
-
-    protected static SuccessTip SUCCESS_TIP = new SuccessTip();
+    protected JsonResult SUCCESS_RESULT = JsonResult.resultSuccess();
 
     protected HttpServletRequest getHttpServletRequest() {
         return HttpKit.getRequest();
@@ -53,13 +48,6 @@ public class BaseController {
 
     protected Integer getSystemInvokCount() {
         return (Integer) this.getHttpServletRequest().getServletContext().getAttribute("systemCount");
-    }
-
-    /**
-     * 把service层的分页信息，封装为bootstrap table通用的分页封装
-     */
-    protected <T> PageInfoBT<T> packForBT(Page<T> page) {
-        return new PageInfoBT<T>(page);
     }
 
     /**

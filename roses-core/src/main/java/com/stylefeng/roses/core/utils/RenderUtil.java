@@ -1,8 +1,8 @@
 package com.stylefeng.roses.core.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.stylefeng.roses.core.exception.GunsException;
-import com.stylefeng.roses.core.exception.GunsExceptionEnum;
+import com.stylefeng.roses.core.exception.BizException;
+import com.stylefeng.roses.core.exception.BizExceptionEnum;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -21,11 +21,12 @@ public class RenderUtil {
      */
     public static void renderJson(HttpServletResponse response, Object jsonObject) {
         try {
+            response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
             writer.write(JSON.toJSONString(jsonObject));
         } catch (IOException e) {
-            throw new GunsException(GunsExceptionEnum.WRITE_ERROR);
+            throw new BizException(BizExceptionEnum.WRITE_ERROR);
         }
     }
 }

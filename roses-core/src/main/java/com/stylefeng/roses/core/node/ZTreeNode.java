@@ -17,7 +17,9 @@ public class ZTreeNode {
 	
 	private Boolean open;//是否打开节点
 	
-	private Boolean checked;//是否被选中
+	private Boolean checked = false;//是否被选中
+
+	private Integer isMenu; //是否是菜单(1:是功能权限   2:是操作权限)
 
 	public Integer getId() {
 		return id;
@@ -75,5 +77,13 @@ public class ZTreeNode {
 		zTreeNode.setOpen(true);
 		zTreeNode.setpId(0);
 		return zTreeNode;
+	}
+
+	public Integer getIsMenu() {
+		return isMenu;
+	}
+
+	public void setIsMenu(Integer isMenu) {
+		this.isMenu = isMenu;
 	}
 }

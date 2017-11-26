@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.utils;
 
-import com.stylefeng.roses.core.exception.GunsException;
-import com.stylefeng.roses.core.exception.GunsExceptionEnum;
+import com.stylefeng.roses.core.exception.BizException;
+import com.stylefeng.roses.core.exception.BizExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +23,7 @@ public class FileUtil {
 		File f = new File(filename);
 		if (!f.exists()) {
 			log.error("文件未找到！" + filename);
-			throw new GunsException(GunsExceptionEnum.FILE_NOT_FOUND);
+			throw new BizException(BizExceptionEnum.FILE_NOT_FOUND);
 		}
 		FileChannel channel = null;
 		FileInputStream fs = null;
@@ -37,17 +37,17 @@ public class FileUtil {
 			}
 			return byteBuffer.array();
 		} catch (IOException e) {
-			throw new GunsException(GunsExceptionEnum.FILE_READING_ERROR);
+			throw new BizException(BizExceptionEnum.FILE_READING_ERROR);
 		} finally {
 			try {
 				channel.close();
 			} catch (IOException e) {
-				throw new GunsException(GunsExceptionEnum.FILE_READING_ERROR);
+				throw new BizException(BizExceptionEnum.FILE_READING_ERROR);
 			}
 			try {
 				fs.close();
 			} catch (IOException e) {
-				throw new GunsException(GunsExceptionEnum.FILE_READING_ERROR);
+				throw new BizException(BizExceptionEnum.FILE_READING_ERROR);
 			}
 		}
 	}

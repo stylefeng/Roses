@@ -1,0 +1,53 @@
+package com.stylefeng.roses.common.context;
+
+import com.stylefeng.roses.auth.facade.api.UserInfoApi;
+import com.stylefeng.roses.auth.facade.model.vo.LoginUser;
+import com.stylefeng.roses.common.common.RosesConst;
+import com.stylefeng.roses.common.consumer.AuthServiceConsumer;
+import com.stylefeng.roses.core.support.HttpKit;
+import com.stylefeng.roses.core.utils.SpringContextHolder;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.stereotype.Component;
+
+/**
+ * <pre>
+ * 获取当前登录用户信息的工具类
+ *      注意: 本类提供给auth模块以外的模块调用,auth模块自己查库获取当前登录用户
+ *
+ * </pre>
+ *
+ * @author fengshuonan
+ * @date 2017-11-09-下午5:38
+ */
+@Component
+public class UserContext {
+
+    /**
+     * 获取UserContext bean
+     *
+     * @author fengshuonan
+     * @Date 2017/11/9 下午7:35
+     */
+    public static UserContext me() {
+        return SpringContextHolder.getBean(UserContext.class);
+    }
+
+    /**
+     * 获取当前登录用户,两种情况:1.auth以外的服务调用本发放走远程调用  2.auth服务调用这个方法,自己调用内部service
+     *
+     * @author fengshuonan
+     * @Date 2017/11/9 下午7:26
+     */
+    public LoginUser getUser() {
+        String userId = HttpKit.getRequest().getHeader(RosesConst.IDENTITY_HEADER);
+        try {
+            AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
+            LoginUser loginUser = authServiceConsumer.getUserById(Integer.valueOf(userId));
+            return loginUser;
+        } catch (NoSuchBeanDefinitionException e) {
+            UserInfoApi bean = SpringContextHolder.getBean(UserInfoApi.class);
+            LoginUser loginUser = bean.getUserById(Integer.valueOf(userId));
+            return loginUser;
+        }
+    }
+}
