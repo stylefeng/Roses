@@ -5,7 +5,7 @@ package com.stylefeng.roses.core.exception;
  * @author fengshuonan
  * @date 2016年11月12日 下午5:04:51
  */
-public enum BizExceptionEnum {
+public enum BizExceptionEnum implements RosesException{
 
 	/**
 	 * token异常
@@ -37,28 +37,29 @@ public enum BizExceptionEnum {
 	SERVER_ERROR(500, "服务器异常");
 
 	BizExceptionEnum(int code, String message) {
-		this.friendlyCode = code;
-		this.friendlyMsg = message;
+		this.code = code;
+		this.message = message;
 	}
 
-	private int friendlyCode;
+	private Integer code;
 
-	private String friendlyMsg;
+	private String message;
 
-	public int getCode() {
-		return friendlyCode;
+	@Override
+	public Integer getCode() {
+		return code;
 	}
 
-	public void setCode(int code) {
-		this.friendlyCode = code;
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
+	@Override
 	public String getMessage() {
-		return friendlyMsg;
+		return message;
 	}
 
 	public void setMessage(String message) {
-		this.friendlyMsg = message;
+		this.message = message;
 	}
-
 }
