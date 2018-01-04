@@ -1,11 +1,2 @@
-#Roses
-基于springcloud的分布式架构，分布式事务解决方案
-
-##分布式事务解决方案1:
-可靠消息最终一致性解决方案
-
-##分布式事务解决方案2:
-tcc方式
-
-##分布式事务解决方案3:
-最大努力通知型
+# Roses the next Guns
+[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
