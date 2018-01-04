@@ -36,8 +36,7 @@ public class DefaultSwaggerConfig {
         return new ApiInfoBuilder()
                 .title("Roses Api Doc")
                 .description("Roses Api文档")
-                .termsOfServiceUrl("http://www.iciyun.com")
-                .contact("iciyun")
+                .termsOfServiceUrl("https://gitee.com/naan1993/guns")
                 .version("1.0")
                 .build();
     }

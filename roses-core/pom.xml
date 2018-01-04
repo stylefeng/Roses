@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>roses-core</name>
-    <description>核心工具包</description>
+    <description>核心包,被其他模块引用</description>
 
     <parent>
         <groupId>com.stylefeng.roses</groupId>
@@ -18,17 +18,18 @@
     </parent>
 
     <dependencies>
-
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -69,10 +70,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
 
         <!--web-->
         <dependency>
@@ -92,27 +89,10 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!--二维码-->
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!--缓存-->
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>

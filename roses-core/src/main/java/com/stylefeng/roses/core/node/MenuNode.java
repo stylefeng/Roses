@@ -1,6 +1,7 @@
 package com.stylefeng.roses.core.node;
 
-import com.stylefeng.roses.core.constant.IsMenu;
+
+import com.stylefeng.roses.core.node.config.MenuFlag;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -255,7 +256,7 @@ public class MenuNode implements Comparable {
     public static List<MenuNode> clearBtn(List<MenuNode> nodes) {
         ArrayList<MenuNode> noBtns = new ArrayList<MenuNode>();
         for (MenuNode node : nodes) {
-            if(node.getIsmenu() == IsMenu.YES.getCode()){
+            if (node.getIsmenu() == MenuFlag.YES.getCode()) {
                 noBtns.add(node);
             }
         }

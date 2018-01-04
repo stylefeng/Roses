@@ -1,8 +1,6 @@
 package com.stylefeng.roses.core.mutidatasource.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * 默认多数据源配置
@@ -10,21 +8,19 @@ import org.springframework.stereotype.Component;
  * @author fengshuonan
  * @date 2017-08-16 10:02
  */
-@Component
-@ConfigurationProperties(prefix = "iciyun.muti-datasource")
 public class MutiDataSourceProperties {
 
     //默认的数据源名称
-    private String defaultDataSourceName = "dataSourceIciyun";
+    private String defaultDataSourceName;
 
     //默认多数据源的链接
-    private String url = "jdbc:mysql://127.0.0.1:3306/biz?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull";
+    private String url;
 
     //默认多数据源的数据库账号
-    private String username = "root";
+    private String username;
 
     //默认多数据源的数据库密码
-    private String password = "root";
+    private String password;
 
     public void config(DruidDataSource dataSource) {
         dataSource.setUrl(url);

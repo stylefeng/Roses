@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.config;
 
-import com.stylefeng.roses.core.support.DateTimeKit;
+import com.xiaoleilu.hutool.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -13,28 +13,23 @@ import java.util.Date;
 
 @Configuration
 public class DefaultWebConfig {
-	
+
     @Autowired
     private RequestMappingHandlerAdapter handlerAdapter;
-    
+
     @PostConstruct
     public void addConversionConfig() {
-        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer)handlerAdapter.getWebBindingInitializer();
+        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
         if (initializer.getConversionService() != null) {
-            GenericConversionService genericConversionService = (GenericConversionService)initializer.getConversionService();
+            GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
             genericConversionService.addConverter(new StringToDateConverter());
         }
     }
-    
-    /**
-     * 日期转换
-     */
-    public class StringToDateConverter implements Converter<String, Date> {
 
+    public class StringToDateConverter implements Converter<String, Date> {
         @Override
         public Date convert(String dateString) {
-        	return DateTimeKit.parse(dateString);
+            return DateUtil.parse(dateString);
         }
-        
     }
 }

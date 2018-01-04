@@ -4,8 +4,8 @@ import com.stylefeng.roses.auth.facade.api.UserInfoApi;
 import com.stylefeng.roses.auth.facade.model.vo.LoginUser;
 import com.stylefeng.roses.common.common.RosesConst;
 import com.stylefeng.roses.common.consumer.AuthServiceConsumer;
-import com.stylefeng.roses.core.support.HttpKit;
-import com.stylefeng.roses.core.utils.SpringContextHolder;
+import com.stylefeng.roses.core.util.HttpContext;
+import com.stylefeng.roses.core.util.SpringContextHolder;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.stereotype.Component;
 
@@ -39,7 +39,7 @@ public class UserContext {
      * @Date 2017/11/9 下午7:26
      */
     public LoginUser getUser() {
-        String userId = HttpKit.getRequest().getHeader(RosesConst.IDENTITY_HEADER);
+        String userId = HttpContext.getRequest().getHeader(RosesConst.IDENTITY_HEADER);
         try {
             AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
             LoginUser loginUser = authServiceConsumer.getUserById(Integer.valueOf(userId));

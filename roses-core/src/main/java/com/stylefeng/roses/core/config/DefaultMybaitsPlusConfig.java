@@ -3,7 +3,7 @@ package com.stylefeng.roses.core.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.enums.DBType;
 import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.stylefeng.roses.core.datasource.DruidProperties;
+import com.stylefeng.roses.core.properties.DruidProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

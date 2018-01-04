@@ -1,9 +1,8 @@
 package com.stylefeng.roses.core.base.controller;
 
-import com.stylefeng.roses.core.base.JsonResult;
 import com.stylefeng.roses.core.base.warpper.BaseControllerWarpper;
-import com.stylefeng.roses.core.support.HttpKit;
-import com.stylefeng.roses.core.utils.FileUtil;
+import com.stylefeng.roses.core.util.FileUtil;
+import com.stylefeng.roses.core.util.HttpContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,34 +19,28 @@ public class BaseController {
     protected String REDIRECT = "redirect:";
     protected String FORWARD = "forward:";
 
-    protected JsonResult SUCCESS_RESULT = JsonResult.resultSuccess();
-
     protected HttpServletRequest getHttpServletRequest() {
-        return HttpKit.getRequest();
+        return HttpContext.getRequest();
     }
 
     protected HttpServletResponse getHttpServletResponse() {
-        return HttpKit.getResponse();
+        return HttpContext.getResponse();
     }
 
     protected HttpSession getSession() {
-        return HttpKit.getRequest().getSession();
+        return HttpContext.getRequest().getSession();
     }
 
     protected HttpSession getSession(Boolean flag) {
-        return HttpKit.getRequest().getSession(flag);
+        return HttpContext.getRequest().getSession(flag);
     }
 
     protected String getPara(String name) {
-        return HttpKit.getRequest().getParameter(name);
+        return HttpContext.getRequest().getParameter(name);
     }
 
     protected void setAttr(String name, Object value) {
-        HttpKit.getRequest().setAttribute(name, value);
-    }
-
-    protected Integer getSystemInvokCount() {
-        return (Integer) this.getHttpServletRequest().getServletContext().getAttribute("systemCount");
+        HttpContext.getRequest().setAttribute(name, value);
     }
 
     /**

@@ -1,8 +1,8 @@
 package com.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.roses.core.support.HttpKit;
-import com.stylefeng.roses.core.utils.ToolUtil;
+import com.stylefeng.roses.core.util.HttpContext;
+import com.xiaoleilu.hutool.util.StrUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,38 +15,40 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class PageFactory<T> {
 
-    private final String ASC = "asc";
+    private static final String ASC = "asc";
 
-    private final String DESC = "desc";
+    private static final String DESC = "desc";
+
+    private static final String PAGE_SIZE = "pageSize";
+
+    private static final String PAGE_NO = "pageNo";
+
+    private static final String SORT_FIELD = "sort";
+
+    private static final String ORDER = "order";
 
     public Page<T> defaultPage() {
-        HttpServletRequest request = HttpKit.getRequest();
+        HttpServletRequest request = HttpContext.getRequest();
         int pageSize = 20;
         int pageNo = 1;
 
-        /**
-         * 获取pageSize
-         */
-        String pageSizeString = request.getParameter("pageSize");
-        if(ToolUtil.isNotEmpty(pageSizeString)){
+        //每页条数
+        String pageSizeString = request.getParameter(PAGE_SIZE);
+        if (StrUtil.isNotEmpty(pageSizeString)) {
             pageSize = Integer.valueOf(pageSizeString);
         }
 
-        /**
-         * 获取pageNo
-         */
-        String pageNoString = request.getParameter("pageNo");
-        if(ToolUtil.isNotEmpty(pageNoString)){
+        //第几页
+        String pageNoString = request.getParameter(PAGE_NO);
+        if (StrUtil.isNotEmpty(pageNoString)) {
             pageNo = Integer.valueOf(pageNoString);
         }
 
-        /**
-         * 获取排序字段和排序类型(asc/desc)
-         */
-        String sort = request.getParameter("sort");
-        String order = request.getParameter("order");
+        //获取排序字段和排序类型(asc/desc)
+        String sort = request.getParameter(SORT_FIELD);
+        String order = request.getParameter(ORDER);
 
-        if (ToolUtil.isEmpty(sort)) {
+        if (StrUtil.isEmpty(sort)) {
             Page<T> page = new Page<>(pageNo, pageSize);
             page.setOpenSort(false);
             return page;
