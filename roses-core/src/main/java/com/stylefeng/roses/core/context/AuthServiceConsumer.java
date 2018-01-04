@@ -1,4 +1,4 @@
-package com.stylefeng.roses.common.consumer;
+package com.stylefeng.roses.core.context;
 
 import com.stylefeng.roses.auth.facade.api.AuthServiceApi;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -11,4 +11,5 @@ import org.springframework.cloud.netflix.feign.FeignClient;
  */
 @FeignClient("auth-service")
 public interface AuthServiceConsumer extends AuthServiceApi {
+
 }

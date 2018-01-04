@@ -1,4 +1,4 @@
-package com.stylefeng.roses.common.common;
+package com.stylefeng.roses.core.context;
 
 /**
  * 公共常量

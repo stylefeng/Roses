@@ -13,7 +13,6 @@
 
     <modules>
         <module>roses-core</module>
-        <module>roses-common</module>
         <module>roses-auth-facade</module>
     </modules>
 
