@@ -51,11 +51,6 @@
                 <artifactId>roses-auth-facade</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>com.stylefeng.roses</groupId>
-                <artifactId>roses-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
             <!--spring cloud-->
             <dependency>
