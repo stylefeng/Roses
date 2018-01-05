@@ -14,6 +14,7 @@
     <modules>
         <module>roses-core</module>
         <module>roses-auth-facade</module>
+        <module>roses-auth</module>
     </modules>
 
     <parent>
@@ -49,6 +50,11 @@
             <dependency>
                 <groupId>com.stylefeng.roses</groupId>
                 <artifactId>roses-auth-facade</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>roses-auth</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
