@@ -1,3 +1,5 @@
+server:
+  port: 1111
 spring:
   application:
     name: roses-eureka-server
@@ -10,5 +12,3 @@ eureka:
     fetch-registry: false
   instance:
     hostname: localhost
-server:
-  port: 1111
