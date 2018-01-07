@@ -49,7 +49,7 @@
             </dependency>
             <dependency>
                 <groupId>com.stylefeng.roses</groupId>
-                <artifactId>roses-auth-facade</artifactId>
+                <artifactId>roses-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

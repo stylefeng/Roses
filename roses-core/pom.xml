@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.stylefeng.roses</groupId>
-            <artifactId>roses-auth-facade</artifactId>
+            <artifactId>roses-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

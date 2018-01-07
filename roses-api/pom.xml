@@ -7,11 +7,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>roses-auth-facade</artifactId>
+    <artifactId>roses-api</artifactId>
     <packaging>jar</packaging>
 
-    <name>roses-auth-facade</name>
-    <description>用户中心服务接口</description>
+    <name>roses-api</name>
+    <description>远程服务接口</description>
 
     <dependencies>
         <dependency>
