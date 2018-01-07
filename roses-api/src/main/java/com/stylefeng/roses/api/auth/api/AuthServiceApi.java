@@ -1,6 +1,6 @@
-package com.stylefeng.roses.auth.facade.api;
+package com.stylefeng.roses.api.auth.api;
 
-import com.stylefeng.roses.auth.facade.model.vo.LoginUser;
+import com.stylefeng.roses.api.auth.model.LoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 

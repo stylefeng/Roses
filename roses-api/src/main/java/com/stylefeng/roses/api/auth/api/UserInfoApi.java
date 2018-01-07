@@ -1,6 +1,6 @@
-package com.stylefeng.roses.auth.facade.api;
+package com.stylefeng.roses.api.auth.api;
 
-import com.stylefeng.roses.auth.facade.model.vo.LoginUser;
+import com.stylefeng.roses.api.auth.model.LoginUser;
 
 /**
  * 获取用户详情的api

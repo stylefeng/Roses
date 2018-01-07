@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.context;
 
-import com.stylefeng.roses.auth.facade.api.UserInfoApi;
-import com.stylefeng.roses.auth.facade.model.vo.LoginUser;
+import com.stylefeng.roses.api.auth.api.UserInfoApi;
+import com.stylefeng.roses.api.auth.model.LoginUser;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.SpringContextHolder;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

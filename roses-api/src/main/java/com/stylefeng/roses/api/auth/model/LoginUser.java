@@ -1,4 +1,4 @@
-package com.stylefeng.roses.auth.facade.model.vo;
+package com.stylefeng.roses.api.auth.model;
 
 /**
  * 登录中的用户信息
