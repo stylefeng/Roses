@@ -16,6 +16,7 @@
         <module>roses-api</module>
         <module>roses-auth</module>
         <module>roses-register</module>
+        <module>roses-gateway</module>
     </modules>
 
     <parent>

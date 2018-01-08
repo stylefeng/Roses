@@ -60,4 +60,24 @@ public class JsonResponse {
     public void setObject(Object object) {
         this.object = object;
     }
+
+    public static SuccessResponse success(String message, Object object) {
+        return new SuccessResponse(message, object);
+    }
+
+    public static SuccessResponse successResponse(Object object) {
+        return new SuccessResponse(object);
+    }
+
+    public static ErrorResponse error(String message) {
+        return new ErrorResponse(message);
+    }
+
+    public static ErrorResponse error(Object object) {
+        return new ErrorResponse(object);
+    }
+
+    public static ErrorResponse error(String message, Object object) {
+        return new ErrorResponse(message, object);
+    }
 }
