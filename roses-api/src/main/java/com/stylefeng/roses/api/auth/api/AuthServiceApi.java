@@ -9,10 +9,10 @@ import java.util.Set;
 /**
  * 用户中心接口
  *
- * @author fengshuonan
+ * @author stylefeng
  * @date 2017年11月09日19:38:34
  */
-@RequestMapping("/remote/authService")
+@RequestMapping("/api/authService")
 public interface AuthServiceApi {
 
     /**
@@ -22,14 +22,14 @@ public interface AuthServiceApi {
      * @Date 2017年11月09日19:38:51
      */
     @RequestMapping("/getUserById")
-    LoginUser getUserById(@RequestParam("userId") Integer userId);
+    LoginUser getUserById(@RequestParam("userId") Long userId);
 
     /**
      * 获取用户的权限路径
      *
-     * @author fengshuonan
+     * @author stylefeng
      * @Date 2017/11/14 上午11:41
      */
     @RequestMapping("/getUserPermissionUrls")
-    Set<String> getUserPermissionUrls(@RequestParam("userId") Integer userId);
+    Set<String> getUserPermissionUrls(@RequestParam("userId") Long userId);
 }

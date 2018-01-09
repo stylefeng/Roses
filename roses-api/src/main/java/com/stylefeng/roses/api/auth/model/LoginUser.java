@@ -11,39 +11,65 @@ public class LoginUser {
     /**
      * 用户id
      */
-    private Integer userId;
+    private Long id;
+
+    /**
+     * 账号
+     */
+    private String account;
 
     /**
      * 用户姓名
      */
-    private String userName;
+    private String phoneNumber;
 
     /**
-     * 部门id
+     * email
      */
-    private Integer deptId;
+    private String email;
 
-    public Integer getUserId() {
-        return userId;
+    /**
+     * 状态: 1-启用  0-禁用
+     */
+    private Integer status;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public Integer getDeptId() {
-        return deptId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDeptId(Integer deptId) {
-        this.deptId = deptId;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

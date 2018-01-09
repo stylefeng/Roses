@@ -58,7 +58,7 @@ public class PathMatchFilter extends ZuulFilter {
         HttpServletResponse response = currentContext.getResponse();
 
         String userId = UserIdHolder.get();
-        Set<String> permissionUrls = authServiceConsumer.getUserPermissionUrls(Integer.valueOf(userId));
+        Set<String> permissionUrls = authServiceConsumer.getUserPermissionUrls(Long.valueOf(userId));
 
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         boolean hasPermission = false;
