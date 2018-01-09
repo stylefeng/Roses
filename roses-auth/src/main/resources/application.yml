@@ -10,7 +10,7 @@ spring:
   aop:
     proxy-target-class: true
 mybatis-plus:
-  mapper-locations: classpath*:com/stylefeng/roses/auth/**/mapping/*.xml
+  mapper-locations: classpath*:com/stylefeng/roses/auth/**/mapping/*.mapping
   typeAliasesPackage: com.stylefeng.roses.auth.modular.entity
   global-config:
     id-type: 2  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
