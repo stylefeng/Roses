@@ -33,11 +33,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         return roles;
     }
 
-    /**
-     * TODO 编写具体查询
-     */
     @Override
     public List<SysPermission> getSysPermisionsByRole(Long roleId) {
-        return null;
+        return super.baseMapper.getPermissionsByRoleId(roleId);
     }
 }

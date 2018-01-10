@@ -7,4 +7,10 @@
         id, name, code, description, create_time AS createTime, update_time AS updateTime, status
     </sql>
 
+    <select id="getPermissionsByRoleId" resultType="com.stylefeng.roses.auth.modular.entity.SysPermission">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from sys_permission where id IN (select perm_id from sys_role_perm where role_id = #{roleId})
+    </select>
+
 </mapper>
