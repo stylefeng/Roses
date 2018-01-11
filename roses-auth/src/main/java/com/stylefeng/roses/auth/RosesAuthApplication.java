@@ -2,8 +2,12 @@ package com.stylefeng.roses.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
-@SpringBootApplication(scanBasePackages = "com.stylefeng.roses")
+@SpringBootApplication
+@EnableFeignClients
+@EnableDiscoveryClient
 public class RosesAuthApplication {
 
     public static void main(String[] args) {

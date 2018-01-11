@@ -12,6 +12,7 @@ public enum CoreExceptionEnum implements AbstractServiceException {
     /**
      * token异常
      */
+    NO_CURRENT_USER(700, "当前没有登录的用户"),
     TOKEN_EXPIRED(700, "token过期"),
     TOKEN_ERROR(700, "token验证失败"),
     PERMISSION_ERROR(800, "没有访问该资源的权限"),

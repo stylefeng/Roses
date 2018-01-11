@@ -3,7 +3,6 @@ package com.stylefeng.roses.core.base.controller;
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.roses.core.base.response.ErrorResponse;
 import com.stylefeng.roses.core.exception.CoreExceptionEnum;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,6 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017-05-21 11:34
  */
-@Component("error")
 public class GlobalErrorView implements View {
 
     @Override

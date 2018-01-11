@@ -11,5 +11,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource("classpath:/default-config.properties")
-public class DefaultImportProperties {
+public class DefaultProperties {
+
+
 }

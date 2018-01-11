@@ -1,7 +1,9 @@
 package com.stylefeng.roses.core.config;
 
+import com.stylefeng.roses.core.base.controller.GlobalErrorView;
 import com.xiaoleilu.hutool.date.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -31,5 +33,10 @@ public class DefaultWebConfig {
         public Date convert(String dateString) {
             return DateUtil.parse(dateString);
         }
+    }
+
+    @Bean("error")
+    public GlobalErrorView error() {
+        return new GlobalErrorView();
     }
 }

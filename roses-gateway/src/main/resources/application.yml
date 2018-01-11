@@ -25,7 +25,6 @@ zuul:
     data-service: /data-service/**
     inv-service: /inv-service/**
     report-service: /report-service/**
-    @service-order-name@: /@service-order-name@/**
     api-gate:
       path: /login/**
       url: forward:/login
