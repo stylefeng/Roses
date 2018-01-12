@@ -30,7 +30,7 @@ import java.util.Map;
  * @Date 2017/8/25 10:59
  */
 @Component
-public class JwtTokenUtil{
+public class JwtTokenUtil {
 
     @Autowired
     private JwtProperties jwtProperties;
@@ -54,15 +54,15 @@ public class JwtTokenUtil{
     }
 
     @PostConstruct
-    public void postMethod(){
+    public void postMethod() {
         this.secret = jwtProperties.getSecret();
         this.expireTime = jwtProperties.getExpiration();
     }
 
     /**
-     * 获取用户名从token中
+     * 获取用户id从token中
      */
-    public String getSubjectFromToken(String token) {
+    public String getUserIdFromToken(String token) {
         return getClaimFromToken(token).getSubject();
     }
 
@@ -125,21 +125,21 @@ public class JwtTokenUtil{
     /**
      * 生成token(通过用户名和签名时候用的随机数)
      */
-    public String generateToken(String userName) {
+    public String generateToken(String userId) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userName);
+        return doGenerateToken(claims, userId);
     }
 
     /**
      * 生成token
      */
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
+    private String doGenerateToken(Map<String, Object> claims, String userId) {
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + this.expireTime * 1000);
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(subject)
+                .setSubject(userId)
                 .setIssuedAt(createdDate)
                 .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS512, this.secret)

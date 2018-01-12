@@ -1,10 +1,15 @@
 package com.stylefeng.roses.core.context;
 
+import com.netflix.zuul.context.RequestContext;
+import com.stylefeng.roses.api.auth.api.AuthServiceApi;
 import com.stylefeng.roses.api.auth.model.LoginUser;
+import com.stylefeng.roses.core.constant.Constant;
 import com.stylefeng.roses.core.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.SpringContextHolder;
+import com.xiaoleilu.hutool.util.StrUtil;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * <pre>
@@ -17,6 +22,9 @@ import com.stylefeng.roses.core.util.SpringContextHolder;
  */
 public class UserContext {
 
+    @Value("${spring.application.name}")
+    private String appName;
+
     /**
      * 获取UserContext bean
      *
@@ -28,21 +36,39 @@ public class UserContext {
     }
 
     /**
-     * 获取当前登录用户
+     * <pre>
+     * 获取当前登录用户,根据模块的不同,分为3种情况:
+     *      1.gateway模块调用,调用auth模块接口获取
+     *      2.auth模块调用,调用本模块中的service方法获取
+     *      3.其他模块调用,调用auth模块接口获取
+     * </pre>
      *
      * @author fengshuonan
      * @Date 2018年1月11日22:02:24
      */
     public LoginUser getUser() {
-        String userId = HttpContext.getRequest().getHeader(RosesConst.IDENTITY_HEADER);
-        if (userId == null) {
-            throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
-        }
-        AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
-        if (authServiceConsumer != null) {
+        if (Constant.GATEWAY_MODULAR_NAME.equals(appName)) {
+            RequestContext currentContext = RequestContext.getCurrentContext();
+            String userId = (String) currentContext.get(Constant.IDENTITY_HEADER);
+            if (StrUtil.isBlank(userId)) {
+                throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+            }
+            AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
             return authServiceConsumer.getUserById(Long.valueOf(userId));
+        } else if (Constant.AUTH_MODULAR_NAME.equals(appName)) {
+            AuthServiceApi authServiceApi = SpringContextHolder.getBean(AuthServiceApi.class);
+            String userId = HttpContext.getRequest().getHeader(Constant.IDENTITY_HEADER);
+            if (StrUtil.isBlank(userId)) {
+                throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+            }
+            return authServiceApi.getUserById(Long.valueOf(userId));
         } else {
-            return null;
+            String userId = HttpContext.getRequest().getHeader(Constant.IDENTITY_HEADER);
+            if (StrUtil.isBlank(userId)) {
+                throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+            }
+            AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
+            return authServiceConsumer.getUserById(Long.valueOf(userId));
         }
     }
 }

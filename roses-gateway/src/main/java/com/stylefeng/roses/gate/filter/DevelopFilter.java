@@ -5,7 +5,6 @@ import com.netflix.zuul.context.RequestContext;
 import com.stylefeng.roses.core.constant.Constant;
 import com.stylefeng.roses.gate.config.properties.JwtProperties;
 import com.stylefeng.roses.gate.utils.JwtTokenUtil;
-import com.stylefeng.roses.gate.utils.UserIdHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -48,7 +47,7 @@ public class DevelopFilter extends ZuulFilter {
     public Object run() {
         RequestContext currentContext = RequestContext.getCurrentContext();
         currentContext.addZuulRequestHeader(Constant.IDENTITY_HEADER, userId);
-        UserIdHolder.put(userId);
+        currentContext.set(Constant.IDENTITY_HEADER, userId);
         return null;
     }
 }

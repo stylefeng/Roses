@@ -3,11 +3,11 @@ package com.stylefeng.roses.gate.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.stylefeng.roses.core.base.response.JsonResponse;
+import com.stylefeng.roses.core.constant.Constant;
 import com.stylefeng.roses.core.context.AuthServiceConsumer;
 import com.stylefeng.roses.core.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.util.RenderUtil;
 import com.stylefeng.roses.gate.config.properties.JwtProperties;
-import com.stylefeng.roses.gate.utils.UserIdHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
@@ -57,7 +57,7 @@ public class PathMatchFilter extends ZuulFilter {
         HttpServletRequest request = currentContext.getRequest();
         HttpServletResponse response = currentContext.getResponse();
 
-        String userId = UserIdHolder.get();
+        String userId = (String) currentContext.get(Constant.IDENTITY_HEADER);
         Set<String> permissionUrls = authServiceConsumer.getUserPermissionUrls(Long.valueOf(userId));
 
         AntPathMatcher antPathMatcher = new AntPathMatcher();

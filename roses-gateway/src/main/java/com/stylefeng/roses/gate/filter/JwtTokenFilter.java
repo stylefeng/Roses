@@ -9,7 +9,6 @@ import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.RenderUtil;
 import com.stylefeng.roses.gate.config.properties.JwtProperties;
 import com.stylefeng.roses.gate.utils.JwtTokenUtil;
-import com.stylefeng.roses.gate.utils.UserIdHolder;
 import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,9 +74,9 @@ public class JwtTokenFilter extends ZuulFilter {
                     RenderUtil.renderJson(response, JsonResponse.error(CoreExceptionEnum.TOKEN_EXPIRED.getMessage()));
                 } else {
                     //验证成功,将用户id传给下游服务
-                    String subjectFromToken = jwtTokenUtil.getSubjectFromToken(authToken);
-                    currentContext.addZuulRequestHeader(Constant.IDENTITY_HEADER, subjectFromToken);
-                    UserIdHolder.put(subjectFromToken);
+                    String userId = jwtTokenUtil.getUserIdFromToken(authToken);
+                    currentContext.addZuulRequestHeader(Constant.IDENTITY_HEADER, userId);
+                    currentContext.set(Constant.IDENTITY_HEADER, userId);
                     return null;
                 }
             } catch (JwtException e) {

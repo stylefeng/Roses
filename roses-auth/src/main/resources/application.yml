@@ -2,7 +2,7 @@ auth:
   default-pwd: 123456 #重置密码的默认密码
 spring:
   application:
-    name: auth-service
+    name: roses-auth
   datasource:
       url: jdbc:mysql://127.0.0.1:3306/roses?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
