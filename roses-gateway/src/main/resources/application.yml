@@ -1,34 +1,26 @@
 develop:
   open: true          #是否开启开发者模式,开启则开启DevelopFilter,走接口不用传jwt token
   user-id: 1          #开发环境下,传给下游服务的当前用户id,默认为1
+
 jwt:
   header: Authorization     #http请求头所需要的字段
   secret: mySecret          #jwt秘钥
   expiration: 604800        #7天 单位:秒
   auth-path: /auth          #认证请求的路径
+
 spring:
-  redis:
-    host: 192.168.19.97
-    port: 6379
-    password:
   application:
     name: roses-gateway
-  rabbitmq:
-    addresses: 192.168.19.97
-    port: 5672
-    username: guest
-    password: guest
+
 zuul:
   add-host-header: true
   routes:
     auth-service: /auth-service/**
-    data-service: /data-service/**
-    inv-service: /inv-service/**
-    report-service: /report-service/**
     api-gate:
       path: /login/**
       url: forward:/login
   retryable: false   #转发重试关闭
+
 hystrix:
   command:
     default:
@@ -42,6 +34,7 @@ ribbon:
 
 server:
   port: 5555
+
 eureka:
   instance:
     prefer-ip-address: true
