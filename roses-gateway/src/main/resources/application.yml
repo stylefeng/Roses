@@ -15,10 +15,10 @@ spring:
 zuul:
   add-host-header: true
   routes:
-    auth-service: /auth-service/**
+    roses-auth: /roses-auth/**
     api-gate:
       path: /login/**
-      url: forward:/login
+      url: forward:/login  #以/login开头的请求转发到本网关的控制器
   retryable: false   #转发重试关闭
 
 hystrix:
