@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: roses-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/naan1993/roses-config
+          search-paths: roses-configs
+server:
+  port: 8888
+
