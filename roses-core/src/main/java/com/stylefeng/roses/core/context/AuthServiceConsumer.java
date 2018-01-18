@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.context;
 
-import com.stylefeng.roses.api.auth.api.AuthServiceApi;
+import com.stylefeng.roses.api.auth.AuthServiceApi;
 import com.stylefeng.roses.core.constant.Constant;
 import org.springframework.cloud.netflix.feign.FeignClient;
 

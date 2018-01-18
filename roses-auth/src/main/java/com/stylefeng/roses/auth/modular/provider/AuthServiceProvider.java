@@ -1,6 +1,6 @@
 package com.stylefeng.roses.auth.modular.provider;
 
-import com.stylefeng.roses.api.auth.api.AuthServiceApi;
+import com.stylefeng.roses.api.auth.AuthServiceApi;
 import com.stylefeng.roses.api.auth.model.LoginUser;
 import com.stylefeng.roses.auth.modular.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

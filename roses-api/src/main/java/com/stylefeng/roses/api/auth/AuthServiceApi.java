@@ -1,4 +1,4 @@
-package com.stylefeng.roses.api.auth.api;
+package com.stylefeng.roses.api.auth;
 
 import com.stylefeng.roses.api.auth.model.LoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
