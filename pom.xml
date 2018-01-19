@@ -17,6 +17,7 @@
         <module>roses-auth</module>
         <module>roses-register</module>
         <module>roses-gateway</module>
+        <module>roses-config</module>
     </modules>
 
     <parent>
