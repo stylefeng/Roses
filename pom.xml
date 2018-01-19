@@ -18,6 +18,7 @@
         <module>roses-register</module>
         <module>roses-gateway</module>
         <module>roses-config</module>
+        <module>roses-monitor</module>
     </modules>
 
     <parent>
