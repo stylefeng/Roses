@@ -6,7 +6,6 @@ com.stylefeng.roses.core.config.DefaultCacheConfig,\
 com.stylefeng.roses.core.config.DefaultFastjsonConfig,\
 com.stylefeng.roses.core.config.DefaultMybaitsPlusConfig,\
 com.stylefeng.roses.core.config.DefaultProperties,\
-com.stylefeng.roses.core.config.DefaultRabbitConfig,\
 com.stylefeng.roses.core.config.DefaultSwaggerConfig,\
 com.stylefeng.roses.core.config.DefaultUtilConfig,\
 com.stylefeng.roses.core.config.DefaultWebConfig

@@ -17,8 +17,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <dependencies>
 
+    <dependencies>
         <dependency>
             <groupId>com.stylefeng.roses</groupId>
             <artifactId>roses-api</artifactId>
@@ -33,6 +33,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!--spring boot 监控-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+        </dependency>
+
+        <!--工具类-->
         <dependency>
             <groupId>com.xiaoleilu</groupId>
             <artifactId>hutool-core</artifactId>
@@ -40,10 +47,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>

@@ -41,6 +41,7 @@
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <jwt.version>0.9.0</jwt.version>
         <hutool.version>3.3.0</hutool.version>
+        <spring.boot.admin>1.5.6</spring.boot.admin>
     </properties>
 
     <dependencyManagement>
@@ -153,6 +154,23 @@
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
                 <version>${jwt.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring.boot.admin}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring.boot.admin}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
