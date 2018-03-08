@@ -24,6 +24,7 @@
     </dependencies>
 
     <build>
+        <finalName>roses-register</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

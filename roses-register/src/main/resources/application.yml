@@ -1,16 +1,36 @@
-server:
-  port: 1111
 spring:
   application:
     name: roses-eureka-server
+
+---
+spring:
+  profiles: roses1
+server:
+  port: 8761
 eureka:
   server:
     #是否开启自我保护（运行期间spring会统计信条失败的比例在15分钟之内是否低于85%，如果不低于85%，Eureka会将实例注册信息保护起来，让这些实例不会过期）
     enable-self-preservation: false
   client:
-    register-with-eureka: false #自己不注册自己
-    fetch-registry: false #不需要从其他eureka节点获取注册信息
+    register-with-eureka: true #自己也注册到注册中心
+    fetch-registry: true #需要从其他eureka节点获取注册信息
     service-url:
-      default-zone: http://localhost:1111/eureka #设置与eureka交互的地址
+      default-zone: http://www.roses2.com:8762/eureka #设置与eureka交互的地址
   instance:
-    hostname: localhost
+    hostname: www.roses1.com
+---
+spring:
+  profiles: roses2
+server:
+  port: 8762
+eureka:
+  server:
+    #是否开启自我保护（运行期间spring会统计信条失败的比例在15分钟之内是否低于85%，如果不低于85%，Eureka会将实例注册信息保护起来，让这些实例不会过期）
+    enable-self-preservation: false
+  client:
+    register-with-eureka: true #自己也注册到注册中心
+    fetch-registry: true #需要从其他eureka节点获取注册信息
+    service-url:
+      default-zone: http://www.roses1.com:8761/eureka #设置与eureka交互的地址
+  instance:
+    hostname: www.roses2.com
