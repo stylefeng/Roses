@@ -40,5 +40,5 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:1111/eureka/
+      defaultZone: http://www.roses1.com:8761/eureka,http://www.roses2.com:8762/eureka
     registry-fetch-interval-seconds: 3  #获取服务的刷新时间
