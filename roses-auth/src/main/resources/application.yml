@@ -25,7 +25,7 @@ server:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: true #将IP注册到eureka
     lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
   client:
     service-url:

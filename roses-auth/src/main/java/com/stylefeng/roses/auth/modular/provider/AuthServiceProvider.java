@@ -18,7 +18,7 @@ import java.util.Set;
 public class AuthServiceProvider implements AuthServiceApi {
 
     @Autowired
-    ISysUserService sysUserService;
+    private ISysUserService sysUserService;
 
     @Override
     public LoginUser getUserById(Long userId) {
