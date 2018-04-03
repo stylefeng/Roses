@@ -3,6 +3,12 @@ spring:
     name: roses-eureka-server
   profiles:
     active: roses1
+security:
+  basic:
+    enabled: true
+  user:
+    name: stylefeng
+    password: 123456
 
 ---
 spring:
