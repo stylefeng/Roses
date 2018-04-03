@@ -1,6 +1,8 @@
 spring:
   application:
     name: roses-eureka-server
+  profiles:
+    active: roses1
 
 ---
 spring:
@@ -18,6 +20,7 @@ eureka:
       default-zone: http://www.roses2.com:8762/eureka #设置与eureka交互的地址
   instance:
     hostname: www.roses1.com
+
 ---
 spring:
   profiles: roses2
