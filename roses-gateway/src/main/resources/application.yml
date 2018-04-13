@@ -1,3 +1,6 @@
+server:
+  port: 5555
+
 develop:
   open: true          #是否开启开发者模式,开启则开启DevelopFilter,走接口不用传jwt token
   user-id: 1          #开发环境下,传给下游服务的当前用户id,默认为1
@@ -31,9 +34,6 @@ hystrix:
 ribbon:
   connect-imeout: 2000 #创建连接的超时时间 2秒
   read-timeout: 5000 #路由转发请求的超时时间 5秒
-
-server:
-  port: 5555
 
 eureka:
   instance:
