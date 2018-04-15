@@ -1,0 +1,30 @@
+server:
+  port: 3333
+
+spring:
+  application:
+    name: roses-auth
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/roses_sys?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+
+auth:
+  default-pwd: 123456 #重置密码的默认密码
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.roses.auth.modular.entity
+
+logging:
+  level.root: info
+  level.com.stylefeng: debug
+  path: logs/
+  file: roses-auth.log
+
+eureka:
+  instance:
+    prefer-ip-address: true #将IP注册到eureka
+    lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
+  client:
+    service-url:
+      defaultZone: http://stylefeng:123456@www.roses1.com:8761/eureka,http://stylefeng:123456@www.roses2.com:8762/eureka
+    registry-fetch-interval-seconds: 3  #获取服务的刷新时间

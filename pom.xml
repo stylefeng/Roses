@@ -19,6 +19,7 @@
         <module>roses-gateway</module>
         <module>roses-config</module>
         <module>roses-monitor</module>
+        <module>roses-message</module>
     </modules>
 
     <parent>
@@ -70,6 +71,11 @@
             <dependency>
                 <groupId>com.stylefeng.roses</groupId>
                 <artifactId>roses-gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>roses-message</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
