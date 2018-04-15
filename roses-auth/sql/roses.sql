@@ -5,7 +5,7 @@
  Source Server Type    : MySQL
  Source Server Version : 50719
  Source Host           : localhost:3306
- Source Schema         : roses
+ Source Schema         : roses_sys
 
  Target Server Type    : MySQL
  Target Server Version : 50719
@@ -14,10 +14,10 @@
  Date: 17/12/2017 21:08:28
 */
 
-DROP DATABASE IF EXISTS roses;
-CREATE DATABASE IF NOT EXISTS roses DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+DROP DATABASE IF EXISTS roses_sys;
+CREATE DATABASE IF NOT EXISTS roses_sys DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 
-USE roses;
+USE roses_sys;
 
 
 SET NAMES utf8mb4;
