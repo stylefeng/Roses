@@ -24,21 +24,27 @@ zuul:
       url: forward:/login  #以/login开头的请求转发到本网关的控制器
   retryable: false   #转发重试关闭
 
+feign:
+  hystrix:
+    enabled: true
+
+ribbon:
+  connect-imeout: 300 #创建连接的超时时间 300毫秒
+  read-timeout: 1000 #处理请求的超时时间 1秒
+  max-auto-retries-next-server: 2 #切换实例的重试次数
+  max-auto-retries: 1 #对当前实例的重试次数
+
 hystrix:
   command:
     default:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000   #转发超时时间 5秒
-ribbon:
-  connect-imeout: 2000 #创建连接的超时时间 2秒
-  read-timeout: 5000 #路由转发请求的超时时间 5秒
-
+            timeoutInMilliseconds: 3000   #hystrix线程超过3秒熔断，数值大于ribbon的处理超时时间，留给ribbon重试，否则直接熔断，重试就没有意义了
 eureka:
   instance:
     prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://stylefeng:123456@www.roses1.com:8761/eureka,http://stylefeng:123456@www.roses2.com:8762/eureka
-    registry-fetch-interval-seconds: 3  #获取服务的刷新时间
+    registry-fetch-interval-seconds: 30
