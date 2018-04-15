@@ -5,7 +5,7 @@ spring:
   application:
     name: roses-auth
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/roses?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/roses_sys?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
 
