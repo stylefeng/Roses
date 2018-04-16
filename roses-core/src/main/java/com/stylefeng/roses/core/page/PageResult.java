@@ -12,11 +12,11 @@ public class PageResult<T> implements Serializable {
 
     private static final long serialVersionUID = -4071521319254024213L;
 
-    protected Integer page = 1;// 要查找第几页
-    protected Integer pageSize = 20;// 每页显示多少条
-    protected Integer totalPage = 0;// 总页数
-    protected Integer totalRows = 0;// 总记录数
-    protected List<T> rows;// 结果集
+    private Integer page = 1;// 要查找第几页
+    private Integer pageSize = 20;// 每页显示多少条
+    private Integer totalPage = 0;// 总页数
+    private Long totalRows = 0L;// 总记录数
+    private List<T> rows;// 结果集
 
     public PageResult() {
         super();
@@ -45,7 +45,7 @@ public class PageResult<T> implements Serializable {
         this.pageSize = pageSize;
     }
 
-    public Integer getTotalPage() {
+    public long getTotalPage() {
         if (this.getPageSize() != null) {
             return (this.getTotalRows() + this.getPageSize() - 1) / this.getPageSize();// 总页数的算法
         } else {
@@ -53,11 +53,11 @@ public class PageResult<T> implements Serializable {
         }
     }
 
-    public Integer getTotalRows() {
+    public Long getTotalRows() {
         return totalRows;
     }
 
-    public void setTotalRows(Integer totalRows) {
+    public void setTotalRows(Long totalRows) {
         this.totalRows = totalRows;
     }
 
