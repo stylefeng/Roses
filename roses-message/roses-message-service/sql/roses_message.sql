@@ -34,7 +34,7 @@ CREATE TABLE `biz_message`  (
   `consumer_queue` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '消费队列',
   `message_send_times` smallint(6) NOT NULL DEFAULT 0 COMMENT '消息重发次数',
   `areadly_dead` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '是否死亡\r\n\r\nY：已死亡\r\nN：未死亡   \r\n',
-  `status` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '状态 \r\n\r\nWAITTING_CONFIRM：待确认  \r\nSENDING：发送中',
+  `status` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '状态 \r\n\r\nWAIT_VERIFY：待确认  \r\nSENDING：发送中',
   `create_time` datetime(0) NOT NULL COMMENT '创建时间',
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '最后修改时间',
   `create_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '创建者',
