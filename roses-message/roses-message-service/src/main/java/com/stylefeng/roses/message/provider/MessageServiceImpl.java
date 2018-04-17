@@ -13,6 +13,7 @@ import java.util.Map;
  * @date 2018-04-16 22:30
  */
 public class MessageServiceImpl implements MessageServiceApi {
+
     @Override
     public int saveMessageWaitingConfirm(BizMessage bizMessage) {
         return 0;
