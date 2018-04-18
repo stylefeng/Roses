@@ -17,8 +17,8 @@ import java.util.Date;
  * @author stylefeng123
  * @since 2018-04-16
  */
-@TableName("biz_message")
-public class BizMessage extends Model<BizMessage> {
+@TableName("reliable_message")
+public class ReliableMessage extends Model<ReliableMessage> {
 
     private static final long serialVersionUID = 1L;
 

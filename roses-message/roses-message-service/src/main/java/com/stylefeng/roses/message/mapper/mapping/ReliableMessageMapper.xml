@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.admin.common.persistence.dao.BizMessageMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.message.model.BizMessage">
+    <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.message.model.ReliableMessage">
         <id column="id" property="id" />
         <result column="message_id" property="messageId" />
         <result column="message_body" property="messageBody" />

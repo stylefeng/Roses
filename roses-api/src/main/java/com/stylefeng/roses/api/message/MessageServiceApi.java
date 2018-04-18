@@ -2,7 +2,7 @@ package com.stylefeng.roses.api.message;
 
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.stylefeng.roses.api.message.model.BizMessage;
+import com.stylefeng.roses.api.message.model.ReliableMessage;
 
 import java.util.Map;
 
@@ -18,7 +18,7 @@ public interface MessageServiceApi {
     /**
      * 预存储消息.
      */
-    void preStoreMessage(BizMessage bizMessage);
+    void preStoreMessage(ReliableMessage reliableMessage);
 
     /**
      * 确认并发送消息.
@@ -28,17 +28,17 @@ public interface MessageServiceApi {
     /**
      * 存储并发送消息.
      */
-    int saveAndSendMessage(BizMessage bizMessage);
+    int saveAndSendMessage(ReliableMessage reliableMessage);
 
     /**
      * 直接发送消息.
      */
-    void directSendMessage(BizMessage bizMessage);
+    void directSendMessage(ReliableMessage reliableMessage);
 
     /**
      * 重发消息.
      */
-    void reSendMessage(BizMessage bizMessage);
+    void reSendMessage(ReliableMessage reliableMessage);
 
     /**
      * 根据messageId重发某条消息.
@@ -53,7 +53,7 @@ public interface MessageServiceApi {
     /**
      * 根据消息ID获取消息
      */
-    BizMessage getMessageByMessageId(String messageId);
+    ReliableMessage getMessageByMessageId(String messageId);
 
     /**
      * 根据消息ID删除消息

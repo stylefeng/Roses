@@ -5,12 +5,11 @@ import com.stylefeng.roses.api.common.enums.YseOrNotEnum;
 import com.stylefeng.roses.api.message.MessageServiceApi;
 import com.stylefeng.roses.api.message.enums.MessageStatusEnum;
 import com.stylefeng.roses.api.message.exception.MessageExceptionEnum;
-import com.stylefeng.roses.api.message.model.BizMessage;
-import com.stylefeng.roses.core.context.UserContext;
+import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.ToolUtil;
-import com.stylefeng.roses.message.service.IBizMessageService;
+import com.stylefeng.roses.message.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,21 +25,20 @@ import java.util.Map;
 public class MessageServiceImpl implements MessageServiceApi {
 
     @Autowired
-    private IBizMessageService bizMessageService;
+    private IReliableMessageService bizMessageService;
 
     @Override
-    public void preStoreMessage(BizMessage bizMessage) {
-        if (bizMessage == null) {
+    public void preStoreMessage(ReliableMessage reliableMessage) {
+        if (reliableMessage == null) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
         }
-        if (ToolUtil.isEmpty(bizMessage.getConsumerQueue())) {
+        if (ToolUtil.isEmpty(reliableMessage.getConsumerQueue())) {
             throw new ServiceException(MessageExceptionEnum.QUEUE_CANT_EMPTY);
         }
-        bizMessage.setCreateBy(UserContext.me().getUser().getId().toString());
-        bizMessage.setStatus(MessageStatusEnum.WAIT_VERIFY.name());
-        bizMessage.setAreadlyDead(YseOrNotEnum.N.name());
-        bizMessage.setMessageSendTimes(0);
-        bizMessageService.insert(bizMessage);
+        reliableMessage.setStatus(MessageStatusEnum.WAIT_VERIFY.name());
+        reliableMessage.setAreadlyDead(YseOrNotEnum.N.name());
+        reliableMessage.setMessageSendTimes(0);
+        bizMessageService.insert(reliableMessage);
     }
 
     @Override
@@ -49,17 +47,17 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public int saveAndSendMessage(BizMessage bizMessage) {
+    public int saveAndSendMessage(ReliableMessage reliableMessage) {
         return 0;
     }
 
     @Override
-    public void directSendMessage(BizMessage bizMessage) {
+    public void directSendMessage(ReliableMessage reliableMessage) {
 
     }
 
     @Override
-    public void reSendMessage(BizMessage bizMessage) {
+    public void reSendMessage(ReliableMessage reliableMessage) {
 
     }
 
@@ -74,7 +72,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public BizMessage getMessageByMessageId(String messageId) {
+    public ReliableMessage getMessageByMessageId(String messageId) {
         return null;
     }
 
