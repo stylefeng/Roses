@@ -2,7 +2,7 @@ package com.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.roses.core.util.HttpContext;
-import com.xiaoleilu.hutool.util.StrUtil;
+import com.stylefeng.roses.core.util.ToolUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,13 +34,13 @@ public class PageFactory<T> {
 
         //每页条数
         String pageSizeString = request.getParameter(PAGE_SIZE);
-        if (StrUtil.isNotEmpty(pageSizeString)) {
+        if (ToolUtil.isNotEmpty(pageSizeString)) {
             pageSize = Integer.valueOf(pageSizeString);
         }
 
         //第几页
         String pageNoString = request.getParameter(PAGE_NO);
-        if (StrUtil.isNotEmpty(pageNoString)) {
+        if (ToolUtil.isNotEmpty(pageNoString)) {
             pageNo = Integer.valueOf(pageNoString);
         }
 
@@ -48,7 +48,7 @@ public class PageFactory<T> {
         String sort = request.getParameter(SORT_FIELD);
         String order = request.getParameter(ORDER);
 
-        if (StrUtil.isEmpty(sort)) {
+        if (ToolUtil.isEmpty(sort)) {
             Page<T> page = new Page<>(pageNo, pageSize);
             page.setOpenSort(false);
             return page;

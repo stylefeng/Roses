@@ -1,6 +1,8 @@
 package com.stylefeng.roses.core.exception;
 
 
+import com.stylefeng.roses.api.common.AbstractServiceException;
+
 /**
  * core模块的异常集合
  *
@@ -26,6 +28,7 @@ public enum CoreExceptionEnum implements AbstractServiceException {
      * 其他
      */
     WRITE_ERROR(500, "渲染界面错误"),
+    ENCRYPT_ERROR(600, "加解密错误"),
 
     /**
      * 文件上传
@@ -36,7 +39,7 @@ public enum CoreExceptionEnum implements AbstractServiceException {
     /**
      * 错误的请求
      */
-    REQUEST_NULL(400, "请求有错误"),
+    REQUEST_NULL(400, "请求数据为空或格式错误"),
     SERVICE_ERROR(500, "服务器异常");
 
     CoreExceptionEnum(int code, String message) {

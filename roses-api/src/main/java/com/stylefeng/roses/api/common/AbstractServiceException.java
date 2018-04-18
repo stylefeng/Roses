@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.exception;
+package com.stylefeng.roses.api.common;
 
 /**
  * roses异常规范

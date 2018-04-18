@@ -18,7 +18,7 @@ public interface MessageServiceApi {
     /**
      * 预存储消息.
      */
-    int saveMessageWaitingConfirm(BizMessage bizMessage);
+    void preStoreMessage(BizMessage bizMessage);
 
     /**
      * 确认并发送消息.

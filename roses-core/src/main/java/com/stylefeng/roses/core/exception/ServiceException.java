@@ -1,5 +1,7 @@
 package com.stylefeng.roses.core.exception;
 
+import com.stylefeng.roses.api.common.AbstractServiceException;
+
 /**
  * 业务异常的封装
  *

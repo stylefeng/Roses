@@ -8,7 +8,7 @@ import com.stylefeng.roses.core.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.SpringContextHolder;
-import com.xiaoleilu.hutool.util.StrUtil;
+import com.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -50,7 +50,7 @@ public class UserContext {
         if (Constant.GATEWAY_MODULAR_NAME.equals(appName)) {
             RequestContext currentContext = RequestContext.getCurrentContext();
             String userId = (String) currentContext.get(Constant.IDENTITY_HEADER);
-            if (StrUtil.isBlank(userId)) {
+            if (ToolUtil.isEmpty(userId)) {
                 throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
             }
             AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
@@ -58,13 +58,13 @@ public class UserContext {
         } else if (Constant.AUTH_MODULAR_NAME.equals(appName)) {
             AuthServiceApi authServiceApi = SpringContextHolder.getBean(AuthServiceApi.class);
             String userId = HttpContext.getRequest().getHeader(Constant.IDENTITY_HEADER);
-            if (StrUtil.isBlank(userId)) {
+            if (ToolUtil.isEmpty(userId)) {
                 throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
             }
             return authServiceApi.getUserById(Long.valueOf(userId));
         } else {
             String userId = HttpContext.getRequest().getHeader(Constant.IDENTITY_HEADER);
-            if (StrUtil.isBlank(userId)) {
+            if (ToolUtil.isEmpty(userId)) {
                 throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
             }
             AuthServiceConsumer authServiceConsumer = SpringContextHolder.getBean(AuthServiceConsumer.class);
