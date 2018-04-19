@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.page;
+package com.stylefeng.roses.api.common.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 

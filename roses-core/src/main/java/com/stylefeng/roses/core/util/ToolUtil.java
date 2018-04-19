@@ -1,8 +1,8 @@
 package com.stylefeng.roses.core.util;
 
 
-import com.stylefeng.roses.core.exception.CoreExceptionEnum;
-import com.stylefeng.roses.core.exception.ServiceException;
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
+import com.stylefeng.roses.api.common.exception.ServiceException;
 
 import java.security.MessageDigest;
 import java.util.List;

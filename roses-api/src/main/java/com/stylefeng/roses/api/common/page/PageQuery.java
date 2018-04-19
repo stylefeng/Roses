@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.page;
+package com.stylefeng.roses.api.common.page;
 
 /**
  * 分页查询的请求参数封装

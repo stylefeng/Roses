@@ -95,7 +95,11 @@ public class ReliableMessage extends Model<ReliableMessage> {
      */
     @Version
     private Long version = 0L;
-
+    /**
+     * 版本号
+     */
+    @TableField("biz_unique_id")
+    private Long bizUniqueId;
 
     public Long getId() {
         return id;
@@ -207,6 +211,14 @@ public class ReliableMessage extends Model<ReliableMessage> {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public Long getBizUniqueId() {
+        return bizUniqueId;
+    }
+
+    public void setBizUniqueId(Long bizUniqueId) {
+        this.bizUniqueId = bizUniqueId;
     }
 
     @Override

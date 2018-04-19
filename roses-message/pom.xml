@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>roses-message</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
 
     <name>roses-message</name>
     <description>消息服务系统聚合</description>

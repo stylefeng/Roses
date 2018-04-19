@@ -1,19 +1,19 @@
 package com.stylefeng.roses.message.provider;
 
-import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.roses.api.common.enums.YseOrNotEnum;
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
+import com.stylefeng.roses.api.common.exception.ServiceException;
+import com.stylefeng.roses.api.common.page.PageQuery;
+import com.stylefeng.roses.api.common.page.PageResult;
 import com.stylefeng.roses.api.message.MessageServiceApi;
 import com.stylefeng.roses.api.message.enums.MessageStatusEnum;
 import com.stylefeng.roses.api.message.exception.MessageExceptionEnum;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
-import com.stylefeng.roses.core.exception.CoreExceptionEnum;
-import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.message.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Map;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 消息服务提供接口的实现
@@ -21,16 +21,22 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2018-04-16 22:30
  */
-@Service
+@RestController
 public class MessageServiceImpl implements MessageServiceApi {
 
     @Autowired
     private IReliableMessageService bizMessageService;
 
     @Override
-    public void preStoreMessage(ReliableMessage reliableMessage) {
+    public ReliableMessage preSaveMessage(@RequestBody ReliableMessage reliableMessage) {
         if (reliableMessage == null) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
+        }
+        if (ToolUtil.isEmpty(reliableMessage.getMessageId())) {
+            throw new ServiceException(MessageExceptionEnum.MESSAGE_ID_CANT_EMPTY);
+        }
+        if (ToolUtil.isEmpty(reliableMessage.getMessageBody())) {
+            throw new ServiceException(MessageExceptionEnum.MESSAGE_BODY_CANT_EMPTY);
         }
         if (ToolUtil.isEmpty(reliableMessage.getConsumerQueue())) {
             throw new ServiceException(MessageExceptionEnum.QUEUE_CANT_EMPTY);
@@ -39,6 +45,7 @@ public class MessageServiceImpl implements MessageServiceApi {
         reliableMessage.setAreadlyDead(YseOrNotEnum.N.name());
         reliableMessage.setMessageSendTimes(0);
         bizMessageService.insert(reliableMessage);
+        return reliableMessage;
     }
 
     @Override
@@ -87,7 +94,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public Page listPage(Page pageParam, Map<String, Object> paramMap) {
+    public PageResult listPage(PageQuery pageParam) {
         return null;
     }
 }

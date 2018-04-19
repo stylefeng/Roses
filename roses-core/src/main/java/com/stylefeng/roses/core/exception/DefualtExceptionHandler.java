@@ -1,5 +1,7 @@
 package com.stylefeng.roses.core.exception;
 
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
+import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.base.response.ErrorResponse;
 import com.stylefeng.roses.core.base.response.JsonResponse;
 import org.slf4j.Logger;

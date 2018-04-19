@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.exception;
+package com.stylefeng.roses.api.common.exception;
 
 
 import com.stylefeng.roses.api.common.AbstractServiceException;

@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.exception;
+package com.stylefeng.roses.api.common.exception;
 
 import com.stylefeng.roses.api.common.AbstractServiceException;
 
@@ -15,6 +15,7 @@ public class ServiceException extends RuntimeException {
     private String errorMessage;
 
     public ServiceException(AbstractServiceException exception) {
+        super(exception.getMessage());
         this.code = exception.getCode();
         this.errorMessage = exception.getMessage();
     }

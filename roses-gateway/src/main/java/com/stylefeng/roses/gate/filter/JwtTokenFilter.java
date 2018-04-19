@@ -2,10 +2,10 @@ package com.stylefeng.roses.gate.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
+import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.base.response.JsonResponse;
 import com.stylefeng.roses.core.constant.Constant;
-import com.stylefeng.roses.core.exception.CoreExceptionEnum;
-import com.stylefeng.roses.core.exception.ServiceException;
 import com.stylefeng.roses.core.util.RenderUtil;
 import com.stylefeng.roses.gate.config.properties.JwtProperties;
 import com.stylefeng.roses.gate.utils.JwtTokenUtil;

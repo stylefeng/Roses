@@ -12,7 +12,9 @@ import com.stylefeng.roses.api.common.AbstractServiceException;
 public enum MessageExceptionEnum implements AbstractServiceException {
 
 
-    QUEUE_CANT_EMPTY(600, "消息队列不能为空");
+    QUEUE_CANT_EMPTY(600, "消息队列不能为空"),
+    MESSAGE_ID_CANT_EMPTY(601, "消息id不能为空"),
+    MESSAGE_BODY_CANT_EMPTY(602, "消息body不能为空");
 
     MessageExceptionEnum(int code, String message) {
         this.code = code;

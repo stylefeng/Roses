@@ -1,7 +1,7 @@
 package com.stylefeng.roses.gate.error;
 
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.base.response.JsonResponse;
-import com.stylefeng.roses.core.exception.CoreExceptionEnum;
 import com.xiaoleilu.hutool.bean.BeanUtil;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.web.context.request.RequestAttributes;
