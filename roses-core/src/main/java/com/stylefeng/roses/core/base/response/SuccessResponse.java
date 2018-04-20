@@ -12,10 +12,10 @@ public class SuccessResponse extends JsonResponse {
     }
 
     public SuccessResponse(Object object) {
-        super(true, SUCCESS_MESSAGE, object);
+        super(true, DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MESSAGE, object);
     }
 
-    public SuccessResponse(String message, Object object) {
-        super(true, message, object);
+    public SuccessResponse(Integer code, String message, Object object) {
+        super(true, code, message, object);
     }
 }

@@ -26,6 +26,6 @@ public class GlobalErrorView implements View {
     public void render(Map<String, ?> map, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.getWriter().write(JSON.toJSONString(new ErrorResponse(CoreExceptionEnum.REQUEST_NULL)));
+        httpServletResponse.getWriter().write(JSON.toJSONString(new ErrorResponse(CoreExceptionEnum.REQUEST_NULL.getMessage())));
     }
 }

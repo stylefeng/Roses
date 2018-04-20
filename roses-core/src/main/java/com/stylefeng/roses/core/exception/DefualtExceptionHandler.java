@@ -31,7 +31,7 @@ public class DefualtExceptionHandler {
      * @author fengshuonan
      */
     @ExceptionHandler(ServiceException.class)
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public JsonResponse notFount(ServiceException e) {
         log.info("业务异常:", e);
@@ -48,7 +48,7 @@ public class DefualtExceptionHandler {
     @ResponseBody
     public JsonResponse notFount(Exception e) {
         log.error("运行时异常:", e);
-        return new ErrorResponse(CoreExceptionEnum.SERVICE_ERROR);
+        return new ErrorResponse(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage());
     }
 
 }

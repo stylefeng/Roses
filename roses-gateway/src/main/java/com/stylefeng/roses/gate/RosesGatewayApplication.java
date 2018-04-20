@@ -1,6 +1,7 @@
 package com.stylefeng.roses.gate;
 
 import com.stylefeng.roses.core.context.AuthServiceConsumer;
+import com.stylefeng.roses.gate.consumer.MessageServiceConsumer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -15,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Date 2017/11/10 上午11:24
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableFeignClients(clients = AuthServiceConsumer.class)
+@EnableFeignClients(clients = {AuthServiceConsumer.class, MessageServiceConsumer.class})
 @EnableZuulProxy
 public class RosesGatewayApplication extends WebMvcConfigurerAdapter {
 

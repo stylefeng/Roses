@@ -40,6 +40,7 @@ public enum CoreExceptionEnum implements AbstractServiceException {
      * 错误的请求
      */
     REQUEST_NULL(400, "请求数据为空或格式错误"),
+    IO_ERROR(500, "流读取异常"),
     SERVICE_ERROR(500, "服务器异常");
 
     CoreExceptionEnum(int code, String message) {

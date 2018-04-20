@@ -9,14 +9,23 @@ package com.stylefeng.roses.core.base.response;
  */
 public class JsonResponse {
 
-    public static final String SUCCESS_MESSAGE = "请求成功";
+    public static final String DEFAULT_SUCCESS_MESSAGE = "请求成功";
 
-    public static final String ERROR_MESSAGE = "网络异常";
+    public static final String DEFAULT_ERROR_MESSAGE = "网络异常";
+
+    public static final Integer DEFAULT_SUCCESS_CODE = 200;
+
+    public static final Integer DEFAULT_ERROR_CODE = 500;
 
     /**
      * 请求是否成功
      */
     private Boolean success;
+
+    /**
+     * 响应状态码
+     */
+    private Integer code;
 
     /**
      * 响应信息
@@ -31,8 +40,9 @@ public class JsonResponse {
     public JsonResponse() {
     }
 
-    public JsonResponse(Boolean success, String message, Object object) {
+    public JsonResponse(Boolean success, Integer code, String message, Object object) {
         this.success = success;
+        this.code = code;
         this.message = message;
         this.object = object;
     }
@@ -61,23 +71,31 @@ public class JsonResponse {
         this.object = object;
     }
 
-    public static SuccessResponse success(String message, Object object) {
-        return new SuccessResponse(message, object);
+    public Integer getCode() {
+        return code;
     }
 
-    public static SuccessResponse successResponse(Object object) {
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public static SuccessResponse success(Object object) {
         return new SuccessResponse(object);
+    }
+
+    public static SuccessResponse success(Integer code, String message, Object object) {
+        return new SuccessResponse(code, message, object);
     }
 
     public static ErrorResponse error(String message) {
         return new ErrorResponse(message);
     }
 
-    public static ErrorResponse error(Object object) {
-        return new ErrorResponse(object);
+    public static ErrorResponse error(Integer code, String message) {
+        return new ErrorResponse(code, message);
     }
 
-    public static ErrorResponse error(String message, Object object) {
-        return new ErrorResponse(message, object);
+    public static ErrorResponse error(Integer code, String message, Object object) {
+        return new ErrorResponse(code, message, object);
     }
 }

@@ -13,14 +13,14 @@ public class ErrorResponse extends JsonResponse {
     }
 
     public ErrorResponse(String message) {
-        super(false, message, null);
+        super(false, DEFAULT_ERROR_CODE, message, null);
     }
 
-    public ErrorResponse(Object object) {
-        super(false, ERROR_MESSAGE, object);
+    public ErrorResponse(Integer code, String message) {
+        super(false, code, message, null);
     }
 
-    public ErrorResponse(String message, Object object) {
-        super(false, message, object);
+    public ErrorResponse(Integer code, String message, Object object) {
+        super(false, code, message, object);
     }
 }
