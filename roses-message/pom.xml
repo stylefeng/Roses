@@ -18,7 +18,7 @@
 
     <modules>
         <module>roses-message-service</module>
-        <module>roses-message-timer</module>
+        <module>roses-message-listener</module>
     </modules>
 
     <dependencies>
