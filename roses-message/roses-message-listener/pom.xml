@@ -6,7 +6,7 @@
     <artifactId>roses-message-timer</artifactId>
     <packaging>war</packaging>
 
-    <name>roses-message-timer</name>
+    <name>roses-message-listener</name>
     <description>消息恢复子系统</description>
 
     <parent>
