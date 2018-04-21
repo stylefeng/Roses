@@ -30,6 +30,11 @@ public class RosesErrorFeignDecoder implements ErrorDecoder {
         JSONObject parse = JSON.parseObject(resposeBody);
         Integer code = parse.getInteger("code");
         String message = parse.getString("message");
-        return new ServiceException(code, message);
+        if (code == null) {
+            Integer status = parse.getInteger("status");
+            return new ServiceException(status, message);
+        } else {
+            return new ServiceException(code, message);
+        }
     }
 }
