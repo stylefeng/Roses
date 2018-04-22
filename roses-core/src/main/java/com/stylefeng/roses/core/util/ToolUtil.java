@@ -15,7 +15,6 @@ import java.util.Set;
  *
  * @author fengshuonan
  * @Date 2018/3/18 21:55
- * Copyright: 2018赛鼎科技-版权所有
  */
 public class ToolUtil {
 

@@ -35,7 +35,7 @@ public interface MessageServiceApi {
      * 存储并发送消息
      */
     @RequestMapping("/saveAndSendMessage")
-    int saveAndSendMessage(ReliableMessage reliableMessage);
+    void saveAndSendMessage(ReliableMessage reliableMessage);
 
     /**
      * 直接发送消息
@@ -77,7 +77,7 @@ public interface MessageServiceApi {
      * 重发某个消息队列中的全部已死亡的消息.
      */
     @RequestMapping("/reSendAllDeadMessageByQueueName")
-    void reSendAllDeadMessageByQueueName(@RequestParam("queueName") String queueName, @RequestParam("batchSize") int batchSize);
+    void reSendAllDeadMessageByQueueName(@RequestParam("queueName") String queueName);
 
     /**
      * 获取分页数据
