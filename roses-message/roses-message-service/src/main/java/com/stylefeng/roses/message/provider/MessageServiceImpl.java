@@ -1,6 +1,7 @@
 package com.stylefeng.roses.message.provider;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.roses.api.common.enums.YseOrNotEnum;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
@@ -15,11 +16,14 @@ import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.message.activemq.MessageSender;
 import com.stylefeng.roses.message.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.stylefeng.roses.api.message.exception.MessageExceptionEnum.CANT_FIND_MESSAGE;
 import static com.stylefeng.roses.api.message.exception.MessageExceptionEnum.MESSAGE_NUMBER_WRONG;
@@ -180,14 +184,60 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void reSendAllDeadMessageByQueueName(String queueName) {
 
         //默认分页大小为1000
         Integer pageSize = 1000;
         Integer pageNo = 1;
 
+        //存放查询到的所有死亡消息
+        Map<String, ReliableMessage> resultMap = new HashMap<>();
 
+        //循环查询所有结构（分页）
+        Page<ReliableMessage> pageResult = this.reliableMessageService.selectPage(
+                new Page<>(pageNo, pageSize, "create_time", true));
+        if (pageResult == null) {
+            return;
+        }
 
+        List<ReliableMessage> records = pageResult.getRecords();
+        if (records == null || records.isEmpty()) {
+            return;
+        }
+
+        //把结果放入集合
+        for (ReliableMessage record : records) {
+            resultMap.put(record.getMessageId(), record);
+        }
+
+        //循环查出剩下的还有多少,并且都放入集合
+        long pages = pageResult.getPages();
+        for (pageNo = 2; pageNo <= pages; pageNo++) {
+            Page<ReliableMessage> secondPageResult = this.reliableMessageService.selectPage(
+                    new Page<>(pageNo, pageSize, "create_time", true));
+            if (secondPageResult == null) {
+                break;
+            }
+
+            List<ReliableMessage> secondRecords = secondPageResult.getRecords();
+            if (secondRecords == null || secondRecords.isEmpty()) {
+                break;
+            }
+
+            for (ReliableMessage record : records) {
+                resultMap.put(record.getMessageId(), record);
+            }
+        }
+
+        //重新发送死亡消息
+        for (ReliableMessage reliableMessage : resultMap.values()) {
+            reliableMessage.setUpdateTime(new Date());
+            reliableMessage.setMessageSendTimes(reliableMessage.getMessageSendTimes() + 1);
+            this.reliableMessageService.updateById(reliableMessage);
+
+            this.messageSender.sendMessage(reliableMessage);
+        }
     }
 
     @Override
