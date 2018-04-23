@@ -1,6 +1,7 @@
 package com.stylefeng.roses.message.modular.provider;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.roses.api.common.enums.YseOrNotEnum;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
@@ -11,6 +12,7 @@ import com.stylefeng.roses.api.message.MessageServiceApi;
 import com.stylefeng.roses.api.message.enums.MessageStatusEnum;
 import com.stylefeng.roses.api.message.exception.MessageExceptionEnum;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
+import com.stylefeng.roses.core.page.PageFactory;
 import com.stylefeng.roses.core.util.LogUtil;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.message.core.activemq.MessageSender;
@@ -243,8 +245,10 @@ public class MessageServiceImpl implements MessageServiceApi {
     @Override
     public PageResult listPage(PageQuery pageParam, Map<String, Object> conditions) {
 
-
-        return null;
+        Page<ReliableMessage> page = new PageFactory<ReliableMessage>().createPage(pageParam);
+        Wrapper<ReliableMessage> wrapper = new EntityWrapper<ReliableMessage>().allEq(conditions);
+        Page<ReliableMessage> reliableMessagePage = this.reliableMessageService.selectPage(page, wrapper);
+        return new PageResult(reliableMessagePage);
     }
 
     /**

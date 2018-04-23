@@ -1,10 +1,13 @@
 package com.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.roses.api.common.page.PageQuery;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.ToolUtil;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static com.stylefeng.roses.core.util.ToolUtil.isNotEmpty;
 
 
 /**
@@ -28,19 +31,20 @@ public class PageFactory<T> {
     private static final String ORDER = "order";
 
     public Page<T> defaultPage() {
+
         HttpServletRequest request = HttpContext.getRequest();
         int pageSize = 20;
         int pageNo = 1;
 
         //每页条数
         String pageSizeString = request.getParameter(PAGE_SIZE);
-        if (ToolUtil.isNotEmpty(pageSizeString)) {
+        if (isNotEmpty(pageSizeString)) {
             pageSize = Integer.valueOf(pageSizeString);
         }
 
         //第几页
         String pageNoString = request.getParameter(PAGE_NO);
-        if (ToolUtil.isNotEmpty(pageNoString)) {
+        if (isNotEmpty(pageNoString)) {
             pageNo = Integer.valueOf(pageNoString);
         }
 
@@ -60,6 +64,40 @@ public class PageFactory<T> {
                 page.setAsc(false);
             }
             return page;
+        }
+    }
+
+    public Page<T> createPage(PageQuery pageQuery) {
+
+        int pageSize = 20;
+        int pageNo = 1;
+
+        if (pageQuery != null && isNotEmpty(pageQuery.getPageSize())) {
+            pageSize = pageQuery.getPageSize();
+        }
+
+        if (pageQuery != null && isNotEmpty(pageQuery.getPageNo())) {
+            pageNo = pageQuery.getPageNo();
+        }
+
+        if (pageQuery == null) {
+            Page<T> page = new Page<>(pageNo, pageSize);
+            page.setOpenSort(false);
+            return page;
+        } else {
+            if (ToolUtil.isEmpty(pageQuery.getSort())) {
+                Page<T> page = new Page<>(pageNo, pageSize);
+                page.setOpenSort(false);
+                return page;
+            } else {
+                Page<T> page = new Page<>(pageNo, pageSize, pageQuery.getSort());
+                if (ASC.equalsIgnoreCase(pageQuery.getOrder())) {
+                    page.setAsc(true);
+                } else {
+                    page.setAsc(false);
+                }
+                return page;
+            }
         }
     }
 }
