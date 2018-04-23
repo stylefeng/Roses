@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.mapper;
+package com.stylefeng.roses.message.modular.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.stylefeng.roses.api.message.model.ReliableMessage;

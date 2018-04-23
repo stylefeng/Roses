@@ -1,9 +1,9 @@
-package com.stylefeng.roses.message.service.impl;
+package com.stylefeng.roses.message.modular.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
-import com.stylefeng.roses.message.mapper.ReliableMessageMapper;
-import com.stylefeng.roses.message.service.IReliableMessageService;
+import com.stylefeng.roses.message.modular.mapper.ReliableMessageMapper;
+import com.stylefeng.roses.message.modular.service.IReliableMessageService;
 import org.springframework.stereotype.Service;
 
 /**

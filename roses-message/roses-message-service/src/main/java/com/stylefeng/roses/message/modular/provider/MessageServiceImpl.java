@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.provider;
+package com.stylefeng.roses.message.modular.provider;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -13,8 +13,8 @@ import com.stylefeng.roses.api.message.exception.MessageExceptionEnum;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.util.LogUtil;
 import com.stylefeng.roses.core.util.ToolUtil;
-import com.stylefeng.roses.message.activemq.MessageSender;
-import com.stylefeng.roses.message.service.IReliableMessageService;
+import com.stylefeng.roses.message.core.activemq.MessageSender;
+import com.stylefeng.roses.message.modular.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;

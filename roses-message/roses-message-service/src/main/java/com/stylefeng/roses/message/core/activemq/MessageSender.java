@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.activemq;
+package com.stylefeng.roses.message.core.activemq;
 
 import com.stylefeng.roses.api.message.model.ReliableMessage;
 

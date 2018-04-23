@@ -1,10 +1,10 @@
-package com.stylefeng.roses.message.activemq.impl;
+package com.stylefeng.roses.message.core.activemq.impl;
 
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.util.ToolUtil;
-import com.stylefeng.roses.message.activemq.MessageSender;
+import com.stylefeng.roses.message.core.activemq.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;

@@ -1,7 +1,7 @@
 package com.stylefeng.roses.message;
 
 import com.stylefeng.roses.api.message.model.ReliableMessage;
-import com.stylefeng.roses.message.activemq.MessageSender;
+import com.stylefeng.roses.message.core.activemq.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

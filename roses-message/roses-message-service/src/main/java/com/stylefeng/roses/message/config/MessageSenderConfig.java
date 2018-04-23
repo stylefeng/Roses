@@ -1,7 +1,7 @@
 package com.stylefeng.roses.message.config;
 
-import com.stylefeng.roses.message.activemq.MessageSender;
-import com.stylefeng.roses.message.activemq.impl.ActiveMqMessageSender;
+import com.stylefeng.roses.message.core.activemq.MessageSender;
+import com.stylefeng.roses.message.core.activemq.impl.ActiveMqMessageSender;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

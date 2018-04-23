@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.service;
+package com.stylefeng.roses.message.modular.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
