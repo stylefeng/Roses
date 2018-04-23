@@ -241,7 +241,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public PageResult listPage(PageQuery pageParam) {
+    public PageResult listPage(PageQuery pageParam, Map<String, Object> conditions) {
 
 
         return null;

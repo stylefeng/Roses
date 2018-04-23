@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 
 /**
  * 消息服务的接口
@@ -83,6 +85,6 @@ public interface MessageServiceApi {
      * 获取分页数据
      */
     @RequestMapping("/listPage")
-    PageResult listPage(PageQuery pageParam);
+    PageResult listPage(PageQuery pageParam, Map<String, Object> conditions);
 
 }
