@@ -17,9 +17,10 @@ eureka:
     register-with-eureka: false #自己也注册到注册中心
     fetch-registry: false #需要从其他eureka节点获取注册信息
 #    service-url:
-#      default-zone: http://www.roses2.com:8762/eureka #设置与eureka交互的地址
+#      default-zone: http://127.0.0.1:8762/eureka #设置与eureka交互的地址
   instance:
-    hostname: www.roses1.com
+    hostname: 127.0.0.1
+    prefer-ip-address: true
 
 ---
 spring:
@@ -34,6 +35,7 @@ eureka:
     register-with-eureka: true #自己也注册到注册中心
     fetch-registry: true #需要从其他eureka节点获取注册信息
     service-url:
-      default-zone: http://www.roses1.com:8761/eureka #设置与eureka交互的地址
+      default-zone: http://127.0.0.1:8761/eureka #设置与eureka交互的地址
   instance:
-    hostname: www.roses2.com
+    hostname: 127.0.0.1
+    prefer-ip-address: true

@@ -23,9 +23,9 @@ logging:
 
 eureka:
   instance:
-    prefer-ip-address: true #将IP注册到eureka
+    prefer-ip-address: true
     lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
   client:
     service-url:
-      defaultZone: http://www.roses1.com:8761/eureka
+      defaultZone: http://127.0.0.1:8761/eureka
     registry-fetch-interval-seconds: 3  #获取服务的刷新时间

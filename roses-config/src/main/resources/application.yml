@@ -18,6 +18,6 @@ eureka:
     lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
   client:
     service-url:
-      defaultZone: http://localhost:1111/eureka/
+      defaultZone: http://127.0.0.1:8671/eureka/
     registry-fetch-interval-seconds: 3  #获取服务的刷新时间
 
