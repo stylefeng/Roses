@@ -1,3 +1,6 @@
+server:
+  port: 8002
+
 spring:
   application:
     name: roses-config
@@ -9,8 +12,6 @@ spring:
           search-paths: roses-configs
           username:
           password:
-server:
-  port: 8888
 
 eureka:
   instance:

@@ -1,5 +1,5 @@
 server:
-  port: 8001
+  port: 11002
 
 spring:
   application:
@@ -26,5 +26,5 @@ eureka:
     lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
+      defaultZone: http://127.0.0.1:8761/eureka,http://www.roses2.com:8762/eureka
     registry-fetch-interval-seconds: 3  #获取服务的刷新时间

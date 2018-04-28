@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>roses-message-listener</artifactId>
+    <artifactId>roses-message-checker</artifactId>
     <packaging>war</packaging>
 
-    <name>roses-message-listener</name>
+    <name>roses-message-checker</name>
     <description>消息恢复子系统</description>
 
     <parent>

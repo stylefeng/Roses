@@ -18,7 +18,9 @@
 
     <modules>
         <module>roses-message-service</module>
-        <module>roses-message-listener</module>
+        <module>roses-message-checker</module>
+        <module>roses-example-account</module>
+        <module>roses-example-order</module>
     </modules>
 
     <dependencies>
