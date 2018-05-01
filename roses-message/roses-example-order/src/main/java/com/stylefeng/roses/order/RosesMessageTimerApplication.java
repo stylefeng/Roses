@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.listener;
+package com.stylefeng.roses.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

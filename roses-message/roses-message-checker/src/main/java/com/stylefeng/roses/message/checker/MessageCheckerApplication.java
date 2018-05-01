@@ -1,4 +1,4 @@
-package com.stylefeng.roses.message.listener;
+package com.stylefeng.roses.message.checker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
- * 消息恢复子系统
+ * 消息恢复子系统,消息状态确认子系统
  *
  * @author stylefeng
  * @Date 2018/1/22 21:27
@@ -14,9 +14,9 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-public class RosesMessageTimerApplication {
+public class MessageCheckerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RosesMessageTimerApplication.class, args);
+        SpringApplication.run(MessageCheckerApplication.class, args);
     }
 }
