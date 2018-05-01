@@ -14,6 +14,11 @@
  Date: 30/04/2018 23:09:31
 */
 
+DROP DATABASE IF EXISTS roses_account;
+CREATE DATABASE IF NOT EXISTS roses_account DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+USE roses_account;
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
