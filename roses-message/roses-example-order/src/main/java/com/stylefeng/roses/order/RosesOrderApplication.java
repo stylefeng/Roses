@@ -1,4 +1,4 @@
-package com.stylefeng.roses.account;
+package com.stylefeng.roses.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +14,9 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-public class RosesMessageTimerApplication {
+public class RosesOrderApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RosesMessageTimerApplication.class, args);
+        SpringApplication.run(RosesOrderApplication.class, args);
     }
 }
