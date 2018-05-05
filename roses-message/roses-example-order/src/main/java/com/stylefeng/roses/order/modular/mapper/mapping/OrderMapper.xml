@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.guns.admin.common.persistence.dao.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.roses.order.modular.entity.Order">
+        <id column="id" property="id" />
+        <result column="goods_name" property="goodsName" />
+        <result column="count" property="count" />
+        <result column="sum" property="sum" />
+        <result column="create_time" property="createTime" />
+        <result column="userId" property="userId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, goods_name AS goodsName, count, sum, create_time AS createTime, userId
+    </sql>
+
+</mapper>

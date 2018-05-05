@@ -3,28 +3,26 @@ server:
 
 spring:
   application:
-    name: roses-auth
+    name: roses-order
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/roses_sys?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/roses_order?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
 
-auth:
-  default-pwd: 123456 #重置密码的默认密码
 mybatis-plus:
-  typeAliasesPackage: com.stylefeng.roses.auth.modular.entity
+  typeAliasesPackage: com.stylefeng.roses.order.modular.entity
 
 logging:
   level.root: info
   level.com.stylefeng: debug
   path: logs/
-  file: roses-auth.log
+  file: roses-order.log
 
 eureka:
   instance:
-    prefer-ip-address: true #将IP注册到eureka
+    prefer-ip-address: true
     lease-renewal-interval-in-seconds: 3 #客户端向注册中心发送心跳的时间
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8761/eureka,http://www.roses2.com:8762/eureka
+      defaultZone: http://127.0.0.1:8761/eureka
     registry-fetch-interval-seconds: 3  #获取服务的刷新时间
