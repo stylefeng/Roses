@@ -22,18 +22,20 @@ USE roses_account;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for account
+-- Table structure for flow_record
 -- ----------------------------
-DROP TABLE IF EXISTS `account`;
-CREATE TABLE `account` (
+DROP TABLE IF EXISTS `flow_record`;
+CREATE TABLE `flow_record` (
   `id` bigint(20) NOT NULL,
-  `userId` bigint(20) DEFAULT NULL COMMENT '用户id',
-  `name` varchar(255) DEFAULT NULL COMMENT '名称',
-  `count` int(11) DEFAULT NULL COMMENT '数量',
-  `sum` decimal(10,2) DEFAULT NULL COMMENT '总价',
+  `userId` bigint(20) NOT NULL COMMENT '用户id',
+  `orderId` bigint(20) DEFAULT NULL COMMENT '订单id',
+  `name` varchar(255) NOT NULL COMMENT '流水名称',
+  `sum` decimal(10,2) NOT NULL COMMENT '总价',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='流水记录';
 
 -- ----------------------------
--- Records of account
+-- Records of flow_record
 -- ----------------------------
+

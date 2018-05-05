@@ -19,8 +19,7 @@ CREATE DATABASE IF NOT EXISTS roses_order DEFAULT CHARSET utf8 COLLATE utf8_gene
 
 USE roses_order;
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for order
@@ -30,9 +29,12 @@ CREATE TABLE `order` (
   `id` bigint(20) NOT NULL,
   `goods_name` varchar(255) NOT NULL COMMENT '商品名称',
   `count` int(11) NOT NULL COMMENT '数量',
+  `sum` decimal(10,0) DEFAULT NULL COMMENT '总金额',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `userId` bigint(20) NOT NULL COMMENT '下单人id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- ----------------------------
+-- Records of order
+-- ----------------------------
