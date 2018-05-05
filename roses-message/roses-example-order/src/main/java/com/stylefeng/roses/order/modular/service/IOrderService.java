@@ -1,7 +1,7 @@
 package com.stylefeng.roses.order.modular.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.stylefeng.roses.order.modular.entity.Order;
+import com.stylefeng.roses.order.modular.entity.GoodsOrder;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.stylefeng.roses.order.modular.entity.Order;
  * @author stylefeng123
  * @since 2018-05-05
  */
-public interface IOrderService extends IService<Order> {
+public interface IOrderService extends IService<GoodsOrder> {
 
 }

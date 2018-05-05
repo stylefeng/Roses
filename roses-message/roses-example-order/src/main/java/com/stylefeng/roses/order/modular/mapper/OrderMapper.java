@@ -1,7 +1,7 @@
 package com.stylefeng.roses.order.modular.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.stylefeng.roses.order.modular.entity.Order;
+import com.stylefeng.roses.order.modular.entity.GoodsOrder;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.stylefeng.roses.order.modular.entity.Order;
  * @author stylefeng123
  * @since 2018-05-05
  */
-public interface OrderMapper extends BaseMapper<Order> {
+public interface OrderMapper extends BaseMapper<GoodsOrder> {
 
 }

@@ -2,6 +2,7 @@ package com.stylefeng.roses.order.modular.entity;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,7 +16,8 @@ import java.util.Date;
  * @author stylefeng123
  * @since 2018-05-05
  */
-public class Order extends Model<Order> {
+@TableName("goods_order")
+public class GoodsOrder extends Model<GoodsOrder> {
 
     private static final long serialVersionUID = 1L;
 
@@ -41,6 +43,7 @@ public class Order extends Model<Order> {
     /**
      * 下单人id
      */
+    @TableField("user_id")
     private Long userId;
 
 
@@ -99,7 +102,7 @@ public class Order extends Model<Order> {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "GoodsOrder{" +
         "id=" + id +
         ", goodsName=" + goodsName +
         ", count=" + count +

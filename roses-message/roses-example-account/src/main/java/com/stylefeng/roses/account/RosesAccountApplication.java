@@ -12,7 +12,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
  * @Date 2018/1/22 21:27
  */
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.stylefeng.roses.account.modular.consumer")
 @EnableDiscoveryClient
 public class RosesAccountApplication {
 

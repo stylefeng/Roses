@@ -24,14 +24,14 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 -- Table structure for order
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
+DROP TABLE IF EXISTS `goods_order`;
+CREATE TABLE `goods_order` (
   `id` bigint(20) NOT NULL,
   `goods_name` varchar(255) NOT NULL COMMENT '商品名称',
   `count` int(11) NOT NULL COMMENT '数量',
   `sum` decimal(10,0) DEFAULT NULL COMMENT '总金额',
   `create_time` datetime NOT NULL COMMENT '创建时间',
-  `userId` bigint(20) NOT NULL COMMENT '下单人id',
+  `user_id` bigint(20) NOT NULL COMMENT '下单人id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 

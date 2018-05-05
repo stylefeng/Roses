@@ -27,8 +27,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `flow_record`;
 CREATE TABLE `flow_record` (
   `id` bigint(20) NOT NULL,
-  `userId` bigint(20) NOT NULL COMMENT '用户id',
-  `orderId` bigint(20) DEFAULT NULL COMMENT '订单id',
+  `user_id` bigint(20) NOT NULL COMMENT '用户id',
+  `order_id` bigint(20) DEFAULT NULL COMMENT '订单id',
   `name` varchar(255) NOT NULL COMMENT '流水名称',
   `sum` decimal(10,2) NOT NULL COMMENT '总价',
   `create_time` datetime NOT NULL COMMENT '创建时间',
@@ -38,4 +38,5 @@ CREATE TABLE `flow_record` (
 -- ----------------------------
 -- Records of flow_record
 -- ----------------------------
+
 

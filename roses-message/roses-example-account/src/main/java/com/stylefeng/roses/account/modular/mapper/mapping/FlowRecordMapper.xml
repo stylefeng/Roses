@@ -4,17 +4,17 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.roses.account.modular.entity.FlowRecord">
-        <id column="id" property="id" />
-        <result column="userId" property="userId" />
-        <result column="orderId" property="orderId" />
-        <result column="name" property="name" />
-        <result column="sum" property="sum" />
-        <result column="create_time" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="name" property="name"/>
+        <result column="sum" property="sum"/>
+        <result column="create_time" property="createTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, userId, orderId, name, sum, create_time AS createTime
+        id, user_id as userId,order_id as orderId, name, sum, create_time AS createTime
     </sql>
 
 </mapper>

@@ -25,10 +25,12 @@ public class FlowRecord extends Model<FlowRecord> {
     /**
      * 用户id
      */
+    @TableField("user_id")
     private Long userId;
     /**
      * 订单id
      */
+    @TableField("order_id")
     private Long orderId;
     /**
      * 流水名称
