@@ -19,6 +19,7 @@ import com.stylefeng.roses.message.modular.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -62,11 +63,14 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void confirmAndSendMessage(String messageId) {
-        ReliableMessage condition = new ReliableMessage();
-        condition.setMessageId(messageId);
-        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>(condition);
+    public void confirmAndSendMessage(@RequestParam("messageId") String messageId) {
+        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
+        wrapper.eq("message_id", messageId);
         ReliableMessage reliableMessage = this.reliableMessageService.selectOne(wrapper);
+
+        if (reliableMessage == null) {
+            throw new ServiceException(MessageExceptionEnum.CANT_FIND_MESSAGE);
+        }
 
         reliableMessage.setStatus(MessageStatusEnum.SENDING.name());
         reliableMessage.setUpdateTime(new Date());
@@ -77,7 +81,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void saveAndSendMessage(ReliableMessage reliableMessage) {
+    public void saveAndSendMessage(@RequestBody ReliableMessage reliableMessage) {
 
         //检查消息数据的完整性
         this.checkEmptyMessage(reliableMessage);
@@ -93,7 +97,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void directSendMessage(ReliableMessage reliableMessage) {
+    public void directSendMessage(@RequestBody ReliableMessage reliableMessage) {
 
         //检查消息数据的完整性
         this.checkEmptyMessage(reliableMessage);
@@ -103,7 +107,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void reSendMessage(ReliableMessage reliableMessage) {
+    public void reSendMessage(@RequestBody ReliableMessage reliableMessage) {
 
         //检查消息数据的完整性
         this.checkEmptyMessage(reliableMessage);
@@ -118,7 +122,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void reSendMessageByMessageId(String messageId) {
+    public void reSendMessageByMessageId(@RequestParam("messageId") String messageId) {
 
         if (ToolUtil.isEmpty(messageId)) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
@@ -134,7 +138,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void setMessageToAreadlyDead(String messageId) {
+    public void setMessageToAreadlyDead(@RequestParam("messageId") String messageId) {
 
         if (ToolUtil.isEmpty(messageId)) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
@@ -149,7 +153,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public ReliableMessage getMessageByMessageId(String messageId) {
+    public ReliableMessage getMessageByMessageId(@RequestParam("messageId") String messageId) {
 
         if (ToolUtil.isEmpty(messageId)) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
@@ -172,7 +176,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public void deleteMessageByMessageId(String messageId) {
+    public void deleteMessageByMessageId(@RequestParam("messageId") String messageId) {
 
         if (ToolUtil.isEmpty(messageId)) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
@@ -186,7 +190,7 @@ public class MessageServiceImpl implements MessageServiceApi {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void reSendAllDeadMessageByQueueName(String queueName) {
+    public void reSendAllDeadMessageByQueueName(@RequestParam("queueName") String queueName) {
 
         //默认分页大小为1000
         Integer pageSize = 1000;
@@ -242,7 +246,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     }
 
     @Override
-    public PageResult listPage(PageQuery pageParam) {
+    public PageResult listPage(@RequestBody PageQuery pageParam) {
         Page<ReliableMessage> page = new PageFactory<ReliableMessage>().createPage(pageParam);
         Page<ReliableMessage> reliableMessagePage = this.reliableMessageService.selectPage(page);
         return new PageResult(reliableMessagePage);

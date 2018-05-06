@@ -101,6 +101,16 @@ public class ReliableMessage extends Model<ReliableMessage> {
     @TableField("biz_unique_id")
     private Long bizUniqueId;
 
+    public ReliableMessage() {
+
+    }
+
+    public ReliableMessage(String messageId, String messageBody, String consumerQueue) {
+        this.messageId = messageId;
+        this.messageBody = messageBody;
+        this.consumerQueue = consumerQueue;
+    }
+
     public Long getId() {
         return id;
     }

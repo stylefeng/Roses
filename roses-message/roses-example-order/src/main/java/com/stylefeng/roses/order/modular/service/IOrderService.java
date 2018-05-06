@@ -13,4 +13,16 @@ import com.stylefeng.roses.order.modular.entity.GoodsOrder;
  */
 public interface IOrderService extends IService<GoodsOrder> {
 
+    /**
+     * <pre>
+     * 测试下单业务
+     *
+     * 说明：
+     *  本业务为分布式事务解决方案之可靠消息最终一致性方案的实例
+     * </pre>
+     *
+     * @author stylefeng
+     * @Date 2018/5/6 12:10
+     */
+    void makeTestOrder();
 }

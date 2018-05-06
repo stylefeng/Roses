@@ -2,6 +2,7 @@ package com.stylefeng.roses.account.modular.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.stylefeng.roses.account.modular.entity.FlowRecord;
+import com.stylefeng.roses.api.order.GoodsFlowParam;
 
 /**
  * <p>
@@ -12,5 +13,13 @@ import com.stylefeng.roses.account.modular.entity.FlowRecord;
  * @since 2018-05-05
  */
 public interface IFlowRecordService extends IService<FlowRecord> {
+
+    /**
+     * 记录订单流水
+     *
+     * @author stylefeng
+     * @Date 2018/5/6 14:00
+     */
+    void recordFlow(GoodsFlowParam goodsFlowParam);
 
 }

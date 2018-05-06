@@ -29,49 +29,49 @@ public interface MessageServiceApi {
      * 确认并发送消息
      */
     @RequestMapping("/confirmAndSendMessage")
-    void confirmAndSendMessage(String messageId);
+    void confirmAndSendMessage(@RequestParam("messageId") String messageId);
 
     /**
      * 存储并发送消息
      */
     @RequestMapping("/saveAndSendMessage")
-    void saveAndSendMessage(ReliableMessage reliableMessage);
+    void saveAndSendMessage(@RequestBody ReliableMessage reliableMessage);
 
     /**
      * 直接发送消息
      */
     @RequestMapping("/directSendMessage")
-    void directSendMessage(ReliableMessage reliableMessage);
+    void directSendMessage(@RequestBody ReliableMessage reliableMessage);
 
     /**
      * 重发消息
      */
     @RequestMapping("/reSendMessage")
-    void reSendMessage(ReliableMessage reliableMessage);
+    void reSendMessage(@RequestBody ReliableMessage reliableMessage);
 
     /**
      * 根据messageId重发某条消息
      */
     @RequestMapping("/reSendMessageByMessageId")
-    void reSendMessageByMessageId(String messageId);
+    void reSendMessageByMessageId(@RequestParam("messageId") String messageId);
 
     /**
      * 将消息标记为死亡消息
      */
     @RequestMapping("/setMessageToAreadlyDead")
-    void setMessageToAreadlyDead(String messageId);
+    void setMessageToAreadlyDead(@RequestParam("messageId") String messageId);
 
     /**
      * 根据消息ID获取消息
      */
     @RequestMapping("/getMessageByMessageId")
-    ReliableMessage getMessageByMessageId(String messageId);
+    ReliableMessage getMessageByMessageId(@RequestParam("messageId") String messageId);
 
     /**
      * 根据消息ID删除消息
      */
     @RequestMapping("/deleteMessageByMessageId")
-    void deleteMessageByMessageId(String messageId);
+    void deleteMessageByMessageId(@RequestParam("messageId") String messageId);
 
     /**
      * 重发某个消息队列中的全部已死亡的消息.
@@ -83,6 +83,6 @@ public interface MessageServiceApi {
      * 获取分页数据
      */
     @RequestMapping("/listPage")
-    PageResult listPage(PageQuery pageParam);
+    PageResult listPage(@RequestBody PageQuery pageParam);
 
 }
