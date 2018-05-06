@@ -6,6 +6,7 @@ import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.message.core.activemq.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jms.JmsProperties;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
@@ -33,9 +34,18 @@ public class ActiveMqMessageSender implements MessageSender {
         }
 
         jmsTemplate.setDefaultDestinationName(reliableMessage.getConsumerQueue());
+
+        //设置ack确认为client方式
+        jmsTemplate.setSessionAcknowledgeMode(JmsProperties.AcknowledgeMode.CLIENT.getMode());
+
+        //发送消息
         jmsTemplate.send(new MessageCreator() {
+
             @Override
             public Message createMessage(Session session) throws JMSException {
+                int acknowledgeMode = session.getAcknowledgeMode();
+                System.out.println(acknowledgeMode);
+                boolean transacted = session.getTransacted();
                 return session.createTextMessage(reliableMessage.getMessageBody());
             }
         });

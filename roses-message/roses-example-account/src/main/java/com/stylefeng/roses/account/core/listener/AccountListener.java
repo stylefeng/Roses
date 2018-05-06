@@ -22,6 +22,7 @@ public class AccountListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
+
         if (message instanceof TextMessage) {
             try {
                 String messageBody = ((TextMessage) message).getText();
@@ -33,9 +34,12 @@ public class AccountListener implements MessageListener {
                 GoodsFlowParam goodsFlowParam = JSON.parseObject(messageBody, GoodsFlowParam.class);
                 flowRecordService.recordFlow(goodsFlowParam);
 
+                //message.acknowledge();
+
             } catch (JMSException ex) {
                 throw new ServiceException(MessageExceptionEnum.MESSAGE_QUEUE_ERROR);
             }
+
         } else {
             throw new ServiceException(MessageExceptionEnum.MESSAGE_TYPE_ERROR);
         }

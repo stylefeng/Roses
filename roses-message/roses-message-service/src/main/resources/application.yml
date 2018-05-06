@@ -12,12 +12,16 @@ spring:
     broker-url: tcp://localhost:61616
     user: admin
     password: admin
+  jms:
+    listener:
+      acknowledge-mode: client
+
 mybatis-plus:
   typeAliasesPackage: com.stylefeng.roses.api.message.model
 
 logging:
   level.root: info
-  level.com.stylefeng: debug
+  level.com.stylefeng: info
   path: logs/
   file: roses-message-service.log
 
