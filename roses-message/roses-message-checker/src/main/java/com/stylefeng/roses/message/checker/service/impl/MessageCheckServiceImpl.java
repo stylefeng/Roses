@@ -19,6 +19,8 @@ public class MessageCheckServiceImpl implements MessageCheckService {
             int maxHandlePageCount = 3; // 一次最多处理页数
 
 
+
+
         } catch (Exception e) {
             LogUtil.error("");
         }
