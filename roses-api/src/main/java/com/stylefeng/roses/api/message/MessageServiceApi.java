@@ -80,9 +80,15 @@ public interface MessageServiceApi {
     void reSendAllDeadMessageByQueueName(@RequestParam("queueName") String queueName);
 
     /**
-     * 获取分页数据
+     * 分页获取待发送超时的数据
      */
     @RequestMapping("/listPage")
-    PageResult listPage(@RequestBody PageQuery pageParam);
+    PageResult<ReliableMessage> listPagetWaitConfimTimeOutMessages(@RequestBody PageQuery pageParam);
+
+    /**
+     * 分页获取发送中超时的数据
+     */
+    @RequestMapping("/listPage")
+    PageResult<ReliableMessage> listPageSendingTimeOutMessages(@RequestBody PageQuery pageParam);
 
 }

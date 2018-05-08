@@ -5,10 +5,8 @@ import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 
 import java.security.MessageDigest;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 高频方法集合
@@ -167,5 +165,18 @@ public class ToolUtil {
         } else {
             return value.replaceAll("\\s*", "");
         }
+    }
+
+    /**
+     * 获取某个时间间隔以前的时间 时间格式：yyyy-MM-dd HH:mm:ss
+     *
+     * @author stylefeng
+     * @Date 2018/5/8 22:05
+     */
+    public static String getCreateTimeBefore(int seconds) {
+        long currentTimeInMillis = Calendar.getInstance().getTimeInMillis();
+        Date date = new Date(currentTimeInMillis - seconds * 1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(date);
     }
 }

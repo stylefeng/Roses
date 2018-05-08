@@ -1,6 +1,7 @@
 package com.stylefeng.roses.message.checker.timer;
 
-import com.stylefeng.roses.message.checker.service.MessageCheckService;
+import com.stylefeng.roses.message.checker.service.impl.SendingMessageChecker;
+import com.stylefeng.roses.message.checker.service.impl.WaitingConfirmMessageChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,10 @@ import org.springframework.stereotype.Component;
 public class MessageDisposeTimerTask {
 
     @Autowired
-    private MessageCheckService messageCheckService;
+    private SendingMessageChecker sendingMessageChecker;
+
+    @Autowired
+    private WaitingConfirmMessageChecker waitingConfirmMessageChecker;
 
     /**
      * 定时检查“待确认”但已超时的消息
@@ -26,7 +30,7 @@ public class MessageDisposeTimerTask {
     @Scheduled(fixedRate = 60000)
     public void checkWaitingConfirmTimeOutMessages() {
 
-        messageCheckService.disposeWaitingConfirmTimeOutMessages();
+        waitingConfirmMessageChecker.checkMessages();
 
     }
 
@@ -39,7 +43,7 @@ public class MessageDisposeTimerTask {
     @Scheduled(fixedRate = 60000)
     public void checkSendingTimeOutMessage() {
 
-        messageCheckService.disposeSendingTimeOutMessage();
+        sendingMessageChecker.checkMessages();
 
     }
 }

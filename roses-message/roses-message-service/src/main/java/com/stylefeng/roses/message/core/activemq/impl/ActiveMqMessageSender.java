@@ -40,7 +40,6 @@ public class ActiveMqMessageSender implements MessageSender {
 
         //发送消息
         jmsTemplate.send(new MessageCreator() {
-
             @Override
             public Message createMessage(Session session) throws JMSException {
                 int acknowledgeMode = session.getAcknowledgeMode();
