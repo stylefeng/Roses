@@ -1,9 +1,9 @@
 package com.stylefeng.roses.account.modular.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.stylefeng.roses.account.modular.entity.FlowRecord;
 import com.stylefeng.roses.account.modular.mapper.FlowRecordMapper;
 import com.stylefeng.roses.account.modular.service.IFlowRecordService;
+import com.stylefeng.roses.api.account.model.FlowRecord;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.api.order.GoodsFlowParam;

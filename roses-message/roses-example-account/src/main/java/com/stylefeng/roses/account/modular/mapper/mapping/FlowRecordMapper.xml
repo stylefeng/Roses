@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.admin.common.persistence.dao.FlowRecordMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.stylefeng.roses.account.modular.entity.FlowRecord">
+    <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.account.model.FlowRecord">
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
         <result column="order_id" property="orderId"/>

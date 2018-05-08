@@ -3,7 +3,7 @@
 <mapper namespace="com.stylefeng.guns.admin.common.persistence.dao.OrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.stylefeng.roses.order.modular.entity.GoodsOrder">
+    <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.order.model.GoodsOrder">
         <id column="id" property="id" />
         <result column="goods_name" property="goodsName" />
         <result column="count" property="count" />

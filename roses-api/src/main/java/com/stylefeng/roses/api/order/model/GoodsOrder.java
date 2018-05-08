@@ -1,4 +1,4 @@
-package com.stylefeng.roses.order.modular.entity;
+package com.stylefeng.roses.api.order.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;

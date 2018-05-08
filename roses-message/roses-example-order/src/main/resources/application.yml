@@ -10,7 +10,7 @@ spring:
     password: root
 
 mybatis-plus:
-  typeAliasesPackage: com.stylefeng.roses.order.modular.entity
+  typeAliasesPackage: com.stylefeng.roses.api.order.model
 
 logging:
   level.root: info

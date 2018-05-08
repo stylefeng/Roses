@@ -1,4 +1,4 @@
-package com.stylefeng.roses.account.modular.entity;
+package com.stylefeng.roses.api.account.model;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;

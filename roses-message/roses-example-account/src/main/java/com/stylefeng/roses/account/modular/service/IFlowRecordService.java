@@ -1,7 +1,7 @@
 package com.stylefeng.roses.account.modular.service;
 
 import com.baomidou.mybatisplus.service.IService;
-import com.stylefeng.roses.account.modular.entity.FlowRecord;
+import com.stylefeng.roses.api.account.model.FlowRecord;
 import com.stylefeng.roses.api.order.GoodsFlowParam;
 
 /**

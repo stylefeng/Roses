@@ -17,7 +17,7 @@ spring:
       acknowledge-mode: client
 
 mybatis-plus:
-  typeAliasesPackage: com.stylefeng.roses.account.modular.entity
+  typeAliasesPackage: com.stylefeng.roses.api.account.model
 
 logging:
   level.root: info

@@ -1,7 +1,7 @@
 package com.stylefeng.roses.account.modular.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.stylefeng.roses.account.modular.entity.FlowRecord;
+import com.stylefeng.roses.api.account.model.FlowRecord;
 
 /**
  * <p>
