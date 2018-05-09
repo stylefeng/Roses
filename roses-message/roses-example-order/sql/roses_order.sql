@@ -22,7 +22,7 @@ USE roses_order;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for order
+-- Table structure for goods_order
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_order`;
 CREATE TABLE `goods_order` (
@@ -32,9 +32,6 @@ CREATE TABLE `goods_order` (
   `sum` decimal(10,0) DEFAULT NULL COMMENT '总金额',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `user_id` bigint(20) NOT NULL COMMENT '下单人id',
+  `status` int(11) DEFAULT NULL COMMENT '订单状态：1.未完成    2.已完成',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
-
--- ----------------------------
--- Records of order
--- ----------------------------

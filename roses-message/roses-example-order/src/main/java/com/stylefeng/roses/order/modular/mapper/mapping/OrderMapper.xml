@@ -4,17 +4,18 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.order.model.GoodsOrder">
-        <id column="id" property="id" />
-        <result column="goods_name" property="goodsName" />
-        <result column="count" property="count" />
-        <result column="sum" property="sum" />
-        <result column="create_time" property="createTime" />
-        <result column="user_id" property="userId" />
+        <id column="id" property="id"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="count" property="count"/>
+        <result column="sum" property="sum"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="status" property="status"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, goods_name AS goodsName, count, sum, create_time AS createTime, user_id as userId
+        id, goods_name AS goodsName, count, sum, create_time AS createTime, user_id as userId, status as status
     </sql>
 
 </mapper>

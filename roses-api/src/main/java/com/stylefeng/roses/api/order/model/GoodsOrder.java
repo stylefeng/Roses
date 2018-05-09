@@ -46,6 +46,11 @@ public class GoodsOrder extends Model<GoodsOrder> {
     @TableField("user_id")
     private Long userId;
 
+    /**
+     * 订单状态：1.未完成   2.已完成
+     */
+    @TableField("status")
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -95,6 +100,14 @@ public class GoodsOrder extends Model<GoodsOrder> {
         this.userId = userId;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -103,12 +116,12 @@ public class GoodsOrder extends Model<GoodsOrder> {
     @Override
     public String toString() {
         return "GoodsOrder{" +
-        "id=" + id +
-        ", goodsName=" + goodsName +
-        ", count=" + count +
-        ", sum=" + sum +
-        ", createTime=" + createTime +
-        ", userId=" + userId +
-        "}";
+                "id=" + id +
+                ", goodsName=" + goodsName +
+                ", count=" + count +
+                ", sum=" + sum +
+                ", createTime=" + createTime +
+                ", userId=" + userId +
+                "}";
     }
 }

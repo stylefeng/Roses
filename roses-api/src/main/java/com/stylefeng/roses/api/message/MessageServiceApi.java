@@ -82,13 +82,13 @@ public interface MessageServiceApi {
     /**
      * 分页获取待发送超时的数据
      */
-    @RequestMapping("/listPage")
+    @RequestMapping("/listPagetWaitConfimTimeOutMessages")
     PageResult<ReliableMessage> listPagetWaitConfimTimeOutMessages(@RequestBody PageQuery pageParam);
 
     /**
      * 分页获取发送中超时的数据
      */
-    @RequestMapping("/listPage")
+    @RequestMapping("/listPageSendingTimeOutMessages")
     PageResult<ReliableMessage> listPageSendingTimeOutMessages(@RequestBody PageQuery pageParam);
 
 }

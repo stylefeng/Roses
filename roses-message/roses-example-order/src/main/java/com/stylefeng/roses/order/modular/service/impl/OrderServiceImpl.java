@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.toolkit.IdWorker;
 import com.stylefeng.roses.api.message.enums.MessageQueueEnum;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.api.order.model.GoodsOrder;
+import com.stylefeng.roses.order.core.OrderStatusEnum;
 import com.stylefeng.roses.order.modular.consumer.MessageServiceConsumer;
 import com.stylefeng.roses.order.modular.mapper.OrderMapper;
 import com.stylefeng.roses.order.modular.service.IOrderService;
@@ -46,8 +47,11 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, GoodsOrder> imple
         //下单
         this.insert(goods);
 
-        //确认消息
-        messageServiceConsumer.confirmAndSendMessage(reliableMessage.getMessageId());
+        if (goods.getStatus().equals(OrderStatusEnum.SUCCESS.getStatus())) {
+
+            //确认消息
+            messageServiceConsumer.confirmAndSendMessage(reliableMessage.getMessageId());
+        }
     }
 
 
@@ -67,6 +71,15 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, GoodsOrder> imple
         goodsOrder.setSum(new BigDecimal(RandomUtil.randomDouble(10.0, 50.0)).setScale(2, RoundingMode.HALF_UP));
         goodsOrder.setId(IdWorker.getId());
         goodsOrder.setUserId(IdWorker.getId());
+
+        //随机设置正常订单和非正常订单
+        int randomFlag = RandomUtil.randomInt(100);
+        if (randomFlag > 50) {
+            goodsOrder.setStatus(OrderStatusEnum.NOT_SUCCESS.getStatus());  //未完成的订单
+        } else {
+            goodsOrder.setStatus(OrderStatusEnum.SUCCESS.getStatus());  //已完成的订单
+        }
+
         return goodsOrder;
     }
 }
