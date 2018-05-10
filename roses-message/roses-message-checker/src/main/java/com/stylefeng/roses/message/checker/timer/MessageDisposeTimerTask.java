@@ -27,7 +27,7 @@ public class MessageDisposeTimerTask {
      * @author stylefeng
      * @Date 2018/5/7 23:12
      */
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 10000)
     public void checkWaitingConfirmTimeOutMessages() {
 
         waitingConfirmMessageChecker.checkMessages();
@@ -40,7 +40,7 @@ public class MessageDisposeTimerTask {
      * @author stylefeng
      * @Date 2018/5/7 23:12
      */
-    @Scheduled(fixedRate = 60000)
+    @Scheduled(fixedRate = 10000)
     public void checkSendingTimeOutMessage() {
 
         sendingMessageChecker.checkMessages();

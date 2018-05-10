@@ -1,6 +1,10 @@
 server:
   port: 10001
 
+roses:
+  message:
+    checkInterval: 15 #消息检查间隔，单位秒
+
 spring:
   application:
     name: roses-message-service

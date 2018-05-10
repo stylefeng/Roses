@@ -3,6 +3,7 @@ package com.stylefeng.roses.message.checker.service.impl;
 import com.stylefeng.roses.api.common.page.PageQuery;
 import com.stylefeng.roses.api.common.page.PageResult;
 import com.stylefeng.roses.api.message.model.ReliableMessage;
+import com.stylefeng.roses.api.order.enums.OrderStatusEnum;
 import com.stylefeng.roses.api.order.model.GoodsOrder;
 import com.stylefeng.roses.core.util.LogUtil;
 import com.stylefeng.roses.message.checker.consumer.GoodsOrderConsumer;
@@ -36,11 +37,12 @@ public class WaitingConfirmMessageChecker extends AbstractMessageChecker {
                 Long orderId = message.getBizUniqueId();
                 GoodsOrder order = goodsOrderConsumer.findOrderById(orderId);
 
-                if (order != null) {
+                //如果订单成功，则确认消息并发送
+                if (order != null && OrderStatusEnum.SUCCESS.equals(order.getStatus())) {
                     messageServiceConsumer.confirmAndSendMessage(message.getMessageId());
                 } else {
 
-                    //TODO 订单加状态，根据状态判断
+                    //如果订单失败，则删掉没用的消息
                     messageServiceConsumer.deleteMessageByMessageId(message.getMessageId());
                 }
             } catch (Exception e) {

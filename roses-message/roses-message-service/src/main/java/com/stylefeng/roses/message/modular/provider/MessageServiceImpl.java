@@ -14,6 +14,7 @@ import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.page.PageFactory;
 import com.stylefeng.roses.core.util.LogUtil;
 import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.message.config.properteis.MessageProperties;
 import com.stylefeng.roses.message.core.activemq.MessageSender;
 import com.stylefeng.roses.message.modular.service.IReliableMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class MessageServiceImpl implements MessageServiceApi {
 
     @Autowired
     private MessageSender messageSender;
+
+    @Autowired
+    private MessageProperties messageProperties;
 
     @Override
     public ReliableMessage preSaveMessage(@RequestBody ReliableMessage reliableMessage) {
@@ -249,7 +253,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     public PageResult<ReliableMessage> listPagetWaitConfimTimeOutMessages(@RequestBody PageQuery pageParam) {
         Page<ReliableMessage> page = new PageFactory<ReliableMessage>().createPage(pageParam);
         EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
-        wrapper.lt("create_time", ToolUtil.getCreateTimeBefore(300))
+        wrapper.lt("create_time", ToolUtil.getCreateTimeBefore(messageProperties.getCheckInterval()))
                 .and()
                 .eq("status", MessageStatusEnum.WAIT_VERIFY.name());
         Page<ReliableMessage> reliableMessagePage = this.reliableMessageService.selectPage(page, wrapper);
@@ -264,7 +268,7 @@ public class MessageServiceImpl implements MessageServiceApi {
     public PageResult<ReliableMessage> listPageSendingTimeOutMessages(@RequestBody PageQuery pageParam) {
         Page<ReliableMessage> page = new PageFactory<ReliableMessage>().createPage(pageParam);
         EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
-        wrapper.lt("create_time", ToolUtil.getCreateTimeBefore(300))
+        wrapper.lt("create_time", ToolUtil.getCreateTimeBefore(messageProperties.getCheckInterval()))
                 .and()
                 .eq("status", MessageStatusEnum.WAIT_VERIFY.name())
                 .and()
