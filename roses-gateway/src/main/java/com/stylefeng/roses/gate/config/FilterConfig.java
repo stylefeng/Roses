@@ -3,6 +3,7 @@ package com.stylefeng.roses.gate.config;
 import com.stylefeng.roses.gate.filter.DevelopFilter;
 import com.stylefeng.roses.gate.filter.JwtTokenFilter;
 import com.stylefeng.roses.gate.filter.PathMatchFilter;
+import com.stylefeng.roses.gate.filter.RequestNoGenerateFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,5 +33,10 @@ public class FilterConfig {
     @ConditionalOnProperty(prefix = "develop", name = "open", havingValue = "true")
     public DevelopFilter developFilter() {
         return new DevelopFilter();
+    }
+
+    @Bean
+    public RequestNoGenerateFilter requestNoGenerateFilter() {
+        return new RequestNoGenerateFilter();
     }
 }
