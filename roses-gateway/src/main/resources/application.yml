@@ -7,6 +7,10 @@ jwt:
   expiration: 604800        #7天 单位:秒
   auth-path: /auth          #认证请求的路径
 
+roses:
+  sign:
+    time: 600 #签名默认失效时间 600秒
+
 spring:
   application:
     name: roses-gateway

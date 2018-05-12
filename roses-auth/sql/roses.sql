@@ -20,8 +20,7 @@ CREATE DATABASE IF NOT EXISTS roses_sys DEFAULT CHARSET utf8 COLLATE utf8_genera
 USE roses_sys;
 
 
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -44,6 +43,10 @@ CREATE TABLE `sys_permission` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='资源表';
 
 -- ----------------------------
+-- Records of sys_permission
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
@@ -59,6 +62,10 @@ CREATE TABLE `sys_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户权限吧';
 
 -- ----------------------------
+-- Records of sys_role
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_role_perm
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_perm`;
@@ -67,6 +74,26 @@ CREATE TABLE `sys_role_perm` (
   `perm_id` bigint(20) NOT NULL,
   PRIMARY KEY (`role_id`,`perm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='权限-资源中间表';
+
+-- ----------------------------
+-- Records of sys_role_perm
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_secret
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_secret`;
+CREATE TABLE `sys_secret` (
+  `id` bigint(20) NOT NULL,
+  `app_id` varchar(255) NOT NULL COMMENT '应用名称',
+  `secret` varchar(255) NOT NULL COMMENT '签名密钥',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_secret
+-- ----------------------------
+INSERT INTO `sys_secret` VALUES ('1', 'aaa', 'bbb');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -88,6 +115,11 @@ CREATE TABLE `sys_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户信息表';
 
 -- ----------------------------
+-- Records of sys_user
+-- ----------------------------
+INSERT INTO `sys_user` VALUES ('1', '2', null, null, null, null, null, '0', null, '2018-04-15 22:21:36', '2018-04-15 22:21:36');
+
+-- ----------------------------
 -- Table structure for sys_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
@@ -97,4 +129,6 @@ CREATE TABLE `sys_user_role` (
   PRIMARY KEY (`role_id`,`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户-角色关联表';
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- ----------------------------
+-- Records of sys_user_role
+-- ----------------------------

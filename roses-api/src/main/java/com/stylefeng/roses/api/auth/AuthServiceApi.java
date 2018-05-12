@@ -32,4 +32,13 @@ public interface AuthServiceApi {
      */
     @RequestMapping("/getUserPermissionUrls")
     Set<String> getUserPermissionUrls(@RequestParam("userId") Long userId);
+
+    /**
+     * 通过appId获取secret
+     *
+     * @author stylefeng
+     * @Date 2018/5/12 23:20
+     */
+    @RequestMapping("/getSecretByAppId")
+    String getSecretByAppId(@RequestParam("appId") String appId);
 }
