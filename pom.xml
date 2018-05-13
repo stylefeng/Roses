@@ -129,7 +129,7 @@
             <dependency>
                 <groupId>com.xiaoleilu</groupId>
                 <artifactId>hutool-core</artifactId>
-                <version>3.3.0</version>
+                <version>${hutool.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
