@@ -17,7 +17,6 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-
     <dependencies>
         <dependency>
             <groupId>com.stylefeng.roses</groupId>

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2018/4/20 23:11
  */
 @Configuration
-public class FeignConfiguration {
+public class FeignConfig {
 
     @Bean
     public Feign.Builder myFeign() {
