@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @Date 2018/1/22 21:27
  */
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.stylefeng.roses.message.checker.consumer")
 @EnableDiscoveryClient
 @EnableScheduling
 public class MessageCheckerApplication {

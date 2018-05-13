@@ -32,7 +32,7 @@ public class SendingMessageChecker extends AbstractMessageChecker {
     private Map<Integer, Integer> notifyParam;
 
     @Override
-    protected void processWaitingConfirmTimeOutMessages(Map<String, ReliableMessage> messageMap) {
+    protected void processMessage(Map<String, ReliableMessage> messageMap) {
 
         // 单条消息处理
         for (Map.Entry<String, ReliableMessage> entry : messageMap.entrySet()) {
@@ -73,7 +73,7 @@ public class SendingMessageChecker extends AbstractMessageChecker {
 
     @Override
     protected PageResult<ReliableMessage> getPageResult(PageQuery pageQuery) {
-        return messageServiceConsumer.listPagetWaitConfimTimeOutMessages(pageQuery);
+        return messageServiceConsumer.listPageSendingTimeOutMessages(pageQuery);
     }
 
 }

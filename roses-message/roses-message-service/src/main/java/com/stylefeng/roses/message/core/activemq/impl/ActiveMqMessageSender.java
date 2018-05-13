@@ -42,9 +42,6 @@ public class ActiveMqMessageSender implements MessageSender {
         jmsTemplate.send(new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
-                int acknowledgeMode = session.getAcknowledgeMode();
-                System.out.println(acknowledgeMode);
-                boolean transacted = session.getTransacted();
                 return session.createTextMessage(reliableMessage.getMessageBody());
             }
         });

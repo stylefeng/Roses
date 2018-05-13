@@ -1,5 +1,6 @@
 package com.stylefeng.roses.account.modular.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.roses.account.modular.mapper.FlowRecordMapper;
 import com.stylefeng.roses.account.modular.service.IFlowRecordService;
@@ -11,6 +12,7 @@ import com.stylefeng.roses.core.util.ToolUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -32,6 +34,14 @@ public class FlowRecordServiceImpl extends ServiceImpl<FlowRecordMapper, FlowRec
 
         if (ToolUtil.isOneEmpty(goodsFlowParam.getUserId(), goodsFlowParam.getGoodsName(), goodsFlowParam.getSum())) {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
+        }
+
+        //幂等判断
+        EntityWrapper<FlowRecord> wrapper = new EntityWrapper<>();
+        wrapper.eq("order_id", goodsFlowParam.getId());
+        List<FlowRecord> flowRecords = this.selectList(wrapper);
+        if (flowRecords != null && !flowRecords.isEmpty()) {
+            return;
         }
 
         FlowRecord flowRecord = new FlowRecord();

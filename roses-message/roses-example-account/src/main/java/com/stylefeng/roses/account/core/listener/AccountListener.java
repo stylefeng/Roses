@@ -34,8 +34,6 @@ public class AccountListener implements MessageListener {
                 GoodsFlowParam goodsFlowParam = JSON.parseObject(messageBody, GoodsFlowParam.class);
                 flowRecordService.recordFlow(goodsFlowParam);
 
-                //message.acknowledge();
-
             } catch (JMSException ex) {
                 throw new ServiceException(MessageExceptionEnum.MESSAGE_QUEUE_ERROR);
             }

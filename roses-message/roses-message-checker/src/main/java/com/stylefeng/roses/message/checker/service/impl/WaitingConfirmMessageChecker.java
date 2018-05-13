@@ -30,23 +30,32 @@ public class WaitingConfirmMessageChecker extends AbstractMessageChecker {
     private GoodsOrderConsumer goodsOrderConsumer;
 
     @Override
-    protected void processWaitingConfirmTimeOutMessages(Map<String, ReliableMessage> messages) {
+    protected void processMessage(Map<String, ReliableMessage> messages) {
         for (Map.Entry<String, ReliableMessage> entry : messages.entrySet()) {
             ReliableMessage message = entry.getValue();
             try {
-                Long orderId = message.getBizUniqueId();
-                GoodsOrder order = goodsOrderConsumer.findOrderById(orderId);
 
-                //如果订单成功，则确认消息并发送
-                if (order != null && OrderStatusEnum.SUCCESS.equals(order.getStatus())) {
-                    messageServiceConsumer.confirmAndSendMessage(message.getMessageId());
-                } else {
+                Long orderId = message.getBizUniqueId();
+
+                if (orderId == null) {
 
                     //如果订单失败，则删掉没用的消息
                     messageServiceConsumer.deleteMessageByMessageId(message.getMessageId());
+                } else {
+                    GoodsOrder order = goodsOrderConsumer.findOrderById(orderId);
+
+                    //如果订单成功，则确认消息并发送
+                    if (order != null && OrderStatusEnum.SUCCESS.equals(order.getStatus())) {
+                        messageServiceConsumer.confirmAndSendMessage(message.getMessageId());
+                    } else {
+
+                        //如果订单失败，则删掉没用的消息
+                        messageServiceConsumer.deleteMessageByMessageId(message.getMessageId());
+                    }
                 }
+
             } catch (Exception e) {
-                LogUtil.error("处理待确认消息异常！messageId=" + message.getMessageId());
+                LogUtil.error("处理待确认消息异常！messageId=" + message.getMessageId(), e);
             }
         }
     }

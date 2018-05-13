@@ -57,8 +57,8 @@ public class ReliableMessage extends Model<ReliableMessage> {
      * Y：已死亡
      * N：未死亡
      */
-    @TableField("areadly_dead")
-    private String areadlyDead;
+    @TableField("already_dead")
+    private String alreadyDead;
     /**
      * 状态
      * <p>
@@ -159,12 +159,12 @@ public class ReliableMessage extends Model<ReliableMessage> {
         this.messageSendTimes = messageSendTimes;
     }
 
-    public String getAreadlyDead() {
-        return areadlyDead;
+    public String getAlreadyDead() {
+        return alreadyDead;
     }
 
-    public void setAreadlyDead(String areadlyDead) {
-        this.areadlyDead = areadlyDead;
+    public void setAlreadyDead(String alreadyDead) {
+        this.alreadyDead = alreadyDead;
     }
 
     public String getStatus() {
@@ -245,7 +245,7 @@ public class ReliableMessage extends Model<ReliableMessage> {
                 ", messageDataType=" + messageDataType +
                 ", consumerQueue=" + consumerQueue +
                 ", messageSendTimes=" + messageSendTimes +
-                ", areadlyDead=" + areadlyDead +
+                ", alreadyDead=" + alreadyDead +
                 ", status=" + status +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

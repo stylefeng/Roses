@@ -31,7 +31,7 @@ public abstract class AbstractMessageChecker {
             int maxHandlePageCount = 3;     //一次最多处理页数
 
             int currentPage = 1;            //当前处理页
-            PageQuery pageQuery = new PageQuery(pageSize, currentPage, "create_time", "asc");
+            PageQuery pageQuery = new PageQuery(pageSize, currentPage, "asc", "create_time");
             PageResult<ReliableMessage> pageResult = getPageResult(pageQuery);
 
             List<ReliableMessage> rows = pageResult.getRows();
@@ -45,7 +45,7 @@ public abstract class AbstractMessageChecker {
             }
 
             for (currentPage = 2; currentPage <= totalPage; currentPage++) {
-                pageQuery = new PageQuery(pageSize, currentPage, "create_time", "asc");
+                pageQuery = new PageQuery(pageSize, currentPage, "asc", "create_time");
                 pageResult = getPageResult(pageQuery);
                 if (pageResult != null && pageResult.getRows() != null) {
                     List<ReliableMessage> otherResults = pageResult.getRows();
@@ -58,14 +58,14 @@ public abstract class AbstractMessageChecker {
             }
 
             //开始处理
-            processWaitingConfirmTimeOutMessages(messageMap);
+            processMessage(messageMap);
 
         } catch (Exception e) {
-            LogUtil.error("处理待发送状态的消息异常！");
+            LogUtil.error("处理待发送状态的消息异常！", e);
         }
     }
 
-    protected abstract void processWaitingConfirmTimeOutMessages(Map<String, ReliableMessage> messages);
+    protected abstract void processMessage(Map<String, ReliableMessage> messages);
 
     protected abstract PageResult<ReliableMessage> getPageResult(PageQuery pageQuery);
 }

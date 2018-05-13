@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 订单流水记录的参数
+ * 订单流水记录的参数(本类同 GoodsOrder)
  * </p>
  *
  * @author stylefeng123

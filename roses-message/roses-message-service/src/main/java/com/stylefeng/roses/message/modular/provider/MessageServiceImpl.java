@@ -59,7 +59,7 @@ public class MessageServiceImpl implements MessageServiceApi {
         reliableMessage.setStatus(MessageStatusEnum.WAIT_VERIFY.name());
 
         //标记未死亡
-        reliableMessage.setAreadlyDead(YseOrNotEnum.N.name());
+        reliableMessage.setAlreadyDead(YseOrNotEnum.N.name());
         reliableMessage.setMessageSendTimes(0);
         reliableMessage.setUpdateTime(new Date());
         reliableMessageService.insert(reliableMessage);
@@ -91,7 +91,7 @@ public class MessageServiceImpl implements MessageServiceApi {
         this.checkEmptyMessage(reliableMessage);
 
         reliableMessage.setStatus(MessageStatusEnum.SENDING.name());
-        reliableMessage.setAreadlyDead(YseOrNotEnum.N.name());
+        reliableMessage.setAlreadyDead(YseOrNotEnum.N.name());
         reliableMessage.setMessageSendTimes(0);
         reliableMessage.setUpdateTime(new Date());
         reliableMessageService.insert(reliableMessage);
@@ -149,7 +149,7 @@ public class MessageServiceImpl implements MessageServiceApi {
         }
 
         ReliableMessage reliableMessage = this.getMessageByMessageId(messageId);
-        reliableMessage.setAreadlyDead(YseOrNotEnum.Y.name());
+        reliableMessage.setAlreadyDead(YseOrNotEnum.Y.name());
         reliableMessage.setUpdateTime(new Date());
 
         //发送消息
@@ -186,9 +186,8 @@ public class MessageServiceImpl implements MessageServiceApi {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
         }
 
-        ReliableMessage condition = new ReliableMessage();
-        condition.setMessageId(messageId);
-        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>(condition);
+        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
+        wrapper.eq("message_id", messageId);
         this.reliableMessageService.delete(wrapper);
     }
 
@@ -270,7 +269,7 @@ public class MessageServiceImpl implements MessageServiceApi {
         EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
         wrapper.lt("create_time", ToolUtil.getCreateTimeBefore(messageProperties.getCheckInterval()))
                 .and()
-                .eq("status", MessageStatusEnum.WAIT_VERIFY.name())
+                .eq("status", MessageStatusEnum.SENDING.name())
                 .and()
                 .eq("already_dead", YseOrNotEnum.N.name());
         Page<ReliableMessage> reliableMessagePage = this.reliableMessageService.selectPage(page, wrapper);
