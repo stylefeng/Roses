@@ -19,9 +19,12 @@ zuul:
   add-host-header: true
   routes:
     roses-auth: /roses-auth/**
+    roses-message-service: /roses-message-service/**
+    roses-account: /roses-account/**
+    roses-order: /roses-order/**
     api-gate:
-      path: /login/**
-      url: forward:/login  #以/login开头的请求转发到本网关的控制器
+      path: /authService/**
+      url: forward:/authService  #以/authService开头的请求转发到本网关的控制器
   retryable: false         #转发重试关闭
 
 feign:

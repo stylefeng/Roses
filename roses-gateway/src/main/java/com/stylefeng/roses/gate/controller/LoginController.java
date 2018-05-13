@@ -1,6 +1,5 @@
 package com.stylefeng.roses.gate.controller;
 
-import com.stylefeng.roses.api.message.model.ReliableMessage;
 import com.stylefeng.roses.core.context.LoginContext;
 import com.stylefeng.roses.gate.consumer.MessageServiceConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +14,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date 2017-11-08-下午7:04
  */
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/authService")
 public class LoginController {
 
     @Autowired
     private MessageServiceConsumer messageServiceConsumer;
 
-    @RequestMapping("")
+    @RequestMapping("/login")
     @ResponseBody
     public Object login() {
         return LoginContext.me().getUser();
     }
 
-    @RequestMapping("/message")
+    @RequestMapping("/logout")
     @ResponseBody
-    public Object message() {
-        ReliableMessage reliableMessage = new ReliableMessage();
-        reliableMessage.setConsumerQueue("aaa");
-        reliableMessage.setMessageBody("aa");
-        ReliableMessage reliableMessage1 = messageServiceConsumer.preSaveMessage(reliableMessage);
-        return reliableMessage1;
+    public Object logout() {
+        return null;
+    }
+
+    @RequestMapping("/checkToken")
+    @ResponseBody
+    public Object checkToken() {
+        return null;
     }
 }

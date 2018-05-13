@@ -1,5 +1,6 @@
-package com.stylefeng.roses.gate.config;
+package com.stylefeng.roses.message.checker.config;
 
+import com.stylefeng.roses.core.base.controller.DefaultRosesErrorAttributes;
 import com.stylefeng.roses.core.feign.RosesFeignErrorDecoder;
 import com.stylefeng.roses.core.feign.RosesFeignHeaderProcessInterceptor;
 import feign.Feign;
@@ -31,4 +32,13 @@ public class FeignConfig {
     public RequestInterceptor requestInterceptor() {
         return new RosesFeignHeaderProcessInterceptor();
     }
+
+    /**
+     * 覆盖spring默认的响应消息格式
+     */
+    @Bean
+    public DefaultRosesErrorAttributes defaultRosesErrorAttributes() {
+        return new DefaultRosesErrorAttributes();
+    }
+
 }

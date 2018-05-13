@@ -1,8 +1,6 @@
 package com.stylefeng.roses.gate.config;
 
-import com.stylefeng.roses.core.feign.RosesFeignHeaderProcessInterceptor;
 import com.stylefeng.roses.gate.filter.*;
-import feign.RequestInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,11 +58,4 @@ public class FilterConfig {
         return new RequestNoGenerateFilter();
     }
 
-    /**
-     * feign请求加上当前请求接口的headers
-     */
-    @Bean
-    public RequestInterceptor requestInterceptor() {
-        return new RosesFeignHeaderProcessInterceptor();
-    }
 }
