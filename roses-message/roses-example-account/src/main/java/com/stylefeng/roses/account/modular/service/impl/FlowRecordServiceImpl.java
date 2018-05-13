@@ -10,6 +10,7 @@ import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.api.order.GoodsFlowParam;
 import com.stylefeng.roses.core.util.ToolUtil;
+import com.xiaoleilu.hutool.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,12 @@ public class FlowRecordServiceImpl extends ServiceImpl<FlowRecordMapper, FlowRec
         flowRecord.setCreateTime(new Date());
 
         this.insert(flowRecord);
+
+        //测试可靠消息机制（结果百分之50几率成功）(如果此处有异常，会被roses-message-checker轮询处理，如果此处连续出现错误6次则可以通过查看消息表，人工干预)
+        int random = RandomUtil.randomInt(100);
+        if (random > 50) {
+            throw new ServiceException(CoreExceptionEnum.SERVICE_ERROR);
+        }
 
         //插入成功后要删除消息
         messageServiceConsumer.deleteMessageByBizId(flowRecord.getOrderId());
