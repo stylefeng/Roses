@@ -34,8 +34,8 @@ eureka:
     registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
 
 ribbon:
-  connect-imeout: 300     #创建连接的超时时间 300毫秒
-  read-timeout: 2000      #处理请求的超时时间 1秒
+  connect-imeout: 300     #创建连接的超时时间 单位：毫秒
+  read-timeout: 2000      #处理请求的超时时间 单位：毫秒
   max-auto-retries-next-server: 0 #切换实例的重试次数
   max-auto-retries: 0     #对当前实例的重试次数
 
