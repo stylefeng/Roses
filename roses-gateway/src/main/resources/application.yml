@@ -2,10 +2,14 @@ server:
   port: 8000
 
 jwt:
-  header: Authorization     #http请求头所需要的字段
-  secret: mySecret          #jwt秘钥
-  expiration: 604800        #7天 单位:秒
-  auth-path: /auth          #认证请求的路径
+  header: Authorization           #http请求头所需要的字段
+  secret: mySecret                #jwt秘钥
+  expiration: 604800              #7天 单位:秒
+  auth-path: /authService/login   #认证请求的路径
+
+develop:
+  open: false
+  user-id: 1
 
 roses:
   sign:

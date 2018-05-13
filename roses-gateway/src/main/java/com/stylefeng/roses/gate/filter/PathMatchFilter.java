@@ -3,17 +3,15 @@ package com.stylefeng.roses.gate.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
-import com.stylefeng.roses.core.base.response.JsonResponse;
+import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.constant.Constant;
 import com.stylefeng.roses.core.context.AuthServiceConsumer;
-import com.stylefeng.roses.core.util.RenderUtil;
 import com.stylefeng.roses.gate.config.properties.JwtProperties;
+import com.stylefeng.roses.gate.constants.ZuulConstants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.util.AntPathMatcher;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Set;
 
 /**
@@ -37,7 +35,7 @@ public class PathMatchFilter extends ZuulFilter {
 
     @Override
     public int filterOrder() {
-        return 3;
+        return ZuulConstants.PATH_MATCH_FILTER;
     }
 
     @Override
@@ -55,27 +53,26 @@ public class PathMatchFilter extends ZuulFilter {
     public Object run() {
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        HttpServletResponse response = currentContext.getResponse();
 
-        String userId = (String) currentContext.get(Constant.IDENTITY_HEADER);
-        Set<String> permissionUrls = authServiceConsumer.getUserPermissionUrls(Long.valueOf(userId));
+        Object userId = currentContext.get(Constant.IDENTITY_HEADER);
 
+        if (userId == null) {
+            throw new ServiceException(CoreExceptionEnum.PERMISSION_ERROR);
+        }
+        Set<String> permissionUrls = authServiceConsumer.getUserPermissionUrls(Long.valueOf(userId.toString()));
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         boolean hasPermission = false;
         for (String permission : permissionUrls) {
             hasPermission = antPathMatcher.match(permission, request.getServletPath());
-            if (hasPermission == true) {
+            if (hasPermission) {
                 break;
             }
         }
 
-        if (hasPermission == true) {
+        if (hasPermission) {
             return null;
         } else {
-            currentContext.setResponseStatusCode(HttpStatus.FORBIDDEN.value());
-            currentContext.setSendZuulResponse(false);
-            RenderUtil.renderJson(response, JsonResponse.error(CoreExceptionEnum.PERMISSION_ERROR.getMessage()));
-            return null;
+            throw new ServiceException(CoreExceptionEnum.PERMISSION_ERROR);
         }
     }
 }

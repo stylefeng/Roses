@@ -1,8 +1,6 @@
 package com.stylefeng.roses.gate.controller;
 
 import com.stylefeng.roses.core.context.LoginContext;
-import com.stylefeng.roses.gate.consumer.MessageServiceConsumer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/authService")
 public class LoginController {
-
-    @Autowired
-    private MessageServiceConsumer messageServiceConsumer;
 
     @RequestMapping("/login")
     @ResponseBody

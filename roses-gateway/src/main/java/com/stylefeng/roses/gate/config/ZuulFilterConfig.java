@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2017-11-08-下午3:23
  */
 @Configuration
-public class FilterConfig {
+public class ZuulFilterConfig {
 
     /**
      * 开发过滤器（免去每次都必须传用户id）
