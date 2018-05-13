@@ -1,6 +1,6 @@
 package com.stylefeng.roses.gate.config;
 
-import com.stylefeng.roses.gate.error.DefaultRosesErrorAttributes;
+import com.stylefeng.roses.core.base.controller.DefaultRosesErrorAttributes;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

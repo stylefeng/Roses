@@ -1,7 +1,7 @@
 package com.stylefeng.roses.gate.controller;
 
 import com.stylefeng.roses.api.message.model.ReliableMessage;
-import com.stylefeng.roses.core.context.UserContext;
+import com.stylefeng.roses.core.context.LoginContext;
 import com.stylefeng.roses.gate.consumer.MessageServiceConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +24,7 @@ public class LoginController {
     @RequestMapping("")
     @ResponseBody
     public Object login() {
-        return UserContext.me().getUser();
+        return LoginContext.me().getUser();
     }
 
     @RequestMapping("/message")

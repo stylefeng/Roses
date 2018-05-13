@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Value;
  * @author fengshuonan
  * @date 2018年1月11日22:02:32
  */
-public class UserContext {
+public class LoginContext {
 
     @Value("${spring.application.name}")
     private String appName;
@@ -31,8 +31,8 @@ public class UserContext {
      * @author fengshuonan
      * @Date 2018年1月11日22:02:28
      */
-    public static UserContext me() {
-        return SpringContextHolder.getBean(UserContext.class);
+    public static LoginContext me() {
+        return SpringContextHolder.getBean(LoginContext.class);
     }
 
     /**

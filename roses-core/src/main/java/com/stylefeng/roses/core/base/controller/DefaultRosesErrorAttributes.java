@@ -1,4 +1,4 @@
-package com.stylefeng.roses.gate.error;
+package com.stylefeng.roses.core.base.controller;
 
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.base.response.JsonResponse;
@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestAttributes;
 import java.util.Map;
 
 /**
- * 默认提示信息
+ * 重写spring得默认响应提示信息
  *
  * @author fengshuonan
  * @date 2017-11-14-下午5:54

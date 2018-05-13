@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.config;
 
-import com.stylefeng.roses.core.context.UserContext;
+import com.stylefeng.roses.core.context.LoginContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,7 +17,7 @@ public class DefaultAuthConfig {
      * 调用当前登录用户的工具类
      */
     @Bean
-    public UserContext userContext() {
-        return new UserContext();
+    public LoginContext userContext() {
+        return new LoginContext();
     }
 }
