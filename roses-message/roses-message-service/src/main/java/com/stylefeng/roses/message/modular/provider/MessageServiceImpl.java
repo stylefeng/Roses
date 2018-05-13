@@ -152,6 +152,8 @@ public class MessageServiceImpl implements MessageServiceApi {
         reliableMessage.setAlreadyDead(YseOrNotEnum.Y.name());
         reliableMessage.setUpdateTime(new Date());
 
+        reliableMessage.updateById();
+
         //发送消息
         messageSender.sendMessage(reliableMessage);
     }
@@ -163,9 +165,8 @@ public class MessageServiceImpl implements MessageServiceApi {
             throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
         }
 
-        ReliableMessage condition = new ReliableMessage();
-        condition.setMessageId(messageId);
-        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>(condition);
+        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
+        wrapper.eq("message_id", messageId);
         List<ReliableMessage> reliableMessages = this.reliableMessageService.selectList(wrapper);
         if (reliableMessages == null || reliableMessages.size() == 0) {
             throw new ServiceException(CANT_FIND_MESSAGE);
@@ -188,6 +189,17 @@ public class MessageServiceImpl implements MessageServiceApi {
 
         EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
         wrapper.eq("message_id", messageId);
+        this.reliableMessageService.delete(wrapper);
+    }
+
+    @Override
+    public void deleteMessageByBizId(@RequestParam("bizId") Long bizId) {
+        if (ToolUtil.isEmpty(bizId)) {
+            throw new ServiceException(CoreExceptionEnum.REQUEST_NULL);
+        }
+
+        EntityWrapper<ReliableMessage> wrapper = new EntityWrapper<>();
+        wrapper.eq("biz_unique_id", bizId);
         this.reliableMessageService.delete(wrapper);
     }
 

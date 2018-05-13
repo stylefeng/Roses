@@ -2,6 +2,7 @@ package com.stylefeng.roses.account.modular.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.stylefeng.roses.account.modular.consumer.MessageServiceConsumer;
 import com.stylefeng.roses.account.modular.mapper.FlowRecordMapper;
 import com.stylefeng.roses.account.modular.service.IFlowRecordService;
 import com.stylefeng.roses.api.account.model.FlowRecord;
@@ -9,7 +10,9 @@ import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.api.order.GoodsFlowParam;
 import com.stylefeng.roses.core.util.ToolUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +28,11 @@ import java.util.List;
 @Service
 public class FlowRecordServiceImpl extends ServiceImpl<FlowRecordMapper, FlowRecord> implements IFlowRecordService {
 
+    @Autowired
+    private MessageServiceConsumer messageServiceConsumer;
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void recordFlow(GoodsFlowParam goodsFlowParam) {
 
         if (goodsFlowParam == null) {
@@ -52,5 +59,8 @@ public class FlowRecordServiceImpl extends ServiceImpl<FlowRecordMapper, FlowRec
         flowRecord.setCreateTime(new Date());
 
         this.insert(flowRecord);
+
+        //插入成功后要删除消息
+        messageServiceConsumer.deleteMessageByBizId(flowRecord.getOrderId());
     }
 }

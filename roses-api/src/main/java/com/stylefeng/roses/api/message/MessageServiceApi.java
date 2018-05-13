@@ -74,6 +74,12 @@ public interface MessageServiceApi {
     void deleteMessageByMessageId(@RequestParam("messageId") String messageId);
 
     /**
+     * 根据业务id删除消息
+     */
+    @RequestMapping("/deleteMessageByBizId")
+    void deleteMessageByBizId(@RequestParam("bizId") Long bizId);
+
+    /**
      * 重发某个消息队列中的全部已死亡的消息.
      */
     @RequestMapping("/reSendAllDeadMessageByQueueName")

@@ -64,6 +64,10 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, GoodsOrder> imple
             throw new ServiceException(OrderExceptionEnum.ORDER_NULL);
         }
 
+        if (OrderStatusEnum.SUCCESS.getStatus().equals(order.getStatus())) {
+            return;
+        }
+
         //创建预发送消息
         ReliableMessage reliableMessage = createMessage(order);
 

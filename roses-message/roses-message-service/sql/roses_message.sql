@@ -29,7 +29,7 @@ CREATE TABLE `reliable_message` (
   `message_data_type` varchar(50) DEFAULT NULL COMMENT '消息数据类型',
   `consumer_queue` varchar(100) NOT NULL DEFAULT '' COMMENT '消费队列',
   `message_send_times` smallint(6) NOT NULL DEFAULT '0' COMMENT '消息重发次数',
-  `areadly_dead` char(1) NOT NULL DEFAULT '' COMMENT '是否死亡\r\n\r\nY：已死亡\r\nN：未死亡   \r\n',
+  `already_dead` char(1) NOT NULL DEFAULT '' COMMENT '是否死亡\r\n\r\nY：已死亡\r\nN：未死亡   \r\n',
   `status` varchar(20) NOT NULL DEFAULT '' COMMENT '状态 \r\n\r\nWAIT_VERIFY：待确认  \r\nSENDING：发送中',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '最后修改时间',
@@ -40,9 +40,4 @@ CREATE TABLE `reliable_message` (
   `biz_unique_id` bigint(20) DEFAULT NULL COMMENT '业务系统唯一id',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `AK_Key_2` (`message_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of reliable_message
--- ----------------------------
-INSERT INTO `reliable_message` VALUES ('986626064928415745', '', 'aa', null, 'aaa', '0', 'N', 'WAIT_VERIFY', '2018-04-18 23:22:39', null, null, null, null, '0', null);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='可靠消息表';
