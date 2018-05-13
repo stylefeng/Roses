@@ -12,13 +12,6 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/roses_message?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: root
-  activemq:
-    broker-url: tcp://localhost:61616
-    user: admin
-    password: admin
-  jms:
-    listener:
-      acknowledge-mode: client
 
 mybatis-plus:
   typeAliasesPackage: com.stylefeng.roses.api.message.model
