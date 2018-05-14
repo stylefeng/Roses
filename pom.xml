@@ -13,6 +13,7 @@
 
     <modules>
         <module>roses-core</module>
+        <module>roses-scanner</module>
         <module>roses-api</module>
         <module>roses-auth</module>
         <module>roses-register</module>
