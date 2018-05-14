@@ -79,7 +79,11 @@
                 <artifactId>roses-message</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>roses-scanner</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!--spring cloud-->
             <dependency>
