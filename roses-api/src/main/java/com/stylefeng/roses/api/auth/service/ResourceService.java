@@ -1,11 +1,11 @@
 package com.stylefeng.roses.api.auth.service;
 
 
+import com.stylefeng.roses.api.auth.ResourceDefinition;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import share.model.auth.ResourceDefinition;
 
 import java.util.Map;
 import java.util.Set;
@@ -15,7 +15,6 @@ import java.util.Set;
  *
  * @author fengshuonan
  * @date 2018-02-06 14:30
- * Copyright: 2018赛鼎科技-版权所有
  */
 @RequestMapping("/api/resourceService")
 public interface ResourceService {

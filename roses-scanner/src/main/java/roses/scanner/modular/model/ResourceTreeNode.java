@@ -7,7 +7,6 @@ import java.util.List;
  *
  * @author fengshuonan
  * @date 2018-01-11 14:56
- * Copyright: 2018赛鼎科技-版权所有
  */
 public class ResourceTreeNode {
 

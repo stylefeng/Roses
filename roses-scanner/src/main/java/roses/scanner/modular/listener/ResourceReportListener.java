@@ -1,13 +1,12 @@
 package roses.scanner.modular.listener;
 
+import com.stylefeng.roses.api.auth.ResourceDefinition;
+import com.stylefeng.roses.api.auth.service.ResourceService;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
-import share.core.util.LogUtil;
-import share.model.auth.ResourceDefinition;
-import share.model.auth.service.ResourceService;
 import roses.scanner.config.properties.ScannerProperties;
 import roses.scanner.modular.factory.ApiResourceFactory;
 
@@ -18,7 +17,6 @@ import java.util.Map;
  *
  * @author fengshuonan
  * @date 2018-02-06 13:05
- * Copyright: 2018赛鼎科技-版权所有
  */
 public class ResourceReportListener implements ApplicationListener<ApplicationReadyEvent>, ApplicationContextAware {
 
@@ -27,7 +25,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 
-        LogUtil.info("发送本系统的所有资源到share-system服务开始！");
+        System.out.println("发送本系统的所有资源到share-system服务开始！");
 
         //获取当前系统的所有资源
         ApiResourceFactory resourceFactory = applicationContext.getBean(ApiResourceFactory.class);
@@ -38,7 +36,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
         ResourceService resourceService = applicationContext.getBean(ResourceService.class);
         resourceService.reportResources(scannerProperties.getAppCode(), modularResources);
 
-        LogUtil.info("发送本系统的所有资源到share-system服务完毕！");
+        System.out.println("发送本系统的所有资源到share-system服务完毕！");
     }
 
     @Override

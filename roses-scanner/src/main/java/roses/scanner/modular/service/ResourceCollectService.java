@@ -1,7 +1,7 @@
 package roses.scanner.modular.service;
 
+import com.stylefeng.roses.api.auth.ResourceDefinition;
 import com.xiaoleilu.hutool.util.StrUtil;
-import share.model.auth.ResourceDefinition;
 import roses.scanner.config.properties.ScannerProperties;
 import roses.scanner.modular.factory.ApiResourceFactory;
 import roses.scanner.modular.model.ResourceTreeNode;
@@ -16,7 +16,6 @@ import java.util.Map;
  *
  * @author fengshuonan
  * @date 2018-01-11 14:25
- * Copyright: 2018赛鼎科技-版权所有
  */
 public class ResourceCollectService {
 

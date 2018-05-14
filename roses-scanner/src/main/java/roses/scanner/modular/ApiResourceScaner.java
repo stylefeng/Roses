@@ -1,5 +1,6 @@
 package roses.scanner.modular;
 
+import com.stylefeng.roses.api.auth.ResourceDefinition;
 import com.xiaoleilu.hutool.exceptions.UtilException;
 import com.xiaoleilu.hutool.util.NetUtil;
 import com.xiaoleilu.hutool.util.StrUtil;
@@ -10,11 +11,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import roses.scanner.config.properties.ScannerProperties;
+import roses.scanner.core.util.AopTargetUtils;
 import roses.scanner.modular.annotation.GetResource;
 import roses.scanner.modular.annotation.PostResource;
-import share.core.util.AopTargetUtils;
-import share.model.auth.ResourceDefinition;
-import roses.scanner.config.properties.ScannerProperties;
 import roses.scanner.modular.factory.ApiResourceFactory;
 import roses.scanner.modular.stereotype.ApiResource;
 

@@ -17,7 +17,6 @@ import roses.scanner.modular.listener.ResourceReportListener;
  *
  * @author fengshuonan
  * @date 2018-02-06 17:25
- * Copyright: 2018赛鼎科技-版权所有
  */
 @Configuration
 public class ScannerConfig {

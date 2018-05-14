@@ -1,17 +1,16 @@
 package com.stylefeng.roses.api.auth.service;
 
 
+import com.stylefeng.roses.api.auth.model.LoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import share.model.auth.LoginUser;
 
 /**
  * 鉴权服务,提供颁发,校验,注销等方法
  *
  * @author fengshuonan
  * @date 2018-02-07 9:57
- * Copyright: 2018赛鼎科技-版权所有
  */
 @RequestMapping("/api/authService")
 public interface AuthService {
