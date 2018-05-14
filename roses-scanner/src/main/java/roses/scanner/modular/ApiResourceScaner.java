@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import roses.scanner.config.properties.ScannerProperties;
-import roses.scanner.core.util.AopTargetUtils;
+import roses.scanner.modular.util.AopTargetUtils;
 import roses.scanner.modular.annotation.GetResource;
 import roses.scanner.modular.annotation.PostResource;
 import roses.scanner.modular.factory.ApiResourceFactory;
