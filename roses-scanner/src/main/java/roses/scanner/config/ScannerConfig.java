@@ -25,7 +25,7 @@ public class ScannerConfig {
     private String applicationName;
 
     @Bean
-    @ConfigurationProperties(prefix = "share.scanner")
+    @ConfigurationProperties(prefix = "roses.scanner")
     public ScannerProperties scannerProperties() {
         return new ScannerProperties();
     }
@@ -55,10 +55,10 @@ public class ScannerConfig {
     }
 
     /**
-     * 资源扫描之后的资源汇报操作（向share-system服务）
+     * 资源扫描之后的资源汇报操作（向roses-auth服务）
      */
     @Bean
-    @ConditionalOnProperty(prefix = "share.scanner", name = "open", havingValue = "true")
+    @ConditionalOnProperty(prefix = "roses.scanner", name = "open", havingValue = "true")
     public ResourceReportListener resourceReportListener() {
         return new ResourceReportListener();
     }
