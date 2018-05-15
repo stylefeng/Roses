@@ -10,7 +10,6 @@ import java.util.Date;
  *
  * @author yaoliguo
  * @date 2018-05-08 09:50
- * 2018赛鼎科技-版权所有
  */
 public class SignUtil {
 

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author fengshuonan
  * @date 2017-11-03-下午2:36
  */
-public class RosesApplication extends WebMvcConfigurerAdapter {
+public class SwaggerApplication extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -19,4 +19,5 @@ public class RosesAuthApplication {
     public static void main(String[] args) {
         SpringApplication.run(RosesAuthApplication.class, args);
     }
+
 }

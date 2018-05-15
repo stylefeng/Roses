@@ -11,7 +11,7 @@ import feign.codec.ErrorDecoder;
 import java.io.IOException;
 
 /**
- * roses自己的feign错误解码器（为了feign接收到错误的返回，转化成share可识别的ServiceException）
+ * roses自己的feign错误解码器（为了feign接收到错误的返回，转化成roses可识别的ServiceException）
  *
  * @author stylefeng
  * @Date 2018/4/20 23:14
