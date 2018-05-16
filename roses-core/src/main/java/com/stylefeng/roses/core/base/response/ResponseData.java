@@ -7,7 +7,7 @@ package com.stylefeng.roses.core.base.response;
  * @author stylefeng
  * @Date 2018/1/4 22:37
  */
-public class JsonResponse {
+public class ResponseData {
 
     public static final String DEFAULT_SUCCESS_MESSAGE = "请求成功";
 
@@ -37,10 +37,10 @@ public class JsonResponse {
      */
     private Object object;
 
-    public JsonResponse() {
+    public ResponseData() {
     }
 
-    public JsonResponse(Boolean success, Integer code, String message, Object object) {
+    public ResponseData(Boolean success, Integer code, String message, Object object) {
         this.success = success;
         this.code = code;
         this.message = message;
@@ -79,23 +79,23 @@ public class JsonResponse {
         this.code = code;
     }
 
-    public static SuccessResponse success(Object object) {
-        return new SuccessResponse(object);
+    public static SuccessResponseData success(Object object) {
+        return new SuccessResponseData(object);
     }
 
-    public static SuccessResponse success(Integer code, String message, Object object) {
-        return new SuccessResponse(code, message, object);
+    public static SuccessResponseData success(Integer code, String message, Object object) {
+        return new SuccessResponseData(code, message, object);
     }
 
-    public static ErrorResponse error(String message) {
-        return new ErrorResponse(message);
+    public static ErrorResponseData error(String message) {
+        return new ErrorResponseData(message);
     }
 
-    public static ErrorResponse error(Integer code, String message) {
-        return new ErrorResponse(code, message);
+    public static ErrorResponseData error(Integer code, String message) {
+        return new ErrorResponseData(code, message);
     }
 
-    public static ErrorResponse error(Integer code, String message, Object object) {
-        return new ErrorResponse(code, message, object);
+    public static ErrorResponseData error(Integer code, String message, Object object) {
+        return new ErrorResponseData(code, message, object);
     }
 }

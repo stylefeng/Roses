@@ -5,7 +5,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
-import com.stylefeng.roses.core.base.response.ErrorResponse;
+import com.stylefeng.roses.core.base.response.ErrorResponseData;
 import com.xiaoleilu.hutool.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
@@ -58,11 +58,11 @@ public class ErrorTipConfig extends WebMvcConfigurationSupport {
                 Throwable cause = zuulException.getCause();
                 if (cause != null && cause instanceof ServiceException) {
                     ServiceException serviceException = (ServiceException) cause;
-                    return BeanUtil.beanToMap(new ErrorResponse(serviceException.getCode(), serviceException.getMessage(), null));
+                    return BeanUtil.beanToMap(new ErrorResponseData(serviceException.getCode(), serviceException.getMessage(), null));
                 }
             }
 
-            return BeanUtil.beanToMap(new ErrorResponse(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage(), null));
+            return BeanUtil.beanToMap(new ErrorResponseData(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage(), null));
         }
 
     }

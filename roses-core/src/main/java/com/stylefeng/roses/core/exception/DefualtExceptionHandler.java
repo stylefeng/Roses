@@ -2,8 +2,8 @@ package com.stylefeng.roses.core.exception;
 
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
-import com.stylefeng.roses.core.base.response.ErrorResponse;
-import com.stylefeng.roses.core.base.response.JsonResponse;
+import com.stylefeng.roses.core.base.response.ErrorResponseData;
+import com.stylefeng.roses.core.base.response.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -33,9 +33,9 @@ public class DefualtExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public JsonResponse notFount(ServiceException e) {
+    public ResponseData notFount(ServiceException e) {
         log.info("业务异常:", e);
-        return new ErrorResponse(e.getErrorMessage());
+        return new ErrorResponseData(e.getErrorMessage());
     }
 
     /**
@@ -46,9 +46,9 @@ public class DefualtExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public JsonResponse notFount(Exception e) {
+    public ResponseData notFount(Exception e) {
         log.error("运行时异常:", e);
-        return new ErrorResponse(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage());
+        return new ErrorResponseData(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage());
     }
 
 }
