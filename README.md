@@ -2,17 +2,20 @@
 [https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
 
 ## 介绍
-Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，以mybatis-plus持久层框架，
+Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），作者认为，一个好的分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。2018目标，不忘初心，坚持到底！
+
 
 ## roses模块介绍
 
 | 模块名称 | 说明 | 端口 | 备注 |
 | :---: | :---: | :---: | :---: |
-| roses-api | 服务接口和model | 8761 | 封装所有服务的接口，model，枚举等 |
+| roses-api | 服务接口和model | 无 | 封装所有服务的接口，model，枚举等 |
+| roses-core | 项目骨架 | 无 | 封装框架所需的基础工具类和其他机制 |
+| roses-scanner | 资源扫描器 | 无 | 接口无须录入，启动即可录入系统，使资源控制更简单 |
 | roses-register | 注册中心 | 8761 | eureka注册中心 |
-| roses-gateway | 网关 | 8000 | 
+| roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成 |
 | roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
-| roses-auth | 鉴权服务 | 8001 | 转发，资源权限校验，请求号生成 |
+| roses-auth | 鉴权服务 | 8001 | 提供用户，资源，权限等接口 |
 | roses-config | 配置中心 | 8002 | 分布式配置server |
 | roses-message-service | 消息服务 | 10001 | 可靠消息最终一致性（柔性事务解决方案） | 
 | roses-message-checker | 消息恢复和消息状态确认子系统 | 10002 | 可靠消息最终一致性（柔性事务解决方案） |
