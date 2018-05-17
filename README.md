@@ -2,7 +2,7 @@
    [https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
    
    ## 介绍
-   Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），作者认为，一个好的分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。2018目标，不忘初心，坚持到底！
+   Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），作者认为，一个好的分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。2018目标，用心做国产开源！
    
    
    ## Roses模块介绍
