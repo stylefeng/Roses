@@ -37,4 +37,4 @@
    5. 开发成本，对技术人员的技术要求（基本技能）。
    7. 监控问题。
    
-   ## 幂等性，可查询操作，一切基于requestdata ResponseData，独创资源扫描器，统一请求号生成器
+   ## TODO 幂等性，可查询操作，一切基于requestdata ResponseData，独创资源扫描器，统一请求号生成器
