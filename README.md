@@ -2,7 +2,7 @@
    [https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
    
 ## 介绍
-Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），个人认为，一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
+Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），个人认为，一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
 
 
 ## Roses模块介绍
@@ -11,7 +11,7 @@ Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解
 | :---: | :---: | :---: | :---: |
 | roses-api | 服务接口和model | 无 | 封装所有服务的接口，model，枚举等 |
 | roses-core | 项目骨架 | 无 | 封装框架所需的基础配置，工具类和运行机制等 |
-| roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统，使资源控制更简单 |
+| roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统 |
 | roses-register | 注册中心 | 8761 | eureka注册中心 |
 | roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成等 |
 | roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
