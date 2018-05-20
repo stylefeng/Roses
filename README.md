@@ -85,6 +85,18 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
 }
 
 ```
+
+### 分布式事务解决方案（可靠消息最终一致性）
+首先，分布式事务在不同业务场景下，解决方案是不一样的，时效性要求较高的场景下，例如订单支付成功后，更改订单状态，给用户账户加款，给积分账户加积分，三个操作在三个不同的服务下，这个时候可以用TCC方式解决事务问题；在时效性要求较为不严格下，例如订单支付成功后，需要异步录入会计凭证（不严格要求时效性），这个时候可以用可靠消息最终一致性解决。
+
+Roses中实现了可靠消息最终一致性的解决方案（如上所说第二个例子），TCC方案还未集成到系统。
+
+#### 实现原理
+
+
+
+#### 注意事项
+
    
 ### 独创资源扫描器
 
@@ -92,4 +104,3 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
 
 ### feign异常处理
 
-### 分布式事务解决方案（可靠消息最终一致性）
