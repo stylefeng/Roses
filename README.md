@@ -11,7 +11,7 @@ Roses基于Spring Boot, 致力于做更完善的**分布式**和**服务化**解
 | :---: | :---: | :---: | :---: |
 | roses-api | 服务接口和model | 无 | 封装所有服务的接口，model，枚举等 |
 | roses-core | 项目骨架 | 无 | 封装框架所需的基础配置，工具类和运行机制等 |
-| roses-scanner | 资源扫描器 | 无 | 接口无须录入，启动即可录入系统，使资源控制更简单 |
+| roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统，使资源控制更简单 |
 | roses-register | 注册中心 | 8761 | eureka注册中心 |
 | roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成等 |
 | roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
@@ -100,14 +100,38 @@ Roses中实现了可靠消息最终一致性的解决方案（如上所说第二
 Roses中roses-message-service为消息服务，为可靠消息最终一致性实现的核心，roses-message-checker为定时任务执行器，每隔一定时间来轮训消息表中是否有消息不一致的数据，若消息不一致则从业务系统中调用接口来查询具体业务的执行状态，从而来更新消息表中的消息。
 
 roses-example-order和roses-example-account两个模块，模拟了分布式事务的场景，首先通过order模块下一个单（/place接口），再执行完成此订单（/finish接口），在完成订单过程中，先调用了预发送消息接口（preSaveMessage），之后执行完业务后调用确认并发送消息（confirmAndSendMessage）。在account模块中有消息的监听器，监听到消息后存储账号交易流水记录（recordFlow）。account和order模块为了演示业务流程用，数据库设计比较简单，不合理处请见谅。
+```java
+//创建预发送消息
+ReliableMessage reliableMessage = createMessage(order);
 
-#### 注意事项
+//预发送消息
+messageServiceConsumer.preSaveMessage(reliableMessage);
 
+//更新订单为成功状态(百分之50几率失败，模拟错误数据)（此处错误已添加到消息表的数据会被roses-message-checker轮询时删除掉）
+updateToSuccess(order);
 
+//确认消息
+messageServiceConsumer.confirmAndSendMessage(reliableMessage.getMessageId());
+```
+
+#### 幂等性校验
+消息的投递有重试机制，所以在消息的消费端需要加上幂等性校验，使得多次消费消息也可以让业务实际只执行一次，在account模块中幂等性的判断通过订单号来标识操作的唯一性。
+
+```java
+
+//幂等判断
+EntityWrapper<FlowRecord> wrapper = new EntityWrapper<>();
+wrapper.eq("order_id", goodsFlowParam.getId());
+
+List<FlowRecord> flowRecords = this.selectList(wrapper);
+if (flowRecords != null && !flowRecords.isEmpty()) {
+    return;
+}
+```
+
+### 3. 一切请求基于RequestData ResponseData
    
-### 3. 独创资源扫描器
-
-### 4. 一切请求基于RequestData ResponseData
+### 4. 独创资源扫描器
 
 ### 5. feign异常处理
 

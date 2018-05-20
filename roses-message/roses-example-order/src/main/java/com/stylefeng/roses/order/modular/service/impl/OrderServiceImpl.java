@@ -74,7 +74,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, GoodsOrder> imple
         //预发送消息
         messageServiceConsumer.preSaveMessage(reliableMessage);
 
-        //更新订单为成功状态(百分之50几率失败，模拟错误数据)（此处错误已添加到消息表的数据会被）
+        //更新订单为成功状态(百分之50几率失败，模拟错误数据)（此处错误已添加到消息表的数据会被roses-message-checker轮询时删除掉）
         updateToSuccess(order);
 
         //确认消息
