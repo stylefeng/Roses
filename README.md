@@ -129,9 +129,51 @@ if (flowRecords != null && !flowRecords.isEmpty()) {
 }
 ```
 
-### 3. 一切请求基于RequestData ResponseData
-   
-### 4. 独创资源扫描器
+### 3. 一切请求基于RequestData和ResponseData
+为了方便日常开发，Roses对控制器层的请求参数和响应进行了统一封装。所有post方式的请求，并且带有json请求body的都可以用RequestData类来作为参数接收请求数据，所有的响应都可以用ResponseBody来作响应的结果。
+
+RequestData类中封装了对请求参数获取的常用方法，例如getString(),getInteger(),parse()等等，可以很方便的获取请求中包含的字符串数据，整型数据，以及解析请求为某个类。而ResponseData类中包含了对常用成功或者失败响应的封装，可以通过静态方法ResponseData.success()或者ResponseData.error()来响应成功的结果或者失败的响应。
+
+例如，请求的数据是一段json：
+```
+{goodsName:"order001",count:20}
+```
+
+控制器中可以用如下写法获取参数,并响应成功的返回结果：
+```java
+/**
+ * 测试RequestData
+ */
+@RequestMapping("/test")
+public Object test(RequestData requestData) {
+
+    String orderId = requestData.getString("goodsName");
+    System.out.println(orderId);
+
+    Integer number = requestData.getInteger("count");
+    System.out.println(number);
+
+    GoodsOrder goodsOrder = requestData.parse(GoodsOrder.class);
+    System.out.println(goodsOrder);
+
+    return ResponseData.success(goodsOrder);
+}
+```
+
+并不是所有请求和响应都必须用RequestData和ResponseData来接收和响应，这只是Roses提供的一种拓展功能，一种便利，可以选择使用或否。
+
+所有接口的参数和响应都封装在两个对象里，开发时候不用构建许多的vo（view object）和qo（query object），但是也有不利的地方，由于不知道请求和响应包含哪些参数，维护时候可能会增加难度，所以，在使用这种机制的时候，配合类似于[RAP](https://github.com/thx/RAP)这样的接口管理工具会更加的好用。
+
+### 4. 独创基于BeanPostProcessor的资源扫描器
+
 
 ### 5. feign异常处理
 
+
+### 6. Log + Trace完善日志记录
+
+
+### 7. roses-core提供常用配置
+
+
+### 8. 
