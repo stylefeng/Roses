@@ -2,7 +2,7 @@
    [https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
    
 ## 介绍
-Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），个人认为，一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
+Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
 
 
 ## Roses模块介绍
@@ -46,7 +46,7 @@ Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](
 Roses中，所有业务请求经过网关，网关做统一的鉴权，权限过滤，数据签名校验等。唯一请求号的作用如下：请求在业务流转过程中可能经过多个微服务，查看这次请求的info日志信息，或者error日志信息等，需要从多个微服务的日志记录里去查找，效率非常低，那么，有了唯一请求号标识之后，可以用唯一请求号把请求经过的所有业务流转串起来，并存储起来，当请求遇到问题后，可以通过唯一请求号快速把这次请求的所有日志搜集并展示起来，从而方便排查问题。
 
 Roses中，请求号在中转过程中填充到请求的Request-Header中，与之对应，响应时也会在Response-Hedaer中把本次的请求号输出。过滤器中的写法如下：
-```java
+```
 RequestContext currentContext = RequestContext.getCurrentContext();
 HttpServletResponse response = currentContext.getResponse();
 
@@ -100,7 +100,7 @@ Roses中实现了可靠消息最终一致性的解决方案（如上所说第二
 Roses中roses-message-service为消息服务，为可靠消息最终一致性实现的核心，roses-message-checker为定时任务执行器，每隔一定时间来轮训消息表中是否有消息不一致的数据，若消息不一致则从业务系统中调用接口来查询具体业务的执行状态，从而来更新消息表中的消息。
 
 roses-example-order和roses-example-account两个模块，模拟了分布式事务的场景，首先通过order模块下一个单（/place接口），再执行完成此订单（/finish接口），在完成订单过程中，先调用了预发送消息接口（preSaveMessage），之后执行完业务后调用确认并发送消息（confirmAndSendMessage）。在account模块中有消息的监听器，监听到消息后存储账号交易流水记录（recordFlow）。account和order模块为了演示业务流程用，数据库设计比较简单，不合理处请见谅。
-```java
+```
 //创建预发送消息
 ReliableMessage reliableMessage = createMessage(order);
 
@@ -117,7 +117,7 @@ messageServiceConsumer.confirmAndSendMessage(reliableMessage.getMessageId());
 #### 幂等性校验
 消息的投递有重试机制，所以在消息的消费端需要加上幂等性校验，使得多次消费消息也可以让业务实际只执行一次，在account模块中幂等性的判断通过订单号来标识操作的唯一性。
 
-```java
+```
 
 //幂等判断
 EntityWrapper<FlowRecord> wrapper = new EntityWrapper<>();
@@ -140,7 +140,7 @@ RequestData类中封装了对请求参数获取的常用方法，例如getString
 ```
 
 控制器中可以用如下写法获取参数,并响应成功的返回结果：
-```java
+```
 /**
  * 测试RequestData
  */
@@ -165,9 +165,11 @@ public Object test(RequestData requestData) {
 所有接口的参数和响应都封装在两个对象里，开发时候不用构建许多的vo（view object）和qo（query object），但是也有不利的地方，由于不知道请求和响应包含哪些参数，维护时候可能会增加难度，所以，在使用这种机制的时候，配合类似于[RAP](https://github.com/thx/RAP)这样的接口管理工具会更加的好用。
 
 ### 4. 独创基于BeanPostProcessor的资源扫描器
+Roses中设立了@ApiResource注解，用来标注控制器里的接口，在Roses框架中，用户对应了角色，角色又对应着资源，菜单关联资源。资源扫描器的作用一方面是便于管理所有的接口资源的权限控制，另一方面是简化了资源录入系统的方式 （不用手写），当程序启动时，会自动扫描带有@ApiResource注解的方法，扫描之后会对资源进行包装，写入到数据库。所以当使用了资源扫描器之后可以很方便的搜集所有服务上面的接口资源，并通过roses-auth的接口，统一的汇报到roses-auth服务上面去，从而实现了资源的集中管理。
+                                                                          
 
-
-### 5. feign异常处理
+### 5. 独特的Feign错误解码器
+Roses继承了Guns框架的业务编写方式，在适当的的业务错误场景，如果不能再继续执行下去业务，可以抛出ServiceException，让DefualtExceptionHandler拦截到异常，直接返回给前端业务上的错误提示信息。那么，在分布式的场景下，如何利用ServiceException的抛出来返回前端提示呢，当A服务调用B服务，B服务又调用C服务过程中，如何把异常信息逐级返回给上个服务呢，Roses中利ErrorDecoder并覆盖其中的decode方法，当response中的信息为Roses中的错误编码格式的话，会在Feign错误解析过程中直接抛出ServiceException，从而直接在调用方服务中抛出被调用方同样的服务异常，实现逐级响应Service服务异常的功能，如果担心服务异常带来的性能问题，可以通过 override 掉异常类的 fillInStackTrace() 方法为空方法，使其不拷贝栈信息。
 
 
 ### 6. Log + Trace完善日志记录
