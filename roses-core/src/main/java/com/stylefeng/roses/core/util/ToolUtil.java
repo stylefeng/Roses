@@ -3,7 +3,17 @@ package com.stylefeng.roses.core.util;
 
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
+import com.stylefeng.roses.core.config.properties.AppNameProperties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -178,5 +188,81 @@ public class ToolUtil {
         Date date = new Date(currentTimeInMillis - seconds * 1000);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(date);
+    }
+
+    /**
+     * 获取异常的具体信息
+     *
+     * @author fengshuonan
+     * @Date 2017/3/30 9:21
+     * @version 2.0
+     */
+    public static String getExceptionMsg(Throwable e) {
+        StringWriter sw = new StringWriter();
+        try {
+            e.printStackTrace(new PrintWriter(sw));
+        } finally {
+            try {
+                sw.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return sw.getBuffer().toString().replaceAll("\\$", "T");
+    }
+
+    /**
+     * 获取应用名称
+     *
+     * @author fengshuonan
+     * @Date 2018/5/12 上午10:24
+     */
+    public static String getApplicationName() {
+        try {
+            AppNameProperties appNameProperties =
+                    SpringContextHolder.getBean(AppNameProperties.class);
+            if (appNameProperties != null) {
+                return appNameProperties.getName();
+            } else {
+                return "";
+            }
+        } catch (Exception e) {
+            Logger logger = LoggerFactory.getLogger(LogUtil.class);
+            logger.error("获取应用名称错误！", e);
+            return "";
+        }
+    }
+
+    /**
+     * 获取ip地址
+     *
+     * @author yaoliguo
+     * @Date 2018/5/15 下午6:36
+     */
+    public static String getIP() {
+        try {
+            StringBuilder IFCONFIG = new StringBuilder();
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress() && inetAddress.isSiteLocalAddress()) {
+                        IFCONFIG.append(inetAddress.getHostAddress().toString() + "\n");
+                    }
+
+                }
+            }
+            return IFCONFIG.toString();
+
+
+        } catch (SocketException ex) {
+            ex.printStackTrace();
+        }
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

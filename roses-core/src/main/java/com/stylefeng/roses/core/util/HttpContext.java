@@ -19,12 +19,11 @@ public class HttpContext {
         return HttpContext.getRequest().getRemoteHost();
     }
 
-    public static HttpServletResponse getResponse() {
-        HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-        return response;
+    public static HttpServletResponse getResponse() throws NullPointerException {
+        return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
     }
 
-    public static HttpServletRequest getRequest() {
+    public static HttpServletRequest getRequest() throws NullPointerException {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return new WafRequestWrapper(request);
     }
