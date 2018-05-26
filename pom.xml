@@ -21,6 +21,7 @@
         <module>roses-config</module>
         <module>roses-monitor</module>
         <module>roses-message</module>
+        <module>roses-logger</module>
     </modules>
 
     <parent>

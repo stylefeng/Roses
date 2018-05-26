@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author yaoliguo
  * @date 2018-05-16 09:40
  */
-@TableName("Roses_TRACE_LOG")
+@TableName("roses_trace_log")
 public class RosesTraceLog extends Model<RosesTraceLog> {
 
     private static final long serialVersionUID = 1L;

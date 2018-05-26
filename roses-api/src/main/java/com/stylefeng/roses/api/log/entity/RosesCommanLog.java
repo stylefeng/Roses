@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author yaoliguo
  * @date 2018-04-24 13:45
  */
-@TableName("Roses_COMMON_LOG")
+@TableName("roses_common_log")
 public class RosesCommanLog extends Model<RosesCommanLog> {
 
     private static final long serialVersionUID = 1L;

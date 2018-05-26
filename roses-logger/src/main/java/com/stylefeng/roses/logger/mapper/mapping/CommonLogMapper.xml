@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stylefeng.roses.logger.mapper.CommonLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.stylefeng.roses.api.log.entity.RosesCommanLog">
+        <id column="LOG_ID" property="logId"/>
+        <result column="APP_ID" property="appId"/>
+        <result column="APPLICATION_NAME" property="applicationName"/>
+        <result column="CLASS_NAME" property="className"/>
+        <result column="ACCOUNT_ID" property="accountId"/>
+        <result column="IP" property="ip"/>
+        <result column="REQUEST_DATA" property="requestData"/>
+        <result column="LOG_NUM" property="logNum"/>
+        <result column="URL" property="url"/>
+        <result column="LOG_CATEGORY" property="logCategory"/>
+        <result column="LOG_CONTENT" property="logContent"/>
+        <result column="LOG_DETAILS" property="logDetails"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="DEL_FLAG" property="delFlag"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LOG_ID AS logId, APP_ID AS appId,APPLICATION_NAME AS applicationName,CLASS_NAME AS className, ACCOUNT_ID AS accountId, IP AS ip,REQUEST_DATA AS requestData,
+        LOG_NUM AS logNum, URL AS url, LOG_CATEGORY AS logCategory, LOG_CONTENT AS logContent, LOG_DETAILS AS logDetails,
+        CREATE_TIME AS createTime, DEL_FLAG AS delFlag
+    </sql>
+
+    <sql id="base_where_list">
+        <if test="appId !=null and appId!= ''">
+            AND APP_ID = #{appId}
+        </if>
+        <if test="accountId !=null and accountId!= ''">
+            AND ACCOUNT_ID = #{accountId}
+        </if>
+        <if test="logCategory !=null and logCategory!= ''">
+            AND LOG_CATEGORY = #{logCategory}
+        </if>
+        <if test="ip !=null and ip!= ''">
+            AND IP LIKE CONCAT('%', #{ip}, '%')
+        </if>
+        <if test="logNum !=null and logNum!= ''">
+            <choose>
+                <when test="logNum.length() == 32">
+                    AND LOG_NUM = #{logNum}
+                </when>
+                <otherwise>
+                    AND LOG_NUM LIKE CONCAT('%', #{logNum}, '%')
+                </otherwise>
+            </choose>
+        </if>
+        <!--<if test="createTime != null and createTime != '' ">-->
+        <!--AND date_format(`CREATE_TIME`, '%Y-%m-%d %H:%i:%s') &gt;= #{createTime}-->
+        <!--</if>-->
+        <!--<if test="createTimeEnd != null and createTimeEnd != '' ">-->
+        <!--AND date_format(`CREATE_TIME`, '%Y-%m-%d %H:%i:%s') &lt;= #{createTimeEnd}-->
+        <!--</if>-->
+        <if test="createTime != null and createTime != '' ">
+            AND `CREATE_TIME` &gt;= #{createTime}
+        </if>
+        <if test="createTimeEnd != null and createTimeEnd != '' ">
+            AND `CREATE_TIME` &lt;= #{createTimeEnd}
+        </if>
+        <if test="url !=null and url!= ''">
+            AND URL LIKE CONCAT('%', #{url}, '%')
+        </if>
+        <if test="logContent !=null and logContent!= ''">
+            AND LOG_CONTENT LIKE CONCAT('%', #{logContent}, '%')
+        </if>
+        <if test="logDetails !=null and logDetails!= ''">
+            AND LOG_DETAILS LIKE CONCAT ('%',#{logDetails},'%')
+        </if>
+    </sql>
+
+
+    <!--  -->
+    <sql id="Base_Column">
+		LOG_ID, APP_ID, CLASS_NAME, ACCOUNT_ID, LOG_NUM, URL , LOG_CATEGORY, LOG_CONTENT, LOG_DETAILS , CREATE_TIME
+	</sql>
+
+</mapper>
