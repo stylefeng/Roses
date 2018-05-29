@@ -1,0 +1,13 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: roses-logger
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/roses_log?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.roses.api.log.entity
