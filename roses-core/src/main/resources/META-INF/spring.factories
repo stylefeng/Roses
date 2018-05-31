@@ -8,4 +8,5 @@ com.stylefeng.roses.core.config.DefaultMybaitsPlusConfig,\
 com.stylefeng.roses.core.config.DefaultProperties,\
 com.stylefeng.roses.core.config.DefaultSwaggerConfig,\
 com.stylefeng.roses.core.config.DefaultUtilConfig,\
-com.stylefeng.roses.core.config.DefaultWebConfig
+com.stylefeng.roses.core.config.DefaultWebConfig,\
+com.stylefeng.roses.core.log.impl.LogProducerServiceImpl

@@ -11,12 +11,12 @@ public class LogProperties {
     /**
      * 记录日志的级别（逗号隔开）
      */
-    private String level;
+    private String level = "error,info";
 
     /**
      * 是否开启trace链式记录
      */
-    private Boolean trace;
+    private Boolean trace = true;
 
     public String getLevel() {
         return level;

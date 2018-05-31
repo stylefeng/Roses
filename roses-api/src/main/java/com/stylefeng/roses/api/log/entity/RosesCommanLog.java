@@ -3,7 +3,6 @@ package com.stylefeng.roses.api.log.entity;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableLogic;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
@@ -19,10 +18,13 @@ public class RosesCommanLog extends Model<RosesCommanLog> {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId("ID")
+    private Long id;
+
     /**
      * 日志id
      */
-    @TableId("LOG_ID")
+    @TableField("LOG_ID")
     private String logId;
     /**
      * 应用id
@@ -90,7 +92,6 @@ public class RosesCommanLog extends Model<RosesCommanLog> {
      * Y:已删除   N:未删除
      */
     @TableField("DEL_FLAG")
-    @TableLogic
     private String delFlag;
 
     public String getApplicationName() {
@@ -205,9 +206,17 @@ public class RosesCommanLog extends Model<RosesCommanLog> {
         this.delFlag = delFlag;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     protected Serializable pkVal() {
-        return this.logId;
+        return this.id;
     }
 
     @Override

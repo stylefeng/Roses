@@ -7,7 +7,6 @@ import com.stylefeng.roses.core.log.LogProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,7 +18,6 @@ import java.util.concurrent.Executors;
  * @author yaoliguo
  * @date 2018-04-25 10:37
  */
-@Service
 public class LogProducerServiceImpl implements LogProducerService {
 
     @Autowired
