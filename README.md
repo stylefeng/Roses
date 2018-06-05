@@ -173,10 +173,9 @@ Roses继承了Guns框架的业务编写方式，在适当的的业务错误场�
 
 
 ### 6. Log + Trace日志记录
-
+为了方便业务异常以及分布式调用链中调用异常排查，Roses编写了LogUtil和TraceUtil两个类来记录业务中的调试，提示，错误日志和调用链调用过程中的信息日志，LogUtil中包含LogUtil.info()，LogUtil.debug()，LogUtil.error()等静态方法，TraceUtil中包含TraceUtil.trace()等静态方法，这两个类都采用线程池异步记录日志的方式来记录，目前日志是通过Redis的List放到队列在通过roses-logger模块监听队列来消费记录日志，当然，Roses提供了拓展，如果这种记录方式或是存储介质不符合您的业务需求，您可以通过继承com.stylefeng.roses.core.log.LogProducerService接口，实现您自己的日志记录方式，而不必修改LogUtil中的日志记录方法。总之，Log + Trace的日志记录方法，为多服务异常排查，和调用链服务治理提供了很好的保障。
 
 
 ### 7. roses-core提供各种常用配置
 在roses-core模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-core这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-core模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
-
 
