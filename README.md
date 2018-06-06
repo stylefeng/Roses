@@ -1,8 +1,7 @@
-# Roses the next Guns v1.0
-   [https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)
+# Roses v1.0
    
 ## 介绍
-Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做更完善的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
+Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做整套的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
 
 
 ## Roses模块介绍
@@ -10,12 +9,14 @@ Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](
 | 模块名称 | 说明 | 端口 | 备注 |
 | :---: | :---: | :---: | :---: |
 | roses-api | 服务接口和model | 无 | 封装所有服务的接口，model，枚举等 |
+| roses-auth | 鉴权服务 | 8001 | 提供用户，资源，权限等接口 |
+| roses-config | 配置中心服务器 | 8002 | 配置集中管理 |
 | roses-core | 项目骨架 | 无 | 封装框架所需的基础配置，工具类和运行机制等 |
+| roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成等 |
+| roses-logger | 日志服务 | 8003 | 消费并存储日志 |
 | roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统 |
 | roses-register | 注册中心 | 8761 | eureka注册中心 |
-| roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成等 |
 | roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
-| roses-auth | 鉴权服务 | 8001 | 提供用户，资源，权限等接口 |
 | roses-message-service | 消息服务 | 10001 | 可靠消息最终一致性（柔性事务解决方案） | 
 | roses-message-checker | 消息恢复和消息状态确认子系统 | 10002 | 可靠消息最终一致性（柔性事务解决方案） |
 | roses-example-order | 订单服务 | 11001 | 演示如何解决分布式事务 |
@@ -182,5 +183,7 @@ Roses继承了Guns框架的业务编写方式，在适当的的业务错误场�
 为了方便业务异常以及分布式调用链中调用异常排查，Roses编写了LogUtil和TraceUtil两个类来记录业务中的调试，提示，错误日志和调用链调用过程中的信息日志，LogUtil中包含LogUtil.info()，LogUtil.debug()，LogUtil.error()等静态方法，TraceUtil中包含TraceUtil.trace()等静态方法，这两个类都采用线程池异步记录日志的方式来记录，目前日志是通过Redis的List放到队列在通过roses-logger模块监听队列来消费记录日志，当然，Roses提供了拓展，如果这种记录方式或是存储介质不符合您的业务需求，您可以通过继承com.stylefeng.roses.core.log.LogProducerService接口，实现您自己的日志记录方式，而不必修改LogUtil中的日志记录方法。总之，Log + Trace的日志记录方法，为多服务异常排查，和调用链服务治理提供了很好的保障。
 
 
-## 核武器 roses-core 
+## 快速开发微服务的秘籍 roses-core
 在roses-core模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-core这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-core模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
+
+**正如您所看到的，有了roses-core模块，开发别的模块时，您可以把百分之90的精力花在编写业务上，百分之10的精力花在搭建项目和配置项目上。**
