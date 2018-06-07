@@ -17,8 +17,8 @@ Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](
 | roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统 |
 | roses-register | 注册中心 | 8761 | eureka注册中心 |
 | roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
-| roses-message-service | 消息服务 | 10001 | 可靠消息最终一致性（柔性事务解决方案） | 
-| roses-message-checker | 消息恢复和消息状态确认子系统 | 10002 | 可靠消息最终一致性（柔性事务解决方案） |
+| roses-message-service | 消息服务 | 9001 | 可靠消息最终一致性（柔性事务解决方案） | 
+| roses-message-checker | 消息恢复和消息状态确认子系统 | 9002 | 可靠消息最终一致性（柔性事务解决方案） |
 | roses-example-order | 订单服务 | 11001 | 演示如何解决分布式事务 |
 | roses-example-account | 账户服务 | 11002 | 演示如何解决分布式事务 |
 
