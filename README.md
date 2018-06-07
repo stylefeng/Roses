@@ -1,7 +1,7 @@
 # Roses v1.0
    
 ## 介绍
-Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做整套的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。
+Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力于做整套的**分布式**和**服务化**解决方案，Roses提供基于Spring Cloud的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的便捷的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。**
 
 
 ## Roses模块介绍
@@ -22,6 +22,22 @@ Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](
 | roses-example-order | 订单服务 | 11001 | 演示如何解决分布式事务 |
 | roses-example-account | 账户服务 | 11002 | 演示如何解决分布式事务 |
 
+## 使用手册
+
+### 运行环境
+> * JDK 1.8
+> * Redis最新版
+> * ActiveMQ 5.9.1（可以根据`com.stylefeng.roses.message.core.activemq.MessageSender`接口自行拓展为自己公司需要的队列）
+> * Mysql 5.6 +，项目运行前请初始化数据库，脚本在各自项目的sql文件夹
+
+### 项目运行步骤
+> 1. 启动注册中心roses-register
+> 2. 启动消息服务roses-message-service
+> 3. （可选，演示用）启动账户服务roses-example-account
+> 4. （可选，演示用）启动订单服务roses-example-order
+> 5. 启动消息恢复子系统roses-message-checker
+> 6. 启动网关服务roses-gateway
+> 7. 启动鉴权服务roses-auth
 
 ## 微服务的优缺点
 微服务不一定适用于所有的系统构建，需要根据各自公司业务情况来评估。以下列举一些微服务的优缺点，仅供参考。
@@ -184,6 +200,6 @@ Roses继承了Guns框架的业务编写方式，在适当的的业务错误场�
 
 
 ## 快速开发微服务的秘籍 roses-core
-在roses-core模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-core这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-core模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
+在roses-core模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-core这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在Roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-core模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
 
 **有了roses-core模块，开发别的模块时，您可以把百分之90的精力花在编写业务上，百分之10的精力花在搭建项目和配置项目上。**

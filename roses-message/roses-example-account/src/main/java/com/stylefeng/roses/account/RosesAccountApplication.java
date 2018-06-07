@@ -6,7 +6,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 
 /**
- * 消息恢复子系统
+ * 用户账户服务
  *
  * @author stylefeng
  * @Date 2018/1/22 21:27
