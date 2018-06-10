@@ -15,6 +15,9 @@ roses:
   sign:
     time: 600 #签名默认失效时间 600秒
 
+log:
+  path: /opt/logs/roses-gateway
+
 spring:
   application:
     name: roses-gateway
