@@ -4,23 +4,59 @@ server:
 spring:
   application:
     name: roses-config
+  profiles:
+    active: @spring.active@
+
+management:
+  security:
+    enabled: false
+
+---
+
+spring:
+  profiles: local
   cloud:
     config:
       server:
+        bootstrap: true
         git:
-          uri: https://gitee.com/naan1993/roses-config
-          search-paths: roses-configs
-          username:
-          password:
+          uri: https://gitee.com/naan1993/roses-config.git
+          username: xxxx
+          password: xxxx
+          search-paths: /**
 
-eureka:
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
-    lease-expiration-duration-in-seconds: 20   #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除(默认90秒)
-    lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
-  client:
-    service-url:
-      defaultZone: http://127.0.0.1:8761/eureka
-    registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
+---
 
+spring:
+  profiles: dev
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://gitee.com/naan1993/roses-config.git
+          username: xxxx
+          password: xxxx
+          search-paths: /**
+
+share:
+  log:
+    path: /usr/local/app/config-server
+
+---
+
+spring:
+  profiles: produce
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://gitee.com/naan1993/roses-config.git
+          username: xxxx
+          password: xxxx
+          search-paths: /**
+
+share:
+  log:
+    path: /usr/local/app/config-server
