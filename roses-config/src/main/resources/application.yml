@@ -39,9 +39,8 @@ spring:
           password: xxxx
           search-paths: /**
 
-share:
-  log:
-    path: /usr/local/app/config-server
+log:
+  path: /usr/local/app/config-server
 
 ---
 
@@ -57,6 +56,5 @@ spring:
           password: xxxx
           search-paths: /**
 
-share:
-  log:
-    path: /usr/local/app/config-server
+log:
+  path: /usr/local/app/config-server
