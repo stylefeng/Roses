@@ -40,7 +40,7 @@ spring:
           search-paths: /**
 
 log:
-  path: /usr/local/app/config-server
+  path: /apps/config-server
 
 ---
 
@@ -57,4 +57,4 @@ spring:
           search-paths: /**
 
 log:
-  path: /usr/local/app/config-server
+  path: /apps/config-server
