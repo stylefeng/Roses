@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: roses-checker
+  profiles:
+    active: @spring.active@
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/roses_sys?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
@@ -11,12 +13,6 @@ spring:
 
 mybatis-plus:
   typeAliasesPackage: com.stylefeng.roses.api.message.model
-
-logging:
-  level.root: info
-  level.com.stylefeng: debug
-  path: logs/
-  file: roses-checker.log
 
 eureka:
   instance:
@@ -42,3 +38,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 3000   #hystrix线程超过3秒熔断，数值大于ribbon的处理超时时间，留给ribbon重试，否则直接熔断，重试就没有意义了
+
+log:
+  path: /apps/roses-message-checker

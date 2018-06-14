@@ -1,6 +1,11 @@
 server:
   port: 9000
 
-logging:
-  level: info
+spring:
+  application:
+    name: roses-monitor
+  profiles:
+    active: @spring.active@
 
+log:
+  path: /apps/roses-monitor

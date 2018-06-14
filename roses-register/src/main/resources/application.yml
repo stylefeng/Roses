@@ -2,11 +2,8 @@ spring:
   application:
     name: roses-eureka-server
   profiles:
-    active: eureka1
+    active: @spring.active@
 
----
-spring:
-  profiles: eureka1
 server:
   port: 8761
 eureka:
@@ -21,28 +18,6 @@ eureka:
     fetch-registry: false #需要从其他eureka节点获取注册信息
     service-url:
       default-zone: http://127.0.0.1:8761/eureka #设置与eureka交互的地址
-  instance:
-    hostname: 127.0.0.1
-    prefer-ip-address: true
-
----
-
-spring:
-  profiles: eureka2
-server:
-  port: 8762
-eureka:
-  server:
-    #是否开启自我保护（运行期间spring会统计信条失败的比例在15分钟之内是否低于85%，如果不低于85%，Eureka会将实例注册信息保护起来，让这些实例不会过期）
-    enable-self-preservation: false
-    eviction-interval-timer-in-ms: 3000      #3秒钟自动剔除失效的节点
-    response-cache-update-interval-ms: 3000  #eureka server刷新readCacheMap的时间
-                                             #注意，client读取的是readCacheMap，这个时间决定了多久会把readWriteCacheMap的缓存更新到readCacheMap上
-  client:
-    register-with-eureka: false #自己也注册到注册中心
-    fetch-registry: false #需要从其他eureka节点获取注册信息
-    service-url:
-      default-zone: http://127.0.0.1:8762/eureka #设置与eureka交互的地址
   instance:
     hostname: 127.0.0.1
     prefer-ip-address: true
