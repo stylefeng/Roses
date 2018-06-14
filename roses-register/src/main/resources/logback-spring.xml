@@ -2,7 +2,7 @@
 <configuration>
 
     <!--定义日志存放的位置-->
-    <springProperty scope="context" name="ROSES_LOG_PATH" source="log.path"
+    <springProperty scope="context" name="ROSES_LOG_PATH" source="roses.log.path"
                     defaultValue="roses_logs"/>
 
     <!-- ****************************************************************************************** -->
