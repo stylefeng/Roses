@@ -171,7 +171,7 @@ RequestData类中封装了对请求参数获取的常用方法，例如getString
 
 例如，请求的数据是一段json：
 ```
-{goodsName:"order001",count:20}
+{name:"order001",count:20}
 ```
 
 控制器中可以用如下写法获取参数,并响应成功的返回结果：
@@ -182,16 +182,16 @@ RequestData类中封装了对请求参数获取的常用方法，例如getString
 @RequestMapping("/test")
 public Object test(RequestData requestData) {
 
-    String orderId = requestData.getString("goodsName");
-    System.out.println(orderId);
+    String name = requestData.getString("name");
+    System.out.println(name);
 
-    Integer number = requestData.getInteger("count");
-    System.out.println(number);
+    Integer count = requestData.getInteger("count");
+    System.out.println(count);
 
-    GoodsOrder goodsOrder = requestData.parse(GoodsOrder.class);
-    System.out.println(goodsOrder);
+    MyOrder order = requestData.parse(MyOrder.class);
+    System.out.println(order);
 
-    return ResponseData.success(goodsOrder);
+    return ResponseData.success(order);
 }
 ```
 
