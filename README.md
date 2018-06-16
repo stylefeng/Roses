@@ -158,7 +158,7 @@ if (flowRecords != null && !flowRecords.isEmpty()) {
 ```
 
 ### 3. 分布式配置中心roses-config
-在Roses中，正如您所见，所有的模块都是在一个大工程下，但是实际日常开发中，模块往往分隔在多个项目中，每个项目有单独的小组来维护，小组与小组之间甚至代码都不是可见。当项目中的一些通用配置变动时，例如数据库地址，账号密码等，要么你通知各个小组修改他们的配置，要么你自己打开所有项目修改一遍。如果使用了分布式配置中心，把所有项目的配置收集起来，集中配置，那么你需要打开配置中心的git仓库来修改配置，从而简化配置的维护工作。
+在Roses中，正如您所见，所有的模块都是在一个大工程下，但是实际日常开发中，模块往往分隔在多个项目中，每个项目有单独的小组来维护，小组与小组之间甚至代码都不是可见。当项目中的一些通用配置变动时，例如数据库地址，账号密码等，要么你通知各个小组修改他们的配置，要么你自己打开所有项目修改一遍。如果使用了分布式配置中心，可以把所有项目的配置收集起来，集中配置，那么你只需要打开配置中心的git仓库来修改配置，从而简化配置的维护工作。
 
 除此之外，如果spring boot应用开启了actuator，配置仓库中的配置更改后，应用还可以通过/refresh动态刷新项目的配置，这在网关动态增加路由等配置上非常方便。
 
@@ -209,6 +209,49 @@ Roses继承了Guns框架的业务编写方式，在适当的的业务错误场�
 
 ### 7. Log + Trace日志记录
 为了方便业务异常以及分布式调用链中调用异常排查，Roses编写了LogUtil和TraceUtil两个类来记录业务中的调试，提示，错误日志和调用链调用过程中的信息日志，LogUtil中包含LogUtil.info()，LogUtil.debug()，LogUtil.error()等静态方法，TraceUtil中包含TraceUtil.trace()等静态方法，这两个类都采用线程池异步记录日志的方式来记录，目前日志是通过Redis的List放到队列在通过roses-logger模块监听队列来消费记录日志，当然，Roses提供了拓展，如果这种记录方式或是存储介质不符合您的业务需求，您可以通过继承com.stylefeng.roses.core.log.LogProducerService接口，实现您自己的日志记录方式，而不必修改LogUtil中的日志记录方法。总之，Log + Trace的日志记录方法，为多服务异常排查，和调用链服务治理提供了很好的保障。
+
+### 8. 统一的日志记录格式
+Roses采用logback来记录日志，并且每个模块都有统一的规范的日志记录格式，具体可见每个模块下的`logback-spring.xml`配置文件，在这个配置中，定义了两种profile。
+
+第一种profile是在`spring.profiles.active`为local时激活，也就是，在本地开发中，日志只打印到控制台中，不会输出到文件中，默认日志输出级别是info，但是`com.stylefeng.roses`包中的类的日志，以debug级别输出，为了方便开发人员本地调试。
+```
+<springProfile name="local">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>===%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger Line:%-3L - %msg%n</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <logger name="com.stylefeng.roses" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+</springProfile>
+```
+
+第二种profile是在`spring.profiles.active`不是local时激活，也就是，不管在正式环境或者测试环境的linux服务器中，都不会在控制台打印logback记录的日志，都会把日志输出到文件中，在这种profile下，记录的日志文件分为两类，第一类日志文件是只记录ERROR级别的日志，可以定期查看这个文件的错误日志，排查服务问题，第二类则是记录所有级别的日志。在两类日志记录器中，日志的切割都是以日期和文件大小（2M）切分。
+```
+<springProfile name="!local">
+
+    <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        ...
+    </appender>
+
+    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        ...
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE_ERROR"/>
+        <appender-ref ref="FILE_ALL"/>
+    </root>
+
+</springProfile>
+```
 
 ---
 
