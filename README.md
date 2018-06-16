@@ -160,7 +160,9 @@ if (flowRecords != null && !flowRecords.isEmpty()) {
 ### 3. 分布式配置中心roses-config
 在Roses中，正如您所见，所有的模块都是在一个大工程下，但是实际日常开发中，模块往往分隔在多个项目中，每个项目有单独的小组来维护，小组与小组之间甚至代码都不是可见。当项目中的一些通用配置变动时，例如数据库地址，账号密码等，要么你通知各个小组修改他们的配置，要么你自己打开所有项目修改一遍。如果使用了分布式配置中心，把所有项目的配置收集起来，集中配置，那么你需要打开配置中心的git仓库来修改配置，从而简化配置的维护工作。
 
-除此之外，如果spring boot应用开启了actuator，配置仓库中的配置更改后，应用还可以通过/refresh动态刷新项目的配置。
+除此之外，如果spring boot应用开启了actuator，配置仓库中的配置更改后，应用还可以通过/refresh动态刷新项目的配置，这在网关动态增加路由等配置上非常方便。
+
+当然，开启分布式配置之后也有不完美的地方，在本地开发调试中，常常需要修改配置，直接修改远程仓库的配置又会影响到别人的本地开发，关于这种情况，Roses在每个项目的src/test/resources文件夹中，都保留了一个`application-local.yml`，这个配置文件是local环境下的应用的配置文件，您可以把它拷贝到src/main/resources中，并配置`bootstrap.yml`中的`spring.cloud.config.enable`配置为false，即可关闭配置中心的配置，使用本地的配置。
 
 ### 4. 一切请求基于RequestData和ResponseData
 为了方便日常接口开发，Roses对控制器层的请求参数和响应进行了统一封装。所有post方式的请求，并且带有json请求body的都可以用RequestData类来作为参数接收请求数据，所有的响应都可以用ResponseBody来作响应的结果。
