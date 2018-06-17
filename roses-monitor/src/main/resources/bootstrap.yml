@@ -1,11 +1,51 @@
-server:
-  port: 9000
-
 spring:
   application:
     name: roses-monitor
   profiles:
     active: @spring.active@
+  cloud:
+    config:
+      profile: @spring.active@
+      label: master
+
+---
+
+spring:
+  profiles: local
+  cloud:
+    config:
+      enabled: true
+      uri: http://127.0.0.1:8002
+
+---
+
+spring:
+  profiles: dev
+  cloud:
+    config:
+      uri: http://127.0.0.1:8002
+
+log:
+  path: /apps/roses-monitor
+
+---
+
+spring:
+  profiles: test
+  cloud:
+    config:
+      uri: http://127.0.0.1:8002
+
+log:
+  path: /apps/roses-monitor
+
+---
+
+spring:
+  profiles: produce
+  cloud:
+    config:
+      uri: http://127.0.0.1:8002
 
 log:
   path: /apps/roses-monitor
