@@ -24,6 +24,13 @@ spring:
           username: xxxx
           password: xxxx
           search-paths: /**
+  boot:
+    admin:
+      url: http://127.0.0.1:9000
+      username: admin       #These two are needed so that the client
+      password: admin       #can register at the protected server api
+      client:
+        service-base-url: http://127.0.0.1:8002
 
 ---
 
@@ -38,6 +45,13 @@ spring:
           username: xxxx
           password: xxxx
           search-paths: /**
+  boot:
+    admin:
+      url: http://127.0.0.1:9000
+      username: admin       #These two are needed so that the client
+      password: admin       #can register at the protected server api
+      client:
+        service-base-url: http://127.0.0.1:8002
 
 log:
   path: /apps/config-server
@@ -55,6 +69,13 @@ spring:
           username: xxxx
           password: xxxx
           search-paths: /**
+  boot:
+    admin:
+      url: http://127.0.0.1:9000
+      username: admin       #These two are needed so that the client
+      password: admin       #can register at the protected server api
+      client:
+        service-base-url: http://127.0.0.1:8002
 
 log:
   path: /apps/config-server
