@@ -88,7 +88,7 @@ public class LogUtil {
         if (stack == null || stack.length < 4) {
             className = LogUtil.class.getName();
         } else {
-            className = stack[3].getClassName();
+            className = stack[4].getClassName();
         }
 
         //记录日志
