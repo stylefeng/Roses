@@ -1,0 +1,41 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: roses-checker
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/roses_sys?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+
+mybatis-plus:
+  typeAliasesPackage: com.stylefeng.roses.api.message.model
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-expiration-duration-in-seconds: 20   #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除(默认90秒)
+    lease-renewal-interval-in-seconds: 5       #服务刷新时间配置，每隔这个时间会主动心跳一次(默认30秒)
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+    registry-fetch-interval-seconds: 10  #重新刷新服务地址的时间
+
+ribbon:
+  connect-imeout: 300     #创建连接的超时时间 单位：毫秒
+  read-timeout: 2000      #处理请求的超时时间 单位：毫秒
+  max-auto-retries-next-server: 0 #切换实例的重试次数
+  max-auto-retries: 0     #对当前实例的重试次数
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000   #hystrix线程超过3秒熔断，数值大于ribbon的处理超时时间，留给ribbon重试，否则直接熔断，重试就没有意义了
+
+log:
+  path: /apps/roses-message-checker
