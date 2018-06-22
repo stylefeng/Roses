@@ -34,7 +34,7 @@ Roses基于Spring Boot, 是开源项目Guns（[https://gitee.com/naan1993/guns](
 > * Mysql 5.7 +，项目运行前请初始化数据库，脚本在各自项目的sql文件夹
 
 ### 项目运行步骤
-> 1. 启动Redis,启动ActiveMQ,初始化好myslq数据库
+> 1. 启动Redis,启动ActiveMQ,初始化好mysql数据库
 > 2. 启动配置中心roses-config
 > 3. 启动注册中心roses-register
 > 4. 启动监控中心roses-monitor
