@@ -8,8 +8,10 @@ spring:
     active: @spring.active@
 
 management:
-  security:
-    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 ---
 
@@ -27,11 +29,12 @@ spring:
           basedir: ./tmp
   boot:
     admin:
-      url: http://127.0.0.1:9000
-      username: admin       #These two are needed so that the client
-      password: admin       #can register at the protected server api
       client:
-        service-base-url: http://127.0.0.1:8002
+        url: http://127.0.0.1:9000
+        username: admin
+        password: admin
+        instance:
+          service-base-url: http://127.0.0.1:8002
 
 ---
 
@@ -48,11 +51,12 @@ spring:
           search-paths: /**
   boot:
     admin:
-      url: http://127.0.0.1:9000
-      username: admin       #These two are needed so that the client
-      password: admin       #can register at the protected server api
       client:
-        service-base-url: http://127.0.0.1:8002
+        url: http://127.0.0.1:9000
+        username: admin
+        password: admin
+        instance:
+          service-base-url: http://127.0.0.1:8002
 
 log:
   path: /apps/config-server
@@ -72,11 +76,12 @@ spring:
           search-paths: /**
   boot:
     admin:
-      url: http://127.0.0.1:9000
-      username: admin       #These two are needed so that the client
-      password: admin       #can register at the protected server api
       client:
-        service-base-url: http://127.0.0.1:8002
+        url: http://127.0.0.1:9000
+        username: admin
+        password: admin
+        instance:
+          service-base-url: http://127.0.0.1:8002
 
 log:
   path: /apps/config-server
