@@ -3,8 +3,8 @@ package com.stylefeng.roses.core.base.controller;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.core.base.response.ResponseData;
 import com.xiaoleilu.hutool.bean.BeanUtil;
-import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
-import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
 
@@ -17,7 +17,8 @@ import java.util.Map;
 public class DefaultRosesErrorAttributes extends DefaultErrorAttributes {
 
     @Override
-    public Map<String, Object> getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
+    public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
         return BeanUtil.beanToMap(ResponseData.error(CoreExceptionEnum.SERVICE_ERROR.getMessage()));
+
     }
 }

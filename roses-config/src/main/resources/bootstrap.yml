@@ -24,6 +24,7 @@ spring:
           username: xxxx
           password: xxxx
           search-paths: /**
+          basedir: ./tmp
   boot:
     admin:
       url: http://127.0.0.1:9000

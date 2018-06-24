@@ -39,3 +39,4 @@ nbdist/
 .nb-gradle/
 
 *.log
+tmp/

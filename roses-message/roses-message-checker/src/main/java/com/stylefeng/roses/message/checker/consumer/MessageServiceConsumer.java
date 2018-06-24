@@ -1,7 +1,7 @@
 package com.stylefeng.roses.message.checker.consumer;
 
 import com.stylefeng.roses.api.message.MessageServiceApi;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 
 /**
  * 消息服务消费者
