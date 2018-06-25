@@ -1,5 +1,6 @@
-package com.stylefeng.roses.config;
+package com.stylefeng.roses.core.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @Date 2018/6/24 23:13
  */
 @Configuration
-public class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+@ConditionalOnClass(WebSecurityConfigurerAdapter.class)
+public class DefaultSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().permitAll()

@@ -126,5 +126,12 @@
             <artifactId>spring-boot-starter-cache</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!--security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>
