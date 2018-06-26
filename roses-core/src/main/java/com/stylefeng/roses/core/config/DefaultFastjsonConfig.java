@@ -87,7 +87,7 @@ public class DefaultFastjsonConfig {
         mediaTypes.add(MediaType.TEXT_XML);
 
         //增加解析spring boot actuator结果的解析
-        mediaTypes.add(MediaType.valueOf("application/vnd.spring-boot.actuator.v1+json"));
+        mediaTypes.add(MediaType.valueOf("application/vnd.spring-boot.actuator.v2+json"));
 
         return mediaTypes;
     }
