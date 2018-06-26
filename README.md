@@ -1,7 +1,7 @@
 # Roses v1.0
    
 ## 介绍
-Roses基于Spring Boot 2, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力做更简洁的**分布式**和**服务化**解决方案，Roses提供基于最新版Spring Cloud 的分布式框架，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。**
+Roses基于Spring Boot 2, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力做更简洁的**分布式**和**服务化**解决方案，Roses整合了最新版Spring Cloud Finchley.RELEASE，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。**
 
 ---
 
