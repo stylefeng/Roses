@@ -12,6 +12,9 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 ---
 
@@ -31,8 +34,6 @@ spring:
     admin:
       client:
         url: http://127.0.0.1:9000
-        username: admin
-        password: admin
         instance:
           service-base-url: http://127.0.0.1:8002
 
@@ -53,8 +54,6 @@ spring:
     admin:
       client:
         url: http://127.0.0.1:9000
-        username: admin
-        password: admin
         instance:
           service-base-url: http://127.0.0.1:8002
 
@@ -78,8 +77,6 @@ spring:
     admin:
       client:
         url: http://127.0.0.1:9000
-        username: admin
-        password: admin
         instance:
           service-base-url: http://127.0.0.1:8002
 
