@@ -1,8 +1,10 @@
 package com.stylefeng.roses.core.base.controller;
 
+import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
+import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.base.warpper.BaseControllerWarpper;
-import com.stylefeng.roses.core.util.FileUtil;
 import com.stylefeng.roses.core.util.HttpContext;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,12 +14,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 
 public class BaseController {
 
-    protected String REDIRECT = "redirect:";
-    protected String FORWARD = "forward:";
+    protected final String REDIRECT = "redirect:";
+    protected final String FORWARD = "forward:";
 
     protected HttpServletRequest getHttpServletRequest() {
         return HttpContext.getRequest();
@@ -70,9 +72,13 @@ public class BaseController {
      * @author fengshuonan
      * @date 2017年2月28日 下午2:53:19
      */
-    protected ResponseEntity<byte[]> renderFile(String fileName, String filePath) {
-        byte[] bytes = FileUtil.toByteArray(filePath);
-        return renderFile(fileName, bytes);
+    protected ResponseEntity<InputStreamResource> renderFile(String fileName, String filePath) {
+        try {
+            final FileInputStream inputStream = new FileInputStream(filePath);
+            return renderFile(fileName, inputStream);
+        } catch (FileNotFoundException e) {
+            throw new ServiceException(CoreExceptionEnum.FILE_READING_ERROR);
+        }
     }
 
     /**
@@ -81,7 +87,20 @@ public class BaseController {
      * @author fengshuonan
      * @date 2017年2月28日 下午2:53:19
      */
-    protected ResponseEntity<byte[]> renderFile(String fileName, byte[] fileBytes) {
+    protected ResponseEntity<InputStreamResource> renderFile(String fileName, byte[] fileBytes) {
+        return renderFile(fileName, new ByteArrayInputStream(fileBytes));
+    }
+
+    /**
+     * 返回前台文件流
+     *
+     * @param fileName    文件名
+     * @param inputStream 输入流
+     * @return
+     * @author 0x0001
+     */
+    protected ResponseEntity<InputStreamResource> renderFile(String fileName, InputStream inputStream) {
+        InputStreamResource resource = new InputStreamResource(inputStream);
         String dfileName = null;
         try {
             dfileName = new String(fileName.getBytes("gb2312"), "iso8859-1");
@@ -91,6 +110,6 @@ public class BaseController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         headers.setContentDispositionFormData("attachment", dfileName);
-        return new ResponseEntity<byte[]>(fileBytes, headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(resource, headers, HttpStatus.CREATED);
     }
 }
