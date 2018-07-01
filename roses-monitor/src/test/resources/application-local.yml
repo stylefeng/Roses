@@ -1,33 +1,21 @@
 server:
   port: 9000
 
-spring:
-  application:
-    name: roses-monitor
-  boot:
-    admin:
-      username: "${security.user.name}"       #These two are needed so that the client
-      password: "${security.user.password}"   #can register at the protected server api
-      client:
-        metadata:
-          user.name: "${security.user.name}"          #These two are needed so that the server
-          user.password:  "${security.user.password}" #can access the proteceted client endpoints
-
 eureka:
   instance:
-    metadata-map:
-      user.name: "${security.user.name}"             #These two are needed so that the server
-      user.password: "${security.user.password}"     #can access the protected client endpoints
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
   client:
-    registry-fetch-interval-seconds: 30
-    service-url:
-      defaultZone: http://localhost:8761/eureka
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
 
-security:
-  basic:
-    enabled: true
-  user:
-    name: admin
-    password: admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+

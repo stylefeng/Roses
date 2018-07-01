@@ -4,7 +4,6 @@ import com.stylefeng.roses.core.config.cache.FastJson2JsonRedisSerializer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -19,13 +18,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Configuration
 @EnableCaching
 public class DefaultCacheConfig {
-
-    @Bean
-    public RedisCacheManager cacheManager(RedisTemplate redisTemplate) {
-        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
-        redisCacheManager.setDefaultExpiration(30 * 60);
-        return redisCacheManager;
-    }
 
     @Bean
     public RedisSerializer fastJson2JsonRedisSerializer() {

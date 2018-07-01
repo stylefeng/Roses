@@ -8,11 +8,11 @@ import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.base.response.ErrorResponseData;
 import com.xiaoleilu.hutool.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.util.List;
@@ -48,9 +48,9 @@ public class ErrorTipConfig extends WebMvcConfigurationSupport {
      */
     public class RosesErrorAttributes extends DefaultErrorAttributes {
 
-        @Override
-        public Map<String, Object> getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
 
+        @Override
+        public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
             RequestContext currentContext = RequestContext.getCurrentContext();
             Throwable throwable = currentContext.getThrowable();
             if (throwable != null && throwable instanceof ZuulException) {
