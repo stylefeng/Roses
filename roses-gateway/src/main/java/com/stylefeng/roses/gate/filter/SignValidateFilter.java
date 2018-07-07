@@ -1,5 +1,6 @@
 package com.stylefeng.roses.gate.filter;
 
+import cn.hutool.core.io.IoUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
@@ -9,7 +10,6 @@ import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.gate.constants.ZuulConstants;
 import com.stylefeng.roses.gate.exception.SignExceptionEnum;
 import com.stylefeng.roses.gate.sign.SignService;
-import com.xiaoleilu.hutool.io.IoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletInputStream;

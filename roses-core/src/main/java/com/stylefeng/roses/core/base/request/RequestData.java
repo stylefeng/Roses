@@ -1,9 +1,9 @@
 package com.stylefeng.roses.core.base.request;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoleilu.hutool.bean.BeanUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
 
 import java.io.Serializable;
 import java.util.*;

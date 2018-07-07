@@ -1,7 +1,7 @@
 package roses.scanner.modular.factory;
 
+import cn.hutool.core.util.StrUtil;
 import com.stylefeng.roses.api.auth.ResourceDefinition;
-import com.xiaoleilu.hutool.util.StrUtil;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

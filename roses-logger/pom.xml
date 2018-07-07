@@ -27,7 +27,7 @@
             <artifactId>roses-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.xiaoleilu</groupId>
+            <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
         <dependency>
