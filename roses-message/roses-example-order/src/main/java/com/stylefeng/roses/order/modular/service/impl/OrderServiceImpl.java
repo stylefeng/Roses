@@ -1,5 +1,6 @@
 package com.stylefeng.roses.order.modular.service.impl;
 
+import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
@@ -14,7 +15,6 @@ import com.stylefeng.roses.order.core.exception.OrderExceptionEnum;
 import com.stylefeng.roses.order.modular.consumer.MessageServiceConsumer;
 import com.stylefeng.roses.order.modular.mapper.OrderMapper;
 import com.stylefeng.roses.order.modular.service.IOrderService;
-import com.xiaoleilu.hutool.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.util;
 
+import cn.hutool.core.date.DateUtil;
 import com.stylefeng.roses.core.config.properties.SignProperties;
-import com.xiaoleilu.hutool.date.DateUtil;
 
 import java.util.Date;
 

@@ -1,12 +1,12 @@
 package com.stylefeng.roses.gate.config;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.core.base.response.ErrorResponseData;
-import com.xiaoleilu.hutool.bean.BeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.context.annotation.Bean;

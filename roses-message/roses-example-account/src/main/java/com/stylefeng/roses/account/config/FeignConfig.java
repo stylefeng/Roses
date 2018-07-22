@@ -5,8 +5,10 @@ import com.stylefeng.roses.core.feign.RosesFeignErrorDecoder;
 import com.stylefeng.roses.core.feign.RosesFeignHeaderProcessInterceptor;
 import feign.Feign;
 import feign.RequestInterceptor;
+import feign.hystrix.HystrixFeign;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 /**
  * feign的错误编码配置（为了feign接收到错误的返回，转化成roses可识别的ServiceException）
@@ -21,8 +23,9 @@ public class FeignConfig {
      * roses自定义错误解码器
      */
     @Bean
-    public Feign.Builder myFeign() {
-        return Feign.builder().errorDecoder(new RosesFeignErrorDecoder());
+    @Scope("prototype")
+    public Feign.Builder feignHystrixBuilder() {
+        return HystrixFeign.builder().errorDecoder(new RosesFeignErrorDecoder());
     }
 
     /**

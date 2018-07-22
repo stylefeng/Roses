@@ -1,5 +1,6 @@
 package com.stylefeng.roses.account.modular.service.impl;
 
+import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.stylefeng.roses.account.modular.consumer.MessageServiceConsumer;
@@ -10,7 +11,6 @@ import com.stylefeng.roses.api.common.exception.CoreExceptionEnum;
 import com.stylefeng.roses.api.common.exception.ServiceException;
 import com.stylefeng.roses.api.order.GoodsFlowParam;
 import com.stylefeng.roses.core.util.ToolUtil;
-import com.xiaoleilu.hutool.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

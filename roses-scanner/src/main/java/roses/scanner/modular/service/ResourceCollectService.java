@@ -1,7 +1,7 @@
 package roses.scanner.modular.service;
 
+import cn.hutool.core.util.StrUtil;
 import com.stylefeng.roses.api.auth.ResourceDefinition;
-import com.xiaoleilu.hutool.util.StrUtil;
 import roses.scanner.config.properties.ScannerProperties;
 import roses.scanner.modular.factory.ApiResourceFactory;
 import roses.scanner.modular.model.ResourceTreeNode;

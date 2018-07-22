@@ -44,7 +44,7 @@
         <swagger.version>2.7.0</swagger.version>
         <ehcache.core.version>2.6.11</ehcache.core.version>
         <jwt.version>0.9.0</jwt.version>
-        <hutool.version>3.3.1</hutool.version>
+        <hutool.version>4.1.1</hutool.version>
         <spring.boot.admin>2.0.1</spring.boot.admin>
     </properties>
 
@@ -124,7 +124,7 @@
 
             <!--工具类-->
             <dependency>
-                <groupId>com.xiaoleilu</groupId>
+                <groupId>cn.hutool</groupId>
                 <artifactId>hutool-core</artifactId>
                 <version>${hutool.version}</version>
             </dependency>

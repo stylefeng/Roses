@@ -52,7 +52,7 @@
 
         <!--工具类-->
         <dependency>
-            <groupId>com.xiaoleilu</groupId>
+            <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
         </dependency>
         <dependency>
