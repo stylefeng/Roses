@@ -7,6 +7,8 @@ Roses基于`Spring Boot 2`和`Spring Cloud Finchley.RELEASE`，致力做更简�
 
 拆分了子项目，在多个git仓库中单独维护。新加了很多功能，详情见各个子项目和下边的业务介绍。
 
+Roses项目组地址：[https://gitee.com/stylefeng-Roses](https://gitee.com/stylefeng-Roses)
+
 ### 交流&学习
 
 有任何疑问和建议，不妨加入Roses的交流群`684163663`或者`207434260`一起交流学习！
