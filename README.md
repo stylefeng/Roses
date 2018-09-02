@@ -1,7 +1,8 @@
 # Roses v2.0
 
 ## 介绍
-Roses基于`Spring Boot 2`和`Spring Cloud Finchley.RELEASE`，致力做更简洁的**分布式**和**服务化**解决方案，Roses拥有高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace）等等，**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战**，请关注Roses微服务框架[https://gitee.com/naan1993/roses](https://gitee.com/naan1993/roses)
+Roses基于`Spring Boot 2`和`Spring Cloud Finchley
+.RELEASE`，致力做更简洁的**分布式**和**服务化**解决方案，Roses拥有高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace）等等，**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战**
 
 ### Roses 2.0更新内容
 
@@ -12,6 +13,8 @@ Roses基于`Spring Boot 2`和`Spring Cloud Finchley.RELEASE`，致力做更简�
 ### 交流&学习
 
 有任何疑问和建议，不妨加入Roses的交流群`684163663`或者`207434260`一起交流学习！
+
+开源不易，如果Roses项目可以帮助到您，请多star & fork ~~~
 
 ---
 
