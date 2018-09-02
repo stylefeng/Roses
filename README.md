@@ -1,46 +1,60 @@
-# Roses v1.1
-   
+# Roses v2.0
+
 ## 介绍
-Roses基于Spring Boot 2, 是开源项目Guns（[https://gitee.com/naan1993/guns](https://gitee.com/naan1993/guns)）的升级版本，致力做更简洁的**分布式**和**服务化**解决方案，Roses整合了最新版Spring Cloud Finchley.RELEASE，整合了springmvc + mybatis-plus + eureka + zuul + feign + ribbon + hystrix等等，提供Roses独有的高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace），**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战。**
+Roses基于`Spring Boot 2`和`Spring Cloud Finchley.RELEASE`，致力做更简洁的**分布式**和**服务化**解决方案，Roses拥有高效率的开发体验，提供可靠消息最终一致性分布式事务解决方案，提供基于调用链的服务治理，提供可靠的服务异常定位方案（Log + Trace）等等，**一个分布式框架不仅需要构建高效稳定的底层开发框架，更需要解决分布式带来的种种挑战**，请关注Roses微服务框架[https://gitee.com/naan1993/roses](https://gitee.com/naan1993/roses)
+
+### Roses 2.0更新内容
+
+拆分了子项目，在多个git仓库中单独维护。新加了很多功能，详情见各个子项目和下边的业务介绍。
 
 ---
 
-## Roses模块介绍
+## Roses子项目介绍
 
-| 模块名称 | 说明 | 端口 | 备注 |
-| :---: | :---: | :---: | :---: |
-| roses-api | 服务接口和model | 无 | 封装所有服务的接口，model，枚举等 |
-| roses-core | 项目骨架 | 无 | 封装框架所需的基础配置，工具类和运行机制等 |
-| roses-scanner | 资源扫描器 | 无 | 接口资源无须录入，启动即可录入系统 |
-| roses-register | 注册中心 | 8761 | eureka注册中心 |
-| roses-gateway | 网关 | 8000 | 转发，资源权限校验，请求号生成等 |
-| roses-auth | 鉴权服务 | 8001 | 提供用户，资源，权限等接口 |
-| roses-config | 配置中心服务器 | 8002 | 配置集中管理 |
-| roses-logger | 日志服务 | 8003 | 消费并存储日志 |
-| roses-monitor | 监控中心 | 9000 | 监控服务运行状况 |
-| roses-message-service | 消息服务 | 9001 | 可靠消息最终一致性（柔性事务解决方案） | 
-| roses-message-checker | 消息恢复和消息状态确认子系统 | 9002 | 可靠消息最终一致性（柔性事务解决方案） |
-| roses-example-order | 订单服务 | 9003 | 演示如何解决分布式事务 |
-| roses-example-account | 账户服务 | 9004 | 演示如何解决分布式事务 |
+| 模块名称 | 说明 | 地址 |
+| :---: | :---: | :---: |
+| roses-kernel | Roses框架核心支撑 | https://gitee.com/stylefeng-Roses/roses-kernel |
+| roses-biz-support | 基础业务服务支撑 | https://gitee.com/stylefeng-Roses/roses-biz-support |
+| roses-cloud-support | 微服务支撑组件 | https://gitee.com/stylefeng-Roses/roses-cloud-support |
+| roses-config-repo | 配置仓库 | https://gitee.com/stylefeng-Roses/roses-config-repo |
+| roses-system | 系统管理服务 | https://gitee.com/stylefeng-Roses/roses-system |
+| roses-gateway | 微服务网关 | https://gitee.com/stylefeng-Roses/roses-gateway |
+
+**为什么Roses 2.0拆分项目**
+
+一句话回答就是使`框架和业务分开维护`，`更快捷的开发新业务`
+
+相信大家所在的公司都有自己的gitlab仓库，或者托管在码云平台，仓库中有很多项目，很多业务模块，每个业务模块都配置了spring mvc，mybaits，mybaits plus之类的，每个
+项目都有一些共性的东西，当您开发一个微服务的时候，您是直接从旧项目复制一套东西，在新项目改一改名字，包名，类名更方便，还是直接新建一个项目，引入一个maven的pom
+更方便。还有就是框架上的东西升级的时候，同样的类，同样的方法，您一定不喜欢修改两次或者更多次。
+
+可能有的人会反驳这个观点，直接建一个大项目，里边建立多个maven模块来构建，新建微服务的时候我直接在下边加个模块不可以吗？
+
+也可以，但是不推荐，到了项目后期，模块越来越多，可能光导入项目机器都很卡，还有开发A模块的人，公司规定不准看B模块的业务，这种情况无法解决。随着公司的发展，公司一定不是只有一个项目。
+
+所以拆分项目，更加适合公司实际业务开发的情况，共有的东西提出来，以maven模块方式依赖进业务系统。升级框架的时候，通知业务负责人升级pom
+版本即可。业务人员也可以更加专注于开发业务，导入项目开发时，也只需要导入开发人员开发的模块即可，非常方便。
 
 ---
 
 ## 使用手册
 
-### 运行环境
-> * JDK 1.8
-> * Redis最新版
-> * ActiveMQ 5.9.1（可以根据`MessageSender`接口自行拓展为自己公司需要的队列）
-> * Mysql 5.7 +，项目运行前请初始化数据库，脚本在各自项目的sql文件夹
+如果是刚接触微服务，可能有些吃力，不要气馁，相信自己，花点时间一定可以跑起来。
 
-### 项目运行步骤
-> 1. 启动Redis,启动ActiveMQ,初始化好mysql数据库
-> 2. 启动配置中心roses-config
-> 3. 启动注册中心roses-register
-> 4. 启动监控中心roses-monitor
-> 5. 启动鉴权服务roses-auth
-> 6. 启动网关roses-gateway
-> 8. 剩下的消息服务message-service和消息恢复服务message-checker根据使用情况启动
+由于拆分了项目，使用方式略有不同，不了解maven的同学，需要先学习下maven，另外项目还用了lombok，需要安装lombok插件。
+
+请先导入roses-kernel，根pom下执行`mvn clean install -Dmaven.test.skip=true`或者deploy到自己公司的私服上。
+
+再导入roses-biz-support，根pom下执行`mvn clean install -Dmaven.test.skip=true`或者deploy到自己公司的私服上。
+
+之后需要先启动配置中心，再启动注册中心，仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-cloud-support](https://gitee
+.com/stylefeng-Roses/roses-cloud-support)上面，具体启动方法见仓库里readme
+
+然后启动roses-system,仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-system](https://gitee
+.com/stylefeng-Roses/roses-system)，具体启动方法见仓库里readme
+
+再启动roses-gateway网关，仓库地址在[https://gitee.com/stylefeng-Roses/roses-gateway](https://gitee
+.com/stylefeng-Roses/roses-gateway)，具体启动方法见仓库里readme
 
 ---
 
@@ -61,19 +75,25 @@ Roses基于Spring Boot 2, 是开源项目Guns（[https://gitee.com/naan1993/guns
 4. 开发成本，对开发人员的技术要求和开发一个业务的工作量有所不同。单体服务中，没有幂等性和分布式事务等问题，微服务开发中，不仅需要编写业务，还要考虑到可能会影响业务正常运行的其他因素。
 
 ### 一些建议
-> 1. 项目刚成立之初，如果业务量不大，不建议直接上分布式架构，会增加运维和开发成本，这点可以根据项目和业务情况选择！
-> 2. 如果您觉得分布式项目不适合您，不妨考虑一下作者的另一款单体项目框架[Guns](https://gitee.com/naan1993/guns)，Guns项目代码简洁,注释丰富,上手容易，是一个后台管理系统的脚手架，会让您降低不少开发成本！
-> 3. 刚接触分布式框架的同学，请利用好手头的资源，运行前仔细阅读使用手册，按照步骤一步步来，一定可以成功运行！如果觉得过程过于复杂，对，分布式就是这么复杂，要不你试试[Guns](https://gitee.com/naan1993/guns)？
-> 4. 有任何疑问和建议，不妨加入Roses的交流群`207434260`一起交流学习！
+> 1. 如果您觉得分布式项目不适合您，不妨考虑一下作者的另一款单体项目框架[Guns](https://gitee.com/naan1993/guns)，Guns项目代码简洁,注释丰富,
+上手容易，是一个后台管理系统的脚手架，会让您降低不少开发成本！
+> 2. 刚接触分布式框架的同学，请利用好手头的资源，运行前仔细阅读使用手册，按照步骤一步步来，一定可以成功运行！
+> 3. 有任何疑问和建议，不妨加入Roses的交流群`684163663`或者`207434260`一起交流学习！
 
 --- 
 
 ## Roses特点
 
-### 1. 网关实现统一鉴权，资源权限过滤
+### 1. 快速开发微服务的秘籍 roses-kernel
+在roses-kernel模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-kernel这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在Roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-kernel模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
+
+**有了roses-kernel模块，开发别的模块时，您可以把百分之90的精力花在编写业务上，百分之10的精力花在搭建项目和配置项目上。**
+
+
+### 2. 网关实现统一鉴权，资源权限过滤
 Roses中，所有业务请求经过网关，网关做统一的鉴权，权限过滤，数据签名校验，这样做的好处就是业务系统中不用集成鉴权模块，只需要关心各自服务的业务编写。鉴权方面Roses依旧使用jwt，如果想对某个用户作某些资源访问的限制，需要开启`PathMatchFilter`，该过滤器会对用户当前访问的资源进行权限校验，资源的收集方式也做了大大的简化，Roses中通过资源搜集器`roses-scanner`收集资源（详见特点6），所有的资源只需要用`@ApiResource`注解标识，项目运行后会把所有资源发送到`roses-auth`服务中，对比以往的每新增一个资源都需要在后台管理系统中新增一条记录，省了不少工作量。
 
-### 2. 网关生成唯一请求号（RequestNoGenerateFilter）
+### 3. 网关生成唯一请求号（RequestNoGenerateFilter）
 Roses中，所有业务请求经过网关，网关做统一的鉴权，权限过滤，数据签名校验，并为每个请求生成该次请求的唯一请求号。唯一请求号的作用如下：请求在业务流转过程中可能经过多个微服务，查看这次请求的info日志信息，或者error日志信息等，需要从多个微服务的日志记录里去查找，效率非常低，那么，有了唯一请求号标识之后，可以用唯一请求号把请求经过的所有业务流转串起来，并存储起来，当请求遇到问题后，可以通过唯一请求号快速把这次请求的所有日志搜集并展示起来，从而方便排查问题。
 
 Roses中，请求号在中转过程中填充到请求的Request-Header中，与之对应，响应时也会在Response-Hedaer中把本次的请求号输出。过滤器中的写法如下：
@@ -120,7 +140,7 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
 
 ```
 
-### 3. 分布式事务解决方案（可靠消息最终一致性）
+### 4. 分布式事务解决方案（可靠消息最终一致性）
 首先，分布式事务在不同业务场景下，解决方案是不一样的，时效性要求较高的场景下，例如订单支付成功后，更改订单状态，给用户账户加款，给积分账户加积分，三个操作在三个不同的服务下，这个时候可以用TCC方式解决事务问题；在时效性要求较为不严格下，例如订单支付成功后，需要异步录入会计凭证（不严格要求时效性），这个时候可以用可靠消息最终一致性解决。
 
 Roses中实现了可靠消息最终一致性的解决方案（如上所说第二个例子），TCC方案目前未集成到系统。
@@ -160,14 +180,14 @@ if (flowRecords != null && !flowRecords.isEmpty()) {
 }
 ```
 
-### 4. 分布式配置中心roses-config
+### 5. 分布式配置中心roses-config
 在Roses中，正如您所见，所有的模块都是在一个大工程下，但是实际日常开发中，模块往往分隔在多个项目中，每个项目有单独的小组来维护，小组与小组之间甚至代码都不是可见。当项目中的一些通用配置变动时，例如数据库地址，账号密码等，要么你通知各个小组修改他们的配置，要么你自己打开所有项目修改一遍。如果使用了分布式配置中心，可以把所有项目的配置收集起来，集中配置，那么你只需要打开配置中心的git仓库来修改配置，从而简化配置的维护工作。
 
 除此之外，如果spring boot应用开启了actuator，配置仓库中的配置更改后，应用还可以通过/refresh动态刷新项目的配置，这在网关动态增加路由等配置上非常方便。
 
 当然，开启分布式配置之后也有不完美的地方，在本地开发调试中，常常需要修改配置，直接修改远程仓库的配置又会影响到别人的本地开发，关于这种情况，Roses在每个项目的src/test/resources文件夹中，都保留了一个`application-local.yml`，这个配置文件是local环境下的应用的配置文件，您可以把它拷贝到src/main/resources中，并配置`bootstrap.yml`中的`spring.cloud.config.enable`配置为false，即可关闭配置中心的配置，使用本地的配置。
 
-### 5. 一切请求基于RequestData和ResponseData
+### 6. 一切请求基于RequestData和ResponseData
 为了方便日常接口开发，Roses对控制器层的请求参数和响应进行了统一封装。所有post方式的请求，并且带有json请求body的都可以用RequestData类来作为参数接收请求数据，所有的响应都可以用ResponseBody来作响应的结果。
 
 RequestData类中封装了对请求参数获取的常用方法，例如getString(),getInteger(),parse()等等，可以很方便的获取请求中包含的字符串数据，整型数据，以及解析请求为某个类。而ResponseData类中包含了对常用成功或者失败响应的封装，可以通过静态方法ResponseData.success()或者ResponseData.error()来响应成功的结果或者失败的响应。
@@ -202,18 +222,18 @@ public Object test(RequestData requestData) {
 
 所有接口的参数和响应都封装在两个对象里，开发时候不用构建许多的vo（view object）和qo（query object），但是也有不利的地方，由于不知道请求和响应包含哪些参数，维护时候可能会增加难度，所以，在使用这种机制的时候，配合类似于[RAP](https://github.com/thx/RAP)这样的接口管理工具会更加的好用。
 
-### 6. 独创基于BeanPostProcessor的资源扫描器
+### 7. 独创基于BeanPostProcessor的资源扫描器
 Roses中设立了@ApiResource注解，用来标注控制器里的接口，在Roses框架中，用户对应了角色，角色又对应着资源，菜单关联资源。资源扫描器的作用一方面是便于管理所有的接口资源的权限控制，另一方面是简化了资源录入系统的方式 （不用手写），当程序启动时，会自动扫描带有@ApiResource注解的方法，扫描之后会对资源进行包装，写入到数据库。所以当使用了资源扫描器之后可以很方便的搜集所有服务上面的接口资源，并通过roses-auth的接口，统一的汇报到roses-auth服务上面去，从而实现了资源的集中管理。
                                                                           
 
-### 7. 独特的Feign错误解码器
+### 8. 独特的Feign错误解码器
 Roses继承了Guns框架的业务编写方式，在适当的的业务错误场景，如果不能再继续执行下去业务，可以抛出ServiceException，让DefualtExceptionHandler拦截到异常，直接返回给前端业务上的错误提示信息。那么，在分布式的场景下，如何利用ServiceException的抛出来返回前端提示呢，当A服务调用B服务，B服务又调用C服务过程中，如何把异常信息逐级返回给上个服务呢，Roses中利ErrorDecoder并覆盖其中的decode方法，当response中的信息为Roses中的错误编码格式的话，会在Feign错误解析过程中直接抛出ServiceException，从而直接在调用方服务中抛出被调用方同样的服务异常，实现逐级响应Service服务异常的功能，如果担心服务异常带来的性能问题，可以通过 override 掉异常类的 fillInStackTrace() 方法为空方法，使其不拷贝栈信息。
 
 
-### 8. Log + Trace日志记录
+### 9. Log + Trace日志记录
 为了方便业务异常以及分布式调用链中调用异常排查，Roses编写了LogUtil和TraceUtil两个类来记录业务中的调试，提示，错误日志和调用链调用过程中的信息日志，LogUtil中包含LogUtil.info()，LogUtil.debug()，LogUtil.error()等静态方法，TraceUtil中包含TraceUtil.trace()等静态方法，这两个类都采用线程池异步记录日志的方式来记录，目前日志是通过Redis的List放到队列在通过roses-logger模块监听队列来消费记录日志，当然，Roses提供了拓展，如果这种记录方式或是存储介质不符合您的业务需求，您可以通过继承com.stylefeng.roses.core.log.LogProducerService接口，实现您自己的日志记录方式，而不必修改LogUtil中的日志记录方法。总之，Log + Trace的日志记录方法，为多服务异常排查，和调用链服务治理提供了很好的保障。
 
-### 9. 统一的日志记录格式
+### 10. 统一的日志记录格式
 Roses采用logback来记录日志，并且每个模块都有统一的规范的日志记录格式，具体可见每个模块下的`logback-spring.xml`配置文件，在这个配置中，定义了两种profile。
 
 第一种profile是在`spring.profiles.active`为local时激活，也就是，在本地开发中，日志只打印到控制台中，不会输出到文件中，默认日志输出级别是info，但是`com.stylefeng.roses`包中的类的日志，以debug级别输出，为了方便开发人员本地调试。
@@ -255,15 +275,3 @@ Roses采用logback来记录日志，并且每个模块都有统一的规范的�
 
 </springProfile>
 ```
-
----
-
-## 快速开发微服务的秘籍 roses-core
-在roses-core模块的`com.stylefeng.roses.core.config`包下整合了大量开发常用到的配置，其中包含默认异常拦截，登陆用户的上下文获取，默认缓存配置，默认fastjson的配置，默认mybatis-plus的配置，默认的swagger的配置，默认的web配置等等等等，使得在新业务开发中，只要pom引入roses-core这个模块，即可很方便的注入这些特性，直接上手开编写业务，大大减少了新业务，新模块的配置，调试，各种框架集成拼接的时间，因为这些在Roses中已经为您提供好了，利用Spring Boot的自动配置机制，同样的，这些配置在项目启动的时候会默认加载，因为在roses-core模块下的META-INF/spring.factories中配有这些类，当然，如果您不需要某些特性（自动配置类）您可以在@SpringBootApplication注解上增加exclude参数来排除这些自动配置。
-
-**有了roses-core模块，开发别的模块时，您可以把百分之90的精力花在编写业务上，百分之10的精力花在搭建项目和配置项目上。**
-
----
-
-## 未完待续...
-更多有趣，实用，高效的功能尽在**Roses**
