@@ -47,14 +47,14 @@ Roses基于`Spring Boot 2`和`Spring Cloud Finchley.RELEASE`，致力做更简�
 
 再导入roses-biz-support，根pom下执行`mvn clean install -Dmaven.test.skip=true`或者deploy到自己公司的私服上。
 
-之后需要先启动配置中心，再启动注册中心，仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-cloud-support](https://gitee
-.com/stylefeng-Roses/roses-cloud-support)上面，具体启动方法见仓库里readme
+之后需要先启动配置中心，再启动注册中心，仓库地址地址在https://gitee
+.com/stylefeng-Roses/roses-cloud-support上面，具体启动方法见仓库里readme
 
-然后启动roses-system,仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-system](https://gitee
-.com/stylefeng-Roses/roses-system)，具体启动方法见仓库里readme
+然后启动roses-system,仓库地址地址在https://gitee
+.com/stylefeng-Roses/roses-system，具体启动方法见仓库里readme
 
-再启动roses-gateway网关，仓库地址在[https://gitee.com/stylefeng-Roses/roses-gateway](https://gitee
-.com/stylefeng-Roses/roses-gateway)，具体启动方法见仓库里readme
+再启动roses-gateway网关，仓库地址在https://gitee
+.com/stylefeng-Roses/roses-gateway，具体启动方法见仓库里readme
 
 ---
 
