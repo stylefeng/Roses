@@ -59,7 +59,7 @@ Roses基于`Spring Boot 2`和`Spring Cloud Finchley
 
 之后需要先启动配置中心，再启动注册中心，仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-cloud-support](https://gitee.com/stylefeng-Roses/roses-cloud-support)上面，具体启动方法见仓库里readme
 
-然后启动roses-system,仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-system](https://gitee.com/stylefeng-Roses/roses-system)，具体启动方法见仓库里readme
+然后启动roses-system，仓库地址地址在[https://gitee.com/stylefeng-Roses/roses-system](https://gitee.com/stylefeng-Roses/roses-system)，具体启动方法见仓库里readme
 
 再启动roses-gateway网关，仓库地址在[https://gitee.com/stylefeng-Roses/roses-gateway](https://gitee.com/stylefeng-Roses/roses-gateway)，具体启动方法见仓库里readme
 
@@ -82,7 +82,7 @@ Roses基于`Spring Boot 2`和`Spring Cloud Finchley
 4. 开发成本，对开发人员的技术要求和开发一个业务的工作量有所不同。单体服务中，没有幂等性和分布式事务等问题，微服务开发中，不仅需要编写业务，还要考虑到可能会影响业务正常运行的其他因素。
 
 ### 一些建议
-> 1. 如果您觉得分布式项目不适合您，不妨考虑一下作者的另一款单体项目框架[Guns](https://gitee.com/naan1993/guns)，Guns项目代码简洁,注释丰富,
+> 1. 如果您觉得分布式项目不适合您，不妨考虑一下作者的另一款单体项目框架[Guns](https://gitee.com/naan1993/guns)，Guns项目代码简洁，注释丰富，
 上手容易，是一个后台管理系统的脚手架，会让您降低不少开发成本！
 > 2. 刚接触分布式框架的同学，请利用好手头的资源，运行前仔细阅读使用手册，按照步骤一步步来，一定可以成功运行！
 
@@ -196,14 +196,14 @@ if (flowRecords != null && !flowRecords.isEmpty()) {
 ### 6. 一切请求基于RequestData和ResponseData
 为了方便日常接口开发，Roses对控制器层的请求参数和响应进行了统一封装。所有post方式的请求，并且带有json请求body的都可以用RequestData类来作为参数接收请求数据，所有的响应都可以用ResponseBody来作响应的结果。
 
-RequestData类中封装了对请求参数获取的常用方法，例如getString(),getInteger(),parse()等等，可以很方便的获取请求中包含的字符串数据，整型数据，以及解析请求为某个类。而ResponseData类中包含了对常用成功或者失败响应的封装，可以通过静态方法ResponseData.success()或者ResponseData.error()来响应成功的结果或者失败的响应。
+RequestData类中封装了对请求参数获取的常用方法，例如getString()，getInteger()，parse()等等，可以很方便的获取请求中包含的字符串数据，整型数据，以及解析请求为某个类。而ResponseData类中包含了对常用成功或者失败响应的封装，可以通过静态方法ResponseData.success()或者ResponseData.error()来响应成功的结果或者失败的响应。
 
 例如，请求的数据是一段json：
 ```
 {name:"order001",count:20}
 ```
 
-控制器中可以用如下写法获取参数,并响应成功的返回结果：
+控制器中可以用如下写法获取参数，并响应成功的返回结果：
 ```
 /**
  * 测试RequestData
